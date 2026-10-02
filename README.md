@@ -1,2 +1,2 @@
 # ECOllateral
-(Eco)system Collateral Forecast (tool)
+(Eco)system Collateral Forecast Tool
