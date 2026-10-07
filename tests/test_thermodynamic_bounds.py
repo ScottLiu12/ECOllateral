@@ -16,9 +16,7 @@ def test_evaporative_bound_has_correct_energy_and_volume_units():
     expected = 288_000 * 3600 / (2501 - 2.361 * 20) / LITERS_PER_MILLION_GALLONS
     assert bound.min_mgd == 0
     assert bound.max_mgd == pytest.approx(expected)
-    assert bound.max_site_wue_l_per_it_kwh == pytest.approx(
-        bound.max_liters_per_thermal_kwh * 1.2
-    )
+    assert bound.max_site_wue_l_per_it_kwh == pytest.approx(bound.max_liters_per_thermal_kwh * 1.2)
 
 
 @pytest.mark.parametrize("cooling", list(CoolingType))

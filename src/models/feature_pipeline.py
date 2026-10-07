@@ -36,9 +36,7 @@ def build_features(records: pd.DataFrame) -> pd.DataFrame:
         raise ValueError("facility_mw cannot be negative")
     if not frame["dry_bulb_c"].between(-20, 50).all():
         raise ValueError("dry_bulb_c must be between -20 and 50 C")
-    if (frame["wet_bulb_c"] < -30).any() or (
-        frame["wet_bulb_c"] > frame["dry_bulb_c"]
-    ).any():
+    if (frame["wet_bulb_c"] < -30).any() or (frame["wet_bulb_c"] > frame["dry_bulb_c"]).any():
         raise ValueError("invalid wet-bulb temperature")
     if (frame["historical_streamflow_mgd"].dropna() < 0).any():
         raise ValueError("streamflow cannot be negative")

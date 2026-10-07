@@ -66,3 +66,80 @@ nearest-station fallback, interval coverage, geographic citation filtering, arti
 reload, and the offline ingestion-to-API pipeline. Execute the notebook and type-check
 the client once the core passes. Keep external-service checks separate from offline
 tests, and record failures or unverified behavior rather than inventing results.
+
+## 2026-10-07 — Bounds, features, and ingestion
+
+- Committed the engineering bounds and feature validation as `17105c1`.
+- Bound calculation: `IT MW × 1000 × 24 × utilization × PUE` produces thermal kWh/day;
+  multiply by `3600 / (2501 - 2.361 × max(wet_bulb_c, 0))` L/thermal-kWh, then divide
+  by 3,785,411.784 L/million US gallons. The evaporative fraction is configurable.
+  Both evaporative technologies share a conservative all-latent-heat ceiling; this
+  is an envelope, not a claim that either technology always operates at that ceiling.
+- Dry cooling has zero on-site evaporation under the declared scope. All technologies
+  have zero lower bounds. Flag freezing and very small wet-bulb depression for review.
+- Feature checks reject missing capacity/temperatures/season, negative flow, infinities,
+  and wet-bulb above dry-bulb. Only streamflow and PDSI permit missing values, which
+  will be imputed using statistics learned from the training partition.
+- Seasonal factor uses `0.5 × (1 + cos(2π(month - 7)/12))`; this assumes Northern
+  Hemisphere seasonality, consistent with the USGS/US NOAA implementation.
+- USGS observations stay in long form with station ID, HUC, parameter code, converted
+  value, units, coordinates, approval status, and qualifiers. Streamflow converts from
+  cfs using 0.64631688969744 MGD/cfs; levels convert feet to meters. Negative groundwater
+  depths can be valid, so only documented sentinel-scale values are removed there.
+- Pagination follows server links, detects loops, limits the page count, and prevents
+  API-key forwarding to another host. Empty datasets and HTTP failures are distinct.
+- NOAA ingestion explicitly requests standard units, then converts F to C and inches
+  to mm. Missing TEMP/DEWP 9999.9 and PRCP 99.99 are not treated as observations.
+- Wet-bulb is estimated from temperature/dew point using approximate RH and Stull's
+  sea-level equation. Invalid dew point and out-of-domain or cold/dry estimates become
+  missing; saturated air uses the exact wet-bulb = dry-bulb identity.
+- Monthly PDSI is read from the newest listed nClimDiv divisional file. The climate
+  division is supplied explicitly. Missing -99.99 values remain missing.
+- Environment: created `.venv` using the bundled Python 3.12 runtime. Network-restricted
+  dependency installation failed with Windows socket error 10013; the authorized
+  dependency-download escalation succeeded. This did not require GitHub access.
+- First targeted test run: **17 passed** (bounds and mocked NOAA/USGS ingestion).
+  Initial Ruff check caught three long lines; automatic formatting handled wrapping.
+
+## 2026-10-07 — Regression and uncertainty design
+
+- Fit RandomForest and XGBoost independently for each cooling type. Require at least
+  30 distinct dates per type, and assign entire dates to chronological 60/20/20
+  train/calibration/test partitions. No date straddles two partitions.
+- Choose the candidate on calibration RMSE; reserve the final test period for reporting.
+  Record candidate raw and physically clipped metrics separately. Do not refit on the
+  calibration/test period after choosing a winner.
+- Keep raw forecast, clipped forecast, warnings, and fitted feature ranges. Missing
+  features and extrapolation generate visible warnings. Synthetic artifacts also
+  carry a warning on every forecast.
+- Compute a finite-sample split-conformal absolute-residual radius from calibration
+  predictions. Clip reported intervals to physical bounds. Temporal data do not satisfy
+  exchangeability automatically; coverage on the held-out period must be inspected,
+  and 90% nominal coverage is not guaranteed for a new facility or changing climate.
+- R² is undefined for constant targets, so dry-cooling benchmarks report null rather
+  than an artificial perfect score. The R² > 0.80 / MAE < 0.05 target is recorded as
+  a result, never used to manufacture or relabel accuracy.
+- Joblib models are local trusted artifacts; loading untrusted pickle files is outside
+  the supported workflow. Model format version is checked on reload.
+
+## 2026-10-07 — Missingness and grounding design
+
+- Mask only observed target-station records during PDSI <= -2 drought windows, at 10%,
+  25%, and 40%. At least 20 seeded replicates are required. Both filling methods use
+  the same mask within each replicate to make the comparison fair.
+- Spatial filling tries adjacent stations in great-circle distance order at the same
+  timestamp, skipping missing donors. It preserves the target's surviving observations.
+  A failed spatial fill is reported, not silently replaced by temporal filling.
+- Linear filling uses time interpolation, then fills boundary gaps. This reconstructs
+  historical gaps and uses later observations; it is not an online forecasting method.
+- Evaluate forecasts against the complete target-series baseline over all drought
+  records. Store variance in MGD², empirical 5th/95th percentiles, ±0.05 MGD coverage,
+  and a stability flag requiring >=90% tolerance coverage and every drought record's
+  central band to fit inside the tolerance. These bands quantify missingness sensitivity,
+  not measurement uncertainty or predictive confidence against observed targets.
+- Permit input is JSONL with explicit sections, source URLs, and HUC or coordinate
+  scope. Chunks retain exact character offsets and citation metadata. TF-IDF vectors
+  use FAISS cosine ranking. Geographic filtering happens before counting top-k results.
+- Narratives are deterministic and extractive. They format the previously calculated
+  model output and quote permit excerpts verbatim, without calculating cap exceedances
+  or interpreting compliance. Empty retrieval and example documents have distinct warnings.
