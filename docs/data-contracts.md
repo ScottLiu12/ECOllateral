@@ -1,7 +1,7 @@
 # Data contracts: what each input file must contain
 
 These rules keep units, dates, and sources consistent. For a short explanation of
-the system and terms, see `a2/explain-it-simply.md`. Exact field names stay unchanged.
+the system and terms, see `a2/presentation-script.md`. Exact field names stay unchanged.
 
 ECOllateral's goal is regional ecosystem impact assessment. These contracts describe
 the existing cooling-water component and environmental data, not a completed regional

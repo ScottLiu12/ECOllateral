@@ -2,7 +2,7 @@
 
 These checks ran locally on Windows with Python 3.12.14. They show the prototype works
 and handles its test cases. They do not establish accuracy at real facilities or whether
-a permit legally applies. Plain-English definitions are in `a2/explain-it-simply.md`.
+a permit legally applies. Plain-English definitions are in `a2/presentation-script.md`.
 
 ECOllateral's purpose is to assess regional ecosystem impacts from development. The
 results below test the current environmental-data/cooling-pressure components; they

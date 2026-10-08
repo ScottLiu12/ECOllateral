@@ -73,7 +73,7 @@ function chart(s, categories, series, yTitle, yMax, format,
 }
 
 let s = slide('Problem & users:\necosystems across an area',
-  'October 7 test results. Made-up water-use targets. Area impacts still need real-world tests.',true);
+  'Current tests use generated values. Next: train and test on real measurements.',true);
 text(s, 'Shaun, Troy, Scott', 85, 100, 650, 28, 20, false, gray);
 text(s, "How could new development affect an area's water supply and rivers through the year?", 85, 334, 1100, 65, 25);
 text(s, 'P R O J E C T  G O A L', 85, 426, 510, 30, 16, false, gray);
@@ -83,7 +83,7 @@ text(s, 'W O R K I N G  D E M O', 660, 426, 540, 30, 16, false, gray);
 rule(s,660,465,535);
 text(s, 'Weather data + cooling-water model\nRules check numbers + permit quotes\nFull area assessment still to build', 660, 483, 535, 115, 25);
 text(s, 'Cooling is one example. Users: town planners, researchers, water providers.', 85, 616, 1110, 27, 19, false, gray);
-note(s, 'Shaun, 30 seconds. Source: docs/a2/dossier.md section 1; docs/a2/evidence/forecast.json. '
+note(s, 'Shaun, 30 seconds. Source: docs/a2/source/dossier.md section 1; docs/a2/evidence/forecast.json. '
   + 'Synthetic labels and fictional permits. Public ingestion is a parser smoke test. '
   + 'The current collateral stress field is an on-site consumption proxy. Assigned day is pending.');
 
@@ -137,7 +137,7 @@ chart(s, ['Cooling tower', 'Direct evaporative'], [
 text(s, 'XGBOOST: LOWER ERROR', 850, 253, 350, 34, 24);
 rule(s,850,303,345);
 text(s, 'Pick using error on\nthe middle date group.\nKeep RF to compare.', 850, 327, 350, 129, 27);
-text(s, 'Next: real water use\nand area measurements.', 850, 486, 350, 82, 25);
+text(s, 'Next: train and test\non real measurements.', 850, 486, 350, 82, 25);
 text(s, 'Dates: train 60% / choose + set ranges 20% / test 20%\nDry air cooling uses zero water here. Its R2 fit score cannot be calculated.',
   80, 593, 1140, 57, 21);
 note(s, 'Shaun, 45 seconds. Source: docs/a2/evidence/regression-comparison.csv and benchmark.json. '
@@ -189,7 +189,7 @@ rule(s,80,260,610);
 text(s, 'E1: lower XGBoost error. E3/E4: checks pass.\nKeep the models, limits, and local matches.', 80, 273, 620, 53, 22);
 text(s, 'CHANGE (MODIFY)', 80, 333, 605, 23, 17, false, gray);
 rule(s,80,360,610);
-text(s, 'E2: bad neighbor readings. E5: below 90%.\nImprove gap filling and ranges. Add area water totals.', 80, 373, 620, 53, 22);
+text(s, 'E2: bad neighbor readings. E5: below 90%.\nTrain on real data. Improve gaps/ranges + area totals.', 80, 373, 620, 53, 22);
 text(s, 'DO NOT USE (REJECT)', 80, 438, 605, 23, 17, false, gray);
 rule(s,80,464,610);
 text(s, 'E5: a fit score cannot promise a right answer.\nCooling use alone cannot show ecosystem health.', 80, 477, 620, 53, 22);
@@ -198,11 +198,11 @@ rule(s,80,565,610);
 text(s, 'Need real area data before testing more AI methods.', 80, 578, 620, 31, 22);
 // The user removed circular gradients and the decorative sphere from the design.
 // Keep this area open; all evidence remains in the charts and decision text.
-text(s, 'Can we test effects on water reserves and rivers in a new area through the year?',
+text(s, 'Can training on real data predict effects on water reserves and rivers in a new area?',
   80, 620, 1130, 33, 24);
 text(s, 'Shaun: code + connect area data\nTroy: data + source quotes\nScott: tests + results',
   835, 538, 365, 65, 17, false, gray);
-note(s, 'Scott, 60 seconds. Source: docs/a2/dossier.md sections 7-8, evidence-summary.csv, '
+note(s, 'Scott, 60 seconds. Source: docs/a2/source/dossier.md sections 7-8, evidence-summary.csv, '
   + 'team-contributions.md. No neural/LLM comparison run. Shaun majority coding is confirmed; '
   + 'Troy/Scott supporting responsibilities are assigned, not certified completed. Next measured-label '
   + 'study needs facility holdouts, verified station maps, real permit relevance, MAE/RMSE/R2/coverage/width. '
@@ -217,6 +217,10 @@ supportingNotes[1] += ('\nThis map describes current components. Regional balanc
 supportingNotes[5] += ('\nPrimary next study: observed regional supply/reserves, demands, returns, ecological baselines and unseen-area tests. '
   + 'Facility holdouts remain a supporting component check. Zero-shot LLM, heatwave validation, EIA/EPA ingestion and historical recharge masking are proposals, not completed benchmarks. '
   + 'Troy supports data/grounding; Scott evaluation/interface/failure evidence; Shaun leads coding.');
+supportingNotes[0] += ('\nData plan: generated examples are current software checks. Collect paired measured inputs and outcomes, '
+  + 'train on historical observations, and test on real records and areas excluded from training. No measured-target retraining has been completed.');
+supportingNotes[5] += ('\nReal-data training is the next development step, not a completed result. Define area outcomes and river needs '
+  + 'before claiming ecosystem forecasts. Keep model selection, interval sizing and final real-data testing separate.');
 // Attach the current simplified spoken script too.
 const talk = await fs.readFile(path.join(out, 'presentation-script.md'), 'utf8');
 const scriptSections = talk.matchAll(/## Slide ([1-6]):[^\n]*\n([\s\S]*?)(?=\n## |$)/g);

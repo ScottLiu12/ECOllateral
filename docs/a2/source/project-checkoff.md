@@ -4,7 +4,7 @@ The evidence and slides are prepared for the mid-semester review. The assigned
 October 20/23 presentation day and exact submission time still need confirmation.
 Each status describes that checklist item; it does not mean the whole project has
 been validated for regional ecosystem impacts. This follows the supplied two-page course handout.
-Terms and the short project explanation are in `explain-it-simply.md`.
+Terms and the short project explanation are in `../presentation-script.md`.
 
 ## Project Scope & AI Integration
 

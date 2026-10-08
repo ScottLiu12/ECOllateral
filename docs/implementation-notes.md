@@ -656,3 +656,29 @@ or interpreting compliance. Empty retrieval and example documents have distinct 
 - No GitHub access, core-suite rerun, external submission, or app-session change is needed
   for this wording and layout revision. Native PowerPoint/Google Slides opening remains
   untested; use the new simplified filename to view the current deck.
+## October 8, 2026: real measurements and a smaller A2 folder
+
+- User requested clearer slide wording about training on measured data and deletion
+  of unnecessary folders/files. Generated water-use examples remain evidence of
+  software checks only. Real-data training and separate testing on unseen records
+  and areas are next steps; no new model training or regional validation is claimed.
+- Update slides 1, 3, and 6 and their spoken notes. Preserve all measured experiment
+  numbers, original component methods, A2 headings, diagram-arrow positions, and
+  current off-white design without purple circular gradients.
+- Preserve the user's edits to the script, including removal of the top timing table.
+  Merge the complete simple project guide and glossary into the script. Merge the
+  requirements and slide-coverage guides into assignment-coverage.md, keeping the
+  seven presentation topics, six rubric categories, five deliverables, source PDF
+  page references, and pending course checks.
+- Move editable dossier, checkoff, governance, and verification Markdown into
+  docs/a2/source/. Move the two document builders and evidence collector into
+  scripts/a2/, with rebuild instructions there. Fix active links and source paths.
+- Delete the duplicate ZIP and its packaging script, the superseded PowerPoint,
+  and the three guides whose content was merged. Retain raw experiment evidence,
+  canonical exports, editable sources, and required app dependencies.
+- Windows initially blocked removal of the old PowerPoint because it was open.
+  The user closed it; removal then succeeded. Preserve application owner files and
+  do not close applications or touch unrelated user files.
+- Next verification: rebuild exports; compare evidence, fingerprints, chart values,
+  method notes, and checklist items; inspect final slides/PDF pages; safely remove
+  obsolete build drafts and caches. Record actual checks and cleanup counts below.

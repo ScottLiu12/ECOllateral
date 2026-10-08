@@ -11,7 +11,7 @@ public environmental data, tree models, physical checks, and location-matched pe
 quotations. It does not yet calculate a validated area-wide ecosystem or water-stress score.
 That needs regional supply/reserves, other withdrawals, returns, ecological flow needs,
 and measured regional outcomes. See the [project scope](docs/project-scope.md) and
-[plain-English explanation](docs/a2/explain-it-simply.md) for the goal, current evidence,
+[plain-English explanation](docs/a2/presentation-script.md) for the goal, current evidence,
 and next work.
 
 ## Development

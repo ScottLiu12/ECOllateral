@@ -24,7 +24,7 @@ by this evidence. See `../../project-scope.md` for the regional goal and remaini
 Refresh from the repository root with:
 
 ```powershell
-.venv\Scripts\python.exe docs\a2\collect_evidence.py
+.venv\Scripts\python.exe scripts\a2\collect_evidence.py
 ```
 
 The script uses local made-up benchmark/research results and the saved real-data

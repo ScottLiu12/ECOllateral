@@ -26,8 +26,9 @@ from reportlab.platypus import (
     TableStyle,
 )
 
-HERE = Path(__file__).resolve().parent
-ROOT = HERE.parents[1]
+ROOT = Path(__file__).resolve().parents[2]
+HERE = ROOT / "docs/a2"
+SOURCE = HERE / "source"
 BUILD = ROOT / "data/processed/a2-build"
 NAVY = colors.HexColor("#142D42")
 TEAL = colors.HexColor("#167D8D")
@@ -108,13 +109,13 @@ def system_map():
     label(
         45,
         465,
-        "Before use: made-up water targets -> train / choose + set ranges / test -> saved models",
+        "Current training uses generated values. Next: train and test on measured data.",
         20,
     )
     label(
         45,
         499,
-        "Regional balances, ecological thresholds, and recharge inference remain planned.",
+        "Regional water totals and river needs still need to be built and tested.",
         20,
     )
     renderSVG.drawToFile(drawing, str(HERE / "semantic-system-map.svg"))
@@ -204,7 +205,7 @@ def markdown_pdf(source, output):
             story.append(PageBreak())
         elif line.startswith("!["):
             path = re.search(r"\(([^)]+)\)", line).group(1)
-            story.extend([Image(str(HERE / path), width=516, height=228), Spacer(1, 10)])
+            story.extend([Image(str(source.parent / path), width=516, height=228), Spacer(1, 10)])
         elif line.startswith("|"):
             rows = []
             while i < len(lines) and lines[i].strip().startswith("|"):
@@ -299,7 +300,7 @@ def main():
     system_map()
     if not args.map_only:
         for name in ("dossier", "project-checkoff"):
-            markdown_pdf(HERE / f"{name}.md", HERE / f"{name}.pdf")
+            markdown_pdf(SOURCE / f"{name}.md", HERE / f"{name}.pdf")
         slides_pdf()
     print("Course materials exported to", HERE)
 

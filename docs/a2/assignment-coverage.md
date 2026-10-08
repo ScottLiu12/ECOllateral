@@ -1,4 +1,7 @@
-# A2 slide coverage audit
+# A2 assignment and slide coverage
+
+Sources: the two-page `CSCI 4150 Project Checkoff List.pdf` and the three-page
+`CSCI4150_A2_MidSemester_System_Evidence_Review.pdf`, both supplied by the user.
 
 Checked against all three pages of the user-supplied
 `CSCI4150_A2_MidSemester_System_Evidence_Review.pdf`. The course brief defines the
@@ -33,7 +36,7 @@ Model names and the experiment IDs remain so the audience can follow the evidenc
 | 3. At least three meaningful investigations | E1 model comparison on slide 3; E2 gap filling on slide 4; E5 range evaluation on slide 5; E3/E4 safeguards on slide 2 | Four approach investigations plus range investigation, not an invented LLM experiment |
 | 4. Concrete inspectable evidence | Three editable charts on slides 3-5; E3 clipping range and four E4 location tests on slide 2 | Referenced CSV/JSON in `evidence/`; chart workbooks; notes retain setup, sample counts, units, and source paths |
 | 5. Consequential failure/limitation | Biased-neighbor diagnostic on slide 4; 88.3%/88.0% versus 90% goal on slide 5; no validated regional assessment on slide 1 | Explain separate diagnostic formula, synthetic labels, reused calibration split, and limits of interpreting finite samples |
-| 6. Evidence-supported decisions | Slide 6 separates Adopt, Modify, Reject, Defer and connects each to E1-E5 or an explicit absence of evidence | Lower XGBoost error; safeguards pass; biased donors/coverage need changes; R2 is not confidence; regional data/LLM benchmarks missing |
+| 6. Evidence-supported decisions | Slide 6 separates Adopt, Modify, Reject, Defer and connects each to E1-E5 or an explicit absence of evidence | Lower XGBoost error; safeguards pass; biased donors/coverage need changes; R2 is not confidence; real-data training is next; regional data/LLM benchmarks missing |
 | 7. Most important next question | Slide 6 asks about seasonal reserve/watershed impacts in an unseen area | Regional supply/demand/returns, ecological baselines, target definitions, independent calibration, and area holdouts |
 
 ## Rubric and timing
@@ -59,7 +62,7 @@ for decisions/next question. Allow another two minutes for questions/transition.
 
 | Component | Prepared files |
 | --- | --- |
-| A. Curated dossier snapshot | `dossier.md`, `dossier.pdf`, selected `evidence/` files |
+| A. Curated dossier snapshot | `source/dossier.md`, `dossier.pdf`, selected `evidence/` files |
 | B. One readable current semantic/system map | `semantic-system-map.svg`, `.png`, dossier diagram, editable slide 2 |
 | C. Approach/evidence/decision summary | `evidence-summary.csv`, dossier decision table, slide 6 |
 | D. Concise presentation materials | `review-slides-simplified.pptx`, `review-slides.pdf`, `presentation-script.md` and Q&A |

@@ -18,13 +18,13 @@ ECOllateral is an environmental impact assessment and regional ecosystem forecas
 
 The software milestone is a repeatable component prototype. A2 reviews its map, comparisons, limits, and decisions within the regional goal. Next we need measured development demand and area conditions, verified boundaries, real documents, regional targets, and independent range tests.
 
-Full details remain in `../implementation-notes.md`, `../data-contracts.md`, and `../validation-results.md`. `../project-scope.md` separates the regional goal from current features. Results in `evidence/` have fingerprints in `evidence/manifest.json` and refer to implementation commit `125aa40`. For rehearsal, use `explain-it-simply.md`.
+Full details remain in `../../implementation-notes.md`, `../../data-contracts.md`, and `../../validation-results.md`. `../../project-scope.md` separates the regional goal from current features. Results in `../evidence/` have fingerprints in `../evidence/manifest.json` and refer to implementation commit `125aa40`. For rehearsal, use `../presentation-script.md`.
 
 <!-- pagebreak -->
 
 ## 2. How does the system work?
 
-![Semantic system map](semantic-system-map.png)
+![Semantic system map](../semantic-system-map.png)
 
 The map shows reusable components already built. The regional reserve/stress assessment is planned. Cooling limits cannot stand in for ecological thresholds.
 
@@ -58,7 +58,7 @@ The two evaporative test groups each have 333 rows. Selected R2 is 0.99808 for t
 
 **Limit:** high scores show that the models learned generated targets. They do not prove accuracy at real facilities or in a new watershed. Cooling types are modeled separately; they are not a fourth independent experiment. Next we need measured water use and tests that reserve whole facilities the model has never seen.
 
-**Evidence:** `evidence/regression-comparison.csv`, `evidence/benchmark.json`; code `src/models/regression.py`. The report keeps calibration RMSE so we can check why each model was chosen.
+**Evidence:** `../evidence/regression-comparison.csv`, `../evidence/benchmark.json`; code `src/models/regression.py`. The report keeps calibration RMSE so we can check why each model was chosen.
 
 <!-- pagebreak -->
 
@@ -80,7 +80,7 @@ Variance measures how much predictions change between repeats; smaller values me
 
 **Decision: Modify - keep the methods, improve the checks.** Check whether nearby stations have similar river behavior. Test long gaps and outages affecting multiple stations together. Linear filling can use later readings, so a live forecast needs a method that uses only data available at that time. Groundwater filling is tested separately in meters.
 
-**Evidence:** `evidence/missingness-summary.csv`, `evidence/biased-donor-diagnostic.csv`, `evidence/missingness-sensitivity.png`, `evidence/missingness-band90.png`, and `evidence/groundwater-reconstruction.csv`.
+**Evidence:** `../evidence/missingness-summary.csv`, `../evidence/biased-donor-diagnostic.csv`, `../evidence/missingness-sensitivity.png`, `../evidence/missingness-band90.png`, and `../evidence/groundwater-reconstruction.csv`.
 
 <!-- pagebreak -->
 
@@ -94,7 +94,7 @@ A 40 MW case with 30 C dry bulb and 20 C wet bulb gives limits of 0 to 0.446484 
 
 **Decision: Adopt - keep the separate rules.** Preserve the raw number, the adjusted number, and the warning. Default PUE 1.2, utilization 1.0, and heat-removal choices are adjustable engineering assumptions. They are not universal ASHRAE limits or an account of every facility water use.
 
-**Evidence:** `evidence/constraint-failure-cases.json`; `src/rules/thermodynamic.py` and `src/models/regression.py`.
+**Evidence:** `../evidence/constraint-failure-cases.json`; `src/rules/thermodynamic.py` and `src/models/regression.py`.
 
 ### E4: match permit words and location
 
@@ -104,7 +104,7 @@ Four made-up document cases show: a matching HUC returns `local-huc`; a wrong HU
 
 **Decision: Adopt - keep the word search and location checks.** Preserve source/location information and exact quotations so a person can review them. Before adding more documents, test real permits reviewed by people. Measure precision (returned sections that are relevant) and recall (relevant sections found). TF-IDF matches words; it does not prove deep understanding or legal applicability.
 
-**Evidence:** `evidence/retrieval-cases.json`, `src/grounding/store.py`, and `src/grounding/generator.py`.
+**Evidence:** `../evidence/retrieval-cases.json`, `src/grounding/store.py`, and `src/grounding/generator.py`.
 
 <!-- pagebreak -->
 
@@ -125,9 +125,9 @@ Both results miss the prototype check of observed coverage >=90%. These are fini
 
 **Decision: Reject - avoid unsupported claims.** R2 is not a confidence probability. On-site consumption is not a validated measure of a town's water stress.
 
-**Working example:** `evidence/forecast-request.json` and `evidence/forecast.json` show a 40 MW tower request returning about 0.204339 MGD, a citation, and warnings about synthetic and historical inputs. It proves the API works, not accuracy on independent measurements.
+**Working example:** `../evidence/forecast-request.json` and `../evidence/forecast.json` show a 40 MW tower request returning about 0.204339 MGD, a citation, and warnings about synthetic and historical inputs. It proves the API works, not accuracy on independent measurements.
 
-**Evidence:** `evidence/interval-coverage.csv`, `evidence/benchmark.json`, `src/models/regression.py`. The dry air-cooled zero-target case has 100% coverage and zero range width; it is excluded from the meaningful evaporative comparison.
+**Evidence:** `../evidence/interval-coverage.csv`, `../evidence/benchmark.json`, `src/models/regression.py`. The dry air-cooled zero-target case has 100% coverage and zero range width; it is excluded from the meaningful evaporative comparison.
 
 <!-- pagebreak -->
 
@@ -167,7 +167,7 @@ The user confirmed Shaun's coding lead. Troy's and Scott's lines assign work; th
 
 Preparing this package has not performed a survey, obtained IRB or instructor scraping approval, booked office hours, changed GitHub permissions, or submitted coursework.
 
-**Prepared files:** dossier, system map, evidence/decision table, editable slides and PDF, four-minute script/Q&A, team statement, and full project checkoff. The manifest records file fingerprints and experiment origins. `collect_evidence.py` refreshes local evidence; `build_materials.py` and `build_slides.mjs` rebuild exports.
+**Prepared files:** dossier, system map, evidence/decision table, editable slides and PDF, four-minute script/Q&A, team statement, and full project checkoff. The manifest records file fingerprints and experiment origins. `../../../scripts/a2/collect_evidence.py` refreshes local evidence; `../../../scripts/a2/build_materials.py` and `../../../scripts/a2/build_slides.mjs` rebuild exports.
 
 **Still to confirm:** October 20 or 23, 2026 presentation assignment, exact Submitty deadline, instructor/TA repository access, office hours, rehearsal, actual contributions, and studio links. The course handouts state requirements; they do not authorize messages, uploads, or access changes.
 
