@@ -1,6 +1,6 @@
-"""Export course Markdown and the explicit system diagram using bundled ReportLab.
+"""Export course Markdown and the system diagram using ReportLab.
 
-Run with the Codex bundled Python. Build slides first to include their PDF export.
+Slide previews must be available before including their PDF export.
 Intermediate renders stay in the ignored data directory; outputs stay in docs/a2.
 """
 

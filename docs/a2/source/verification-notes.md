@@ -1,155 +1,83 @@
-# Checks on the exported files and evidence
+# Current export and evidence checks
 
-The evidence was captured on October 7, 2026. The plain-English revision was checked
-against the original package at commit `ba3839a`. All files are local; the package
-has not been submitted, pushed to GitHub, or sent to anyone. Access settings and
-office-hours bookings were not changed.
+Evidence snapshot: October 7, 2026. Document revision: October 8, 2026.
+The detailed development history is in `../../implementation-notes.md`.
 
-## Evidence checks
+## Current files and sources
 
-- `collect_evidence.py` executed the project suite: 51 passed with one upstream
-  Starlette/httpx deprecation warning. The captured test log is in `evidence/`.
-- All 20 source/result SHA-256 entries in `evidence/manifest.json` matched their files.
-  The original implementation is `125aa40`; initial requirements mapping is `4caa821`;
-  curated dossier and evidence are committed in `133eade`.
-- Model results, the rule for choosing a model, test-row counts, prediction-range
-  coverage, and variation from filling missing data agree with the source tables.
-- The biased-neighbor test uses a separate simple formula. Deliberately wrong
-  predictions come from test substitutes. Fictional permits are marked as examples.
-- Shaun's coding lead is user-confirmed. Supporting work for Troy/Scott is assigned,
-  with confirmation of actual completed contributions still required.
+- Main A2 folder: 11 files. Start with `../README.md` for the file index.
+- Editable presentation: `../review-slides-simplified.pptx`; matching preview:
+  `../review-slides.pdf`. The older deck and duplicate ZIP are removed.
+- Editable dossier/checkoff and data-source notes are in this source folder.
+  Evidence and document scripts are in `../../../scripts/a2/`.
+- The talk, Q&A, simple project guide, and glossary share one presentation script.
+  Assignment requirements and slide locations share one coverage guide.
+- The presentation itself remains the editable source for slide changes. Current
+  validation summaries and reviewed previews are in the ignored build directory.
 
-## File and layout checks
+## What the data support
 
-- Dossier PDF: 8 letter-size pages. Checkoff PDF: 3 letter-size pages. Every page was
-  rendered and visually inspected for tables, diagram labels, page breaks, and footers.
-- Presentation: 6 slides at 16:9. Every final slide was rendered and reviewed.
-  Diagram labels, text wrapping, spacing, and arrow direction were checked. The
-  standalone map also exists as SVG/PNG.
-- The presentation export passed checks on PPTX structure, slide size/count, heading
-  placement, Georgia/Arial font declarations, and reopening through the authoring tool.
-- Three charts remain editable, with embedded workbooks. Their stored values and
-  workbook references passed checks. Chart numbers use ten significant digits to
-  stay within Excel's precision limit; source CSVs keep their original precision.
-- All six slide-PDF images match the reviewed final slide renders pixel for pixel.
-  That PDF contains pictures of slides; use the PPTX to edit text, diagrams, or charts.
-- Opening in PowerPoint or Google Slides was not tested. The export checks do not
-  guarantee identical appearance in every application.
-- Both Python authoring/capture scripts pass Ruff checks and formatting. The wording
-  revision changes documentation and exports; core implementation files are unchanged.
-- The packaging script also passes Ruff. PDF/PPTX/PNG/ZIP files have explicit binary
-  Git attributes to preserve their exact bytes across Windows checkouts.
+Current water-use targets and research river data are generated examples for
+software checks. The finished model needs measured inputs and outcomes, training
+on historical measurements, and testing on separate records and areas. Public
+weather and river readings alone do not supply the correct training target.
+No measured-target retraining, regional water balance, river-needs assessment,
+or ecosystem-health validation is claimed.
 
-Final editable-deck SHA-256 fingerprint:
-`40f38dc135c62cb3cd670b7b4f05b328707659d73aa2a0cf2474891dbd667185`.
-The current editable file is `review-slides-simplified.pptx`. The older
-`review-slides.pptx` was open and locked by PowerPoint, so it is preserved locally
-and excluded from the handoff ZIP. Open the simplified version for the latest slides.
-Detailed export receipts stay in `data/processed/a2-build/slides/`.
+The biased-neighbor diagnostic uses a separate simple formula, forced wrong
+predictions use test substitutes, and permit examples are fictional. Shaun leads
+coding; Troy and Scott's supporting responsibilities still require confirmation
+of actual completed contributions. Course timing, access, and rehearsal remain
+human checks.
 
-The bundled Poppler wrapper could not find its executable. PDFium rendered the
-pages and ReportLab generated the PDFs. No installation or application-setting
-changes were needed.
+## Content checks
 
-## Checks that the simpler wording keeps the content
+- All 15 raw evidence files match the original version. Text comparisons account
+  for Windows/Git line endings; all 20 manifest fingerprints match actual bytes.
+- All 21 course checklist items and seven evidence IDs, decisions, and paths remain.
+- All nine numeric dossier rows and 13 numbers in three native charts are unchanged.
+  All 32 active code/evidence references remain after deleting one obsolete builder reference.
+- Command/schema blocks in the project README and data contracts are unchanged.
+  The document rebuild command now uses the portable script path.
+- All six original component-method notes remain, with updated dossier paths.
+  Every slide's notes begin with the current simple talk, then full question details.
+- Spoken word counts: 79 / 69 / 108 / 101 / 89 / 158, total 604. Four minutes implies
+  about 151 words per minute; rehearse to establish actual timing.
+- Problem & Users, Semantic Map, Experiment E1/E2/E5, and Decisions & Next Question
+  are visible headings. Evidence labels appear on slides 2-5; failure/reliability
+  labels appear on slides 4/5; all four decision categories appear on slide 6.
+- Nine map connectors exactly match the previously aligned deck. Their earlier
+  adjustment of 8px left and 10px down is preserved.
+- All 18 local Markdown links checked resolve to existing files.
 
-- All 15 raw evidence files match the original Git contents. Text comparisons
-  account for Git's LF line endings and the Windows checkout's CRLF line endings;
-  all 20 recorded SHA-256 fingerprints still match the actual files byte for byte.
-- All 21 course checklist items and all seven evidence-table IDs, decisions, and
-  evidence paths are preserved.
-- All nine numeric dossier-table rows, 33 code/evidence references, and 13 numbers
-  in the three editable charts are unchanged.
-- Command and schema code blocks in the project README, data contracts, and review
-  README are unchanged.
-- The plain-English guide adds a short explanation, step-by-step walkthrough,
-  experiment summaries, handoffs, and a glossary. The presentation script contains
-  573 spoken words over 240 seconds, about 143 words per minute. The simpler talk
-  appears first in the deck's notes. Full methods follow under Extra details for questions.
-- The existing 51-test capture is preserved. The core suite was not rerun solely
-  for this wording revision. A local comparison receipt is saved as
-  `data/processed/a2-build/simplification-verification.json`.
+## Export and layout checks
 
-## Checks on the requested editorial slide design
+- Six 16:9 slides retain native text, nine editable map arrows, three editable charts,
+  and embedded workbooks. Structural, size/count, heading-fit, font, chart-data,
+  workbook-reference, and file-reimport checks pass.
+- Canvas #F9FAFB, text #111827, metadata #6B7280, Georgia headings, and Arial body.
+  No gradient shapes remain. Chart bars retain muted lavender/gray.
+- Conservative remaining-space estimates are 42.92 / 44.70 / 41.67 / 41.62 / 40.12 /
+  54.54 percent. Whole text/chart rectangles count as occupied.
+- Final document properties use the project title/team and neutral theme names.
+  All presentation XML and three embedded workbooks were inspected.
+- Every final slide was rendered and visually inspected. All six images in the
+  slide PDF match final renders pixel for pixel.
+- Dossier PDF: 8 letter-size pages; checkoff PDF: 3; slide PDF: 6 landscape pages.
+  Every page was rendered and checked for labels, table wrapping, breaks, and footers.
+- Both retained Python scripts pass Ruff lint and formatting checks.
+- The prior 51-test capture remains unchanged. The core suite was not rerun for
+  documentation, file organization, and metadata changes; application code is unchanged.
+- Opening in native PowerPoint/Google Slides was not tested. Structural/render checks
+  do not guarantee identical appearance in every application.
 
-- The October 8 design and scope revisions keep six 16:9 slides, three editable charts,
-  original component-method notes, and the current region-focused spoken script.
-- The canvas is #F9FAFB, primary text #111827, and metadata #6B7280. At the user's
-  latest request, all purple circular glows, the shaded sphere, and its orbit were
-  removed. Chart bars retain muted lavender #B8ADF3 and gray #D1D5DB. Rules use
-  #E5E7EB and title bars are 1.5px. The final slides have no gradient-fill shapes.
-- Headings use uppercase Georgia. Body, metadata, chart axes, and legends use Arial.
-  Both families were verified in the installed font inventory and final package.
-- The slides use a title layout, large stat callouts, open chart/text splits, and an
-  unboxed editable process diagram. The final decision slide keeps open whitespace.
-- A conservative layout check counts complete text, chart, and illustration bounding
-  rectangles as occupied. It excludes diffuse background glows and invisible connector
-  anchors. Remaining space is 42.92%, 44.70%, 41.67%, 41.62%, 40.12%, and 54.54% for
-  slides 1-6, meeting the requested minimum of 40% on every slide.
-- All six final slide layouts were visually reviewed. Repairs removed a glow/chart
-  boundary clash and a team-role/question overlap. All six images in the matching
-  slide PDF agree pixel for pixel with the reviewed final slide renders.
-- Raw evidence, fingerprints, chart numbers, component-method notes, and course
-  checklist items are preserved. Purpose, narrative, and next steps were corrected
-  to match the user's regional context. The latest comparison receipt is stored in
-  `data/processed/a2-build/regional-verification.json`.
-- The ZIP excludes temporary Office owner files. An open PowerPoint's owner file
-  was preserved locally and ignored in Git. Native PowerPoint/Google Slides opening
-  remains outside these export checks.
+Final editable-deck SHA-256:
+`c5b5d7d4b89c92a21632ed1ea3fb5b06ef235c63101ba4bbe099b8f16a8c433b`.
 
-## Checks on the regional purpose correction
+## Cleanup
 
-- README, project scope, dossier, slides, script/Q&A, map, checkoff, governance,
-  requirements, team duties, evidence descriptions, contracts, validation introduction,
-  and package metadata now describe regional ecosystem impacts as the project goal.
-- The current cooling model is explicitly a development-pressure component. No
-  regional balance, ecosystem score, recharge forecast, or zero-shot LLM benchmark
-  is presented as implemented or validated. Groundwater depth and recharge remain distinct.
-- All seven evidence-result descriptions retain their original numbers. Existing
-  commands, schemas, metric tables, raw evidence, and component-method notes are preserved.
-- The package includes `docs/project-scope.md` as its fourth project reference.
-  The package metadata change affects only the description; dependencies, version,
-  and software behavior are unchanged. Core tests were not rerun for this scope/prose revision.
-- Updated team assignments remain duties rather than certified completed work. The
-  exact presentation day, deadline, instructor access, and course studio links remain pending.
-
-## Checks against the A2 assignment and section labels
-
-- `slide-coverage.md` maps all seven required presentation topics, all six rubric
-  categories, and all five submission components to slides and supporting files.
-- Visible headings explicitly identify Problem & Users (1), Semantic Map (2),
-  Experiment E1/E2/E5 (3/4/5), and Decisions & Next Question (6). The FAILURE and
-  RELIABILITY ISSUE labels appear on slides 4/5; Evidence footers appear on slides 2-5.
-- Slide 2 explains the feature/target/rule/vector/document/metadata representations
-  and their connections. Concrete fault-injection and location outcomes remain visible.
-- Slide 6 separates Adopt, Modify, Reject, and Defer, with evidence IDs and reasons.
-  Its next question concerns seasonal reserve/watershed impacts in an unseen area.
-- The timing plan totals 240 seconds: 60 for problem/map, 120 for experiments/failures,
-  and 60 for decisions/next question. The prepared Q&A supports the two-minute question
-  period. Rehearsal is required to verify actual timing and all members' understanding.
-- All 15 raw evidence files, 20 fingerprints, 13 chart values, six original component
-  notes, and 21 checkoff items passed retention checks. No new experiment or completed
-  teammate contribution was fabricated to satisfy the assignment.
-
-## Everyday wording and map-arrow checks
-
-- Visible wording replaces technical terms with short explanations: words as numbers,
-  source/location details, missing readings, neighbors reading too high, and real area
-  measurements. The A2 section labels, model names, sources, units, and results remain.
-- All six notes start with the current short talk, followed by the original method
-  details and sources. Notes match the rehearsal script. Per-slide counts are
-  66/69/104/101/89/144 words; the 240-second timing plan is unchanged.
-- All nine editable connectors on the semantic map moved exactly 8px left and 10px
-  down relative to the previously delivered clean-background deck. Text positions are
-  unchanged. The revised arrow positions and shorter failure caption were visually checked.
-- The current PPTX passed structural, heading, font, chart/workbook, and reimport checks.
-  All six PDF images match the current reviewed renders pixel for pixel. The original
-  evidence and method-retention checks pass against the simplified deck, not the locked one.
-- Detailed private receipts are in `data/processed/a2-build/plain-language-verification.json`
-  and `regional-verification.json`. The handoff ZIP contains 41 current files and one deck.
-
-## Human/course checks still pending
-
-Confirm the assigned October 20/23 presentation day, exact Submitty deadline, actual
-completed contributions, class studio links, instructor/TA GitHub access, office hours,
-and rehearsal. The ZIP is a prepared handoff bundle; it has not been submitted.
+The main folder went from 23 files to 11. Merged guides retain their full content;
+source documents moved rather than disappeared. Removed 147 obsolete build/cache
+files (13,574,564 bytes), including draft decks, old chart snapshots, repeated previews,
+and pytest/Ruff caches. Required dependencies, source code, notebooks, tests, current
+previews, model/data artifacts, and raw evidence remain. Existing Git history is retained.

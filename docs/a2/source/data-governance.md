@@ -42,7 +42,7 @@ approval expectations. These materials do not claim instructor approval or an IR
 
 The goal is to assess development impacts on seasonal area reserves and watershed
 conditions. Regional balances and ecological thresholds still need observed data and
-validation; see `../project-scope.md`.
+validation; see `../../project-scope.md`.
 
 The model estimates on-site cooling water use. It excludes water used to generate grid
 electricity, domestic water, return-flow accounting, other withdrawals, and ecological
@@ -57,7 +57,7 @@ planned. Check the actual sources' access and rights when selecting those produc
 
 ## How to trace the evidence
 
-`evidence/manifest.json` records the implementation commit, evidence-capture commit,
+`../evidence/manifest.json` records the implementation commit, evidence-capture commit,
 Python version, random seed, and SHA-256 file fingerprints. Fingerprints let us detect
 changes to source files and selected results. The implementation snapshot is older than
 the course-document commits. Raw data and saved model objects remain in ignored folders;

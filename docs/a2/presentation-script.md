@@ -1,7 +1,7 @@
 # Four-minute talk and Q&A
 
 Allow 4 minutes for the talk and
-2 minutes for questions. 
+2 minutes for questions.
 
 ## Slide 1: problem & users — ecosystems across an area
 

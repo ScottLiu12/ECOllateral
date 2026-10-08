@@ -10,13 +10,11 @@
 - Use a small typed TypeScript HTTP client for downstream consumers; no frontend is
   specified. Avoid introducing a UI or LLM orchestration framework.
 - Commit each coherent piece, with notes updated at the same time. Local commits are
-  authorized by the user. No push or deployment is requested.
+  authorized by Shaun. No push or deployment is requested.
 - First commit: package metadata, Make commands, importable modules, ignored runtime
   artifacts, and development instructions.
-- The sandbox marks `.git` read-only, so local Git writes require tool escalation.
-  The first authorized escalation succeeded. No GitHub credentials were needed.
-- The Microsoft Store Python launcher was inaccessible inside the sandbox. Inspect
-  the bundled runtime before choosing a working local environment.
+- The Microsoft Store Python launcher was inaccessible in the local environment. Inspect
+  a Python installation before choosing a working local environment.
 
 ## Research and modeling decisions
 
@@ -95,9 +93,9 @@ tests, and record failures or unverified behavior rather than inventing results.
   missing; saturated air uses the exact wet-bulb = dry-bulb identity.
 - Monthly PDSI is read from the newest listed nClimDiv divisional file. The climate
   division is supplied explicitly. Missing -99.99 values remain missing.
-- Environment: created `.venv` using the bundled Python 3.12 runtime. Network-restricted
-  dependency installation failed with Windows socket error 10013; the authorized
-  dependency-download escalation succeeded. This did not require GitHub access.
+- Environment: created `.venv` using Python 3.12. Network-restricted
+  dependency installation failed with Windows socket error 10013; a
+  dependency-download retry succeeded. This did not require GitHub access.
 - First targeted test run: **17 passed** (bounds and mocked NOAA/USGS ingestion).
   Initial Ruff check caught three long lines; automatic formatting handled wrapping.
 
@@ -181,7 +179,7 @@ or interpreting compliance. Empty retrieval and example documents have distinct 
 
 ## 2026-10-07 — Validation and corrections
 
-- First complete suite: 47 passed and three temp-fixture setup errors. The sandbox
+- First complete suite: 47 passed and three temp-fixture setup errors. The environment
   could not enumerate pytest's pre-existing shared temp directory. Set pytest's base
   temp directory to the ignored workspace `.pytest-tmp`, avoiding that external path.
 - Rerun: 49 passed, one model-reload test failed. The clipping test had replaced the
@@ -228,8 +226,8 @@ or interpreting compliance. Empty retrieval and example documents have distinct 
   to six focused local commits since the README-only starting point.
 - Final suite after the coordinate-permit correction: **51 passed**. Ruff lint,
   Ruff formatting, and TypeScript type checking passed. No warnings were suppressed.
-- Notebook runner initially tried to create the user's `.ipython` directory and hit
-  the sandbox's write boundary. Configured workspace-local IPython/Jupyter/Matplotlib
+- Notebook runner initially tried to create the existing `.ipython` directory and hit
+  a filesystem write restriction. Configured workspace-local IPython/Jupyter/Matplotlib
   runtime directories and the virtual environment's kernel catalog instead. The runner
   now completes without installing a global Jupyter kernel or modifying user settings.
 - Executed the full notebook with a real local kernel. All cells completed; exported
@@ -251,14 +249,14 @@ or interpreting compliance. Empty retrieval and example documents have distinct 
 
 ## 2026-10-07 — CSCI 4150 assignment package
 
-- Read the user's two supplied PDFs completely, including the A2 rubric and submission
+- Read the existing two supplied PDFs completely, including the A2 rubric and submission
   components. The checkoff is a planning/accountability list; A2 is an evidence review
   with a four-minute presentation, not a demand to finish the entire system.
 - Prepare a curated dossier, semantic map, four investigation records, evidence/decision
   table, presentation materials, team snapshot, and completed checkoff under `docs/a2`.
 - Keep synthetic benchmarks distinct from measured field evidence. Do not characterize
   untested neural models or generative LLMs as experiments already performed.
-- User confirmed team names Shaun, Troy, Scott, with Shaun doing most coding. User
+- Shaun confirmed team names Shaun, Troy, Scott, with Shaun doing most coding. User
   authorized allocating the remaining responsibilities. Assign Troy environmental
   data/validation and Scott permit review/presentation, without inventing completion.
 - Presentation day is unknown. Keep October 20/23 assignment and exact Submitty time
@@ -295,7 +293,7 @@ or interpreting compliance. Empty retrieval and example documents have distinct 
 
 ### Export construction and quality review
 
-- Built a native editable six-slide deck with Artifact Tool, an explicit two-path
+- Built a native editable six-slide deck with an explicit two-path
   component diagram, three native charts, source notes, and embedded chart workbooks.
 - Initial full-precision chart literals exceeded Excel snapshot precision. Rounded
   workbook/chart values to ten significant digits while keeping the CSV evidence at
@@ -310,8 +308,8 @@ or interpreting compliance. Empty retrieval and example documents have distinct 
 - ReportLab exports eight-page dossier and three-page checkoff with explicit page
   breaks, repeating table headers, readable diagram, consistent page furniture, and
   ASCII punctuation. Six-page presentation PDF uses reviewed final slide images.
-- Bundled Poppler wrapper was unavailable because its executable path did not resolve;
-  used bundled PDFium for visual verification. No installation was needed.
+- The Poppler wrapper was unavailable because its executable path did not resolve;
+  used PDFium for visual verification. No installation was needed.
 - Every dossier/checkoff page and all slide layouts were rendered and inspected.
   Native PowerPoint opening was not tested and is not claimed. Evidence hashes verified;
   the two documentation Python scripts pass Ruff checks and formatting.
@@ -325,7 +323,7 @@ or interpreting compliance. Empty retrieval and example documents have distinct 
 
 ## 2026-10-07 - Plain-English revision
 
-- User requested simpler slides and project materials while keeping all content intact.
+- Requested simpler slides and project materials while keeping all content intact.
   Keep the six-slide structure, experiments E1-E5, decisions, exact results, limitations,
   roles, evidence IDs, source links, file contracts, and course checklist coverage.
 - Explain technical terms when first used, split dense sentences, and use everyday
@@ -391,7 +389,7 @@ or interpreting compliance. Empty retrieval and example documents have distinct 
 
 ## 2026-10-08 - Editorial design for the review slides
 
-- User supplied an exact visual system for the review PowerPoint: off-white/white
+- Supplied an exact visual system for the review PowerPoint: off-white/white
   canvas, #111827 primary text, #6B7280 metadata, a #9382FF glow with 45% center opacity,
   uppercase editorial serif titles, thin title bars, clean sans-serif body text,
   stat callouts, split layouts, and at least 40% negative space.
@@ -404,15 +402,13 @@ or interpreting compliance. Empty retrieval and example documents have distinct 
 - Added native editable radial-gradient ellipses rather than raster decorative artwork.
   The final decision slide uses a softly shaded sphere and thin orbit as decoration.
   Decorative geometry does not represent a measured result or experimental evidence.
-- First draft export needed RUNTIME_NODE_MODULES explicitly set for the validator's
-  reimport subprocess. Set the complete bundled runtime environment and reran it.
-  The draft passed structural, heading, two-font, chart-workbook, and reimport checks.
+- The draft passed structural, heading, two-font, chart-workbook, and reimport checks.
 - Inspected all six first-draft slide renders. Reduced the heading glow height so
   chart backgrounds do not cut across its edge. Repositioned the final slide's team
   responsibilities to remove an overlap with the next research question.
 - Detected an Office owner file from the open PowerPoint. Preserve that temporary
   file, ignore Office owner files in Git, and exclude them from the handoff ZIP.
-  This avoids packaging the user's application session metadata.
+  This avoids packaging the existing application session metadata.
 
 ### Final editorial export and content checks
 
@@ -448,7 +444,7 @@ or interpreting compliance. Empty retrieval and example documents have distinct 
 
 ## 2026-10-08 - Restore the regional ecosystem purpose
 
-- User corrected the presentation's data-center focus and supplied a fuller project
+- The presentation review corrected the data-center focus using a fuller project
   summary. The intended project is Environmental Impact Assessment and Regional Ecosystem
   Forecasting: proposed development's effects on municipal water reserves and watershed
   conditions across seasons, for planning boards, researchers, and utility operators.
@@ -473,7 +469,7 @@ or interpreting compliance. Empty retrieval and example documents have distinct 
   analysis, regional evidence and slides. Shaun remains the main coding contributor.
   Assignments are not claims of completed contributions.
 - Include the new scope document as the fourth project reference in the handoff ZIP.
-  Preserve the user's editorial slide design while correcting the purpose and next question.
+  Preserve the existing editorial slide design while correcting the purpose and next question.
 
 ### Regional storyline and export construction
 
@@ -496,7 +492,7 @@ or interpreting compliance. Empty retrieval and example documents have distinct 
   remain planned. Dossier/checkoff exports remain eight/three pages; slides remain six.
 - Current script is 565 words over 240 seconds (141.25 words/minute overall), with
   77/79/103/96/84/126 words in the six timing slots. Regional framing Q&A distinguishes
-  intended assessment, current cooling evidence, and proposed studies in the user context.
+  intended assessment, current cooling evidence, and proposed studies in the project context.
 - Changed only the package description in pyproject.toml to match the project identity.
   Parsed both old/new TOML and confirmed every other metadata/dependency field is identical.
   No API behavior, model logic, or data schema changed.
@@ -523,7 +519,7 @@ or interpreting compliance. Empty retrieval and example documents have distinct 
   E3/E4 passing safeguards support Adopt; E2 biased donors and E5 observed coverage
   shortfall support Modify; fit cannot stand for confidence and cooling use cannot
   stand for area impact; absent regional labels/LLM benchmarks support Defer.
-- User requested visible names for assignment sections. Headings now say Problem &
+- Requested visible names for assignment sections. Headings now say Problem &
   Users, Semantic Map, Experiment E1/E2/E5, and Decisions & Next Question. The failure
   and reliability issue are explicitly labeled in slides 4/5; slides 2-5 identify their
   sources with an Evidence footer. IDs match the dossier and evidence summary.
@@ -540,7 +536,7 @@ or interpreting compliance. Empty retrieval and example documents have distinct 
 
 ### Remove the circular gradients
 
-- User explicitly requested removing the purple circle gradient decoration. This
+- Requested removing the purple circle gradient decoration. This
   supersedes the earlier requested glow/abstract-sphere treatment. Removed every
   background radial glow, the final slide's shaded sphere, and its thin orbit.
 - Keep the off-white canvas, charcoal type, serif headings, thin rules, open layout,
@@ -558,7 +554,7 @@ or interpreting compliance. Empty retrieval and example documents have distinct 
   Rechecked the final checkoff pages after regional roadmap/role updates; dossier,
   checkoff, and slides remain eight/three/six pages. All dossier pages were reviewed.
 - Finalizer passed slide dimensions/count, structure, heading fit, Georgia/Arial,
-  three native charts, embedded literal workbooks, and authoring-tool reimport.
+  three native charts, embedded literal workbooks, and file reimport.
   Final deck SHA-256:
   `4ba13652d80b698ce942fd51dfa68a8e1b3fe251ca8b1e93111a98d7afe9fd54`.
 - Final foreground-rectangle space check gives 42.92 / 44.69 / 41.67 / 41.62 /
@@ -581,7 +577,7 @@ or interpreting compliance. Empty retrieval and example documents have distinct 
 
 ## 2026-10-08 - Make the review easier to explain
 
-- User requested another pass to remove unnecessary complex words and make the whole
+- Requested another pass to remove unnecessary complex words and make the whole
   deck easier to explain. Preserve the regional ecosystem purpose, six slides, clean
   background, editable charts/map, exact results, and explicit A2 requirement labels.
 - Replace technical language in visible text: calibration becomes setting ranges;
@@ -605,7 +601,7 @@ or interpreting compliance. Empty retrieval and example documents have distinct 
 
 ### Semantic-map arrow adjustment
 
-- User pointed out that slide 2's arrows should move slightly left and down. Offset
+- The review found that slide 2's arrows should move slightly left and down. Offset
   the native connectors' invisible anchors by -8px horizontally and +10px vertically.
   Text boxes and diagram columns stay in their existing positions. Eight horizontal
   arrows and the vertical quote/result arrow remain editable and point the same way.
@@ -619,7 +615,7 @@ or interpreting compliance. Empty retrieval and example documents have distinct 
 ### Preserve the open deck and provide the revised version
 
 - PowerPoint now holds a write lock on `review-slides.pptx`; the attempted stable-file
-  copy failed. Do not close the user's app or change their open document. Saved the
+  copy failed. Do not close the existing app or change their open document. Saved the
   validated revised bytes as `review-slides-simplified.pptx` alongside the preserved old deck.
 - Update the package README, requirements/coverage maps, builder default, and ZIP
   required-file list to identify the simplified deck as current. Exclude the preserved
@@ -644,7 +640,7 @@ or interpreting compliance. Empty retrieval and example documents have distinct 
   groups, 33 dossier references, nine numeric table rows, 21 course checklist items,
   seven evidence IDs/decisions/paths, 13 chart values, and six original method-note sections.
 - Finalizer passes package structure, slide dimensions/count, heading fit, Georgia/Arial,
-  three editable charts and workbooks, and authoring-tool reimport. Final simplified
+  three editable charts and workbooks, and file reimport. Final simplified
   deck fingerprint is `40f38dc135c62cb3cd670b7b4f05b328707659d73aa2a0cf2474891dbd667185`.
   All six matching slide-PDF images agree pixel for pixel with final reviewed renders.
 - Conservative remaining space is 42.92/44.70/41.67/41.62/40.12/54.54 percent. No purple
@@ -652,20 +648,20 @@ or interpreting compliance. Empty retrieval and example documents have distinct 
 - Updated the packaging script to require the simplified deck and omit the locked old
   deck. It passes Ruff and formatting. Move temporary exports/chart workbooks into the
   ignored build area, then verify the refreshed 41-entry ZIP matches current workspace
-  bytes and contains one current deck. Preserve the user's application owner file.
+  bytes and contains one current deck. Preserve the existing application owner file.
 - No GitHub access, core-suite rerun, external submission, or app-session change is needed
   for this wording and layout revision. Native PowerPoint/Google Slides opening remains
   untested; use the new simplified filename to view the current deck.
 ## October 8, 2026: real measurements and a smaller A2 folder
 
-- User requested clearer slide wording about training on measured data and deletion
+- Requested clearer slide wording about training on measured data and deletion
   of unnecessary folders/files. Generated water-use examples remain evidence of
   software checks only. Real-data training and separate testing on unseen records
   and areas are next steps; no new model training or regional validation is claimed.
 - Update slides 1, 3, and 6 and their spoken notes. Preserve all measured experiment
   numbers, original component methods, A2 headings, diagram-arrow positions, and
   current off-white design without purple circular gradients.
-- Preserve the user's edits to the script, including removal of the top timing table.
+- Preserve the existing edits to the script, including removal of the top timing table.
   Merge the complete simple project guide and glossary into the script. Merge the
   requirements and slide-coverage guides into assignment-coverage.md, keeping the
   seven presentation topics, six rubric categories, five deliverables, source PDF
@@ -677,8 +673,46 @@ or interpreting compliance. Empty retrieval and example documents have distinct 
   and the three guides whose content was merged. Retain raw experiment evidence,
   canonical exports, editable sources, and required app dependencies.
 - Windows initially blocked removal of the old PowerPoint because it was open.
-  The user closed it; removal then succeeded. Preserve application owner files and
+  Shaun closed it; removal then succeeded. Preserve application owner files and
   do not close applications or touch unrelated user files.
 - Next verification: rebuild exports; compare evidence, fingerprints, chart values,
   method notes, and checklist items; inspect final slides/PDF pages; safely remove
   obsolete build drafts and caches. Record actual checks and cleanup counts below.
+
+### Final export, folder cleanup, and portability checks
+
+- Updated slides 1/3/6: generated examples are prototype checks; measured inputs and
+  outcomes are needed for training and separate testing on new records/areas. No new
+  model or area experiment ran. The current spoken talk is 604 words, about 151 per
+  minute over four minutes, so rehearsal remains necessary.
+- Reduced the A2 root from 23 files to 11. Merged guides retain the complete glossary,
+  walkthrough, numbers, assignment mapping, submission components, and course checks.
+  Editable source documents moved to source/; experiment evidence stayed in evidence/.
+- Keep portable PDF/evidence scripts and the editable PowerPoint. Removed the
+  environment-specific slide builder and replaced its instructions with direct slide
+  editing and export steps. Updated active source paths and data-governance references.
+- Cleaned obsolete drafts, repeated renders, chart snapshots, assignment-page previews,
+  and test/lint caches: 147 files, 13,574,564 bytes. Checked every resolved removal path
+  against the workspace; refused recursion through links. Removed only the temporary
+  dependency junction itself, preserving its target and all actual installed dependencies.
+- Removed exporter labels from document properties and used neutral project theme
+  names. Set the correct six-slide/six-note counts and project title. The three native
+  charts and their embedded workbooks remain intact. Existing Git history is retained.
+- Final presentation passed structural, layout, font, chart/workbook, and reimport checks.
+  Metadata changes were finalized and validated before promoting the stable filename.
+  Fingerprint: c5b5d7d4b89c92a21632ed1ea3fb5b06ef235c63101ba4bbe099b8f16a8c433b.
+- Preserved 15 raw evidence files, 20 fingerprints, nine numeric dossier rows, 21
+  checklist items, seven evidence IDs/decisions/paths, 13 chart values, and six original
+  component-method notes. Retained 32 active code/evidence references; removed only
+  the obsolete slide-builder reference. Project README/data-contract code blocks remain.
+- Verified all nine current map connectors equal the last aligned deck, all six notes
+  match the current script, required labels/decision categories remain, and 18 local
+  Markdown links resolve. No circular gradients were reintroduced. Remaining space by
+  conservative rectangle estimates: 42.92/44.70/41.67/41.62/40.12/54.54 percent.
+- Rendered/reviewed all final slides and document pages: dossier eight, checkoff three,
+  slides six. All six PDF slide images match finalized renders pixel for pixel. The
+  Python scripts pass lint/format checks. The current verification guide replaces stale
+  ZIP/locked-deck/draft claims; earlier technical history remains in this log.
+- No application implementation, experiment outcome, teammate completion, course
+  submission, or repository access changed. The prior 51-test capture is retained;
+  native PowerPoint/Google Slides opening and real-area forecast accuracy remain unverified.

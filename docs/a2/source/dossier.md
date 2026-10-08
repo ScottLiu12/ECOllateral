@@ -167,7 +167,7 @@ The user confirmed Shaun's coding lead. Troy's and Scott's lines assign work; th
 
 Preparing this package has not performed a survey, obtained IRB or instructor scraping approval, booked office hours, changed GitHub permissions, or submitted coursework.
 
-**Prepared files:** dossier, system map, evidence/decision table, editable slides and PDF, four-minute script/Q&A, team statement, and full project checkoff. The manifest records file fingerprints and experiment origins. `../../../scripts/a2/collect_evidence.py` refreshes local evidence; `../../../scripts/a2/build_materials.py` and `../../../scripts/a2/build_slides.mjs` rebuild exports.
+**Prepared files:** dossier, system map, evidence/decision table, editable slides and PDF, four-minute script/Q&A, team statement, and full project checkoff. The manifest records file fingerprints and experiment origins. `../../../scripts/a2/collect_evidence.py` refreshes local evidence; `../../../scripts/a2/build_materials.py` rebuilds document exports. Edit the presentation directly in the PowerPoint file.
 
 **Still to confirm:** October 20 or 23, 2026 presentation assignment, exact Submitty deadline, instructor/TA repository access, office hours, rehearsal, actual contributions, and studio links. The course handouts state requirements; they do not authorize messages, uploads, or access changes.
 

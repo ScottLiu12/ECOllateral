@@ -72,8 +72,8 @@
 			<path d="M 1060,220 L 1060,310 Z" style="stroke: rgb(8%,49%,55%); stroke-linecap: butt; stroke-width: 2;"/>
 			<polygon points="1060 310, 1055 301, 1065 301" style="stroke: rgb(8%,49%,55%); stroke-linecap: butt; stroke-width: 1; fill: rgb(8%,49%,55%); fill-rule: evenodd;"/>
 			<text x="45" y="243" style="font-family: Helvetica-Bold; font-size: 20px;fill: rgb(8%,49%,55%); stroke:none;" transform="translate(0,486) scale(1,-1)">Permit/context path</text>
-			<text x="45" y="65" style="font-family: Helvetica; font-size: 20px;fill: rgb(7%,17%,25%); stroke:none;" transform="translate(0,130) scale(1,-1)">Before use: made-up water targets -&gt; train / choose + set ranges / test -&gt; saved models</text>
-			<text x="45" y="31" style="font-family: Helvetica; font-size: 20px;fill: rgb(7%,17%,25%); stroke:none;" transform="translate(0,62) scale(1,-1)">Regional balances, ecological thresholds, and recharge inference remain planned.</text>
+			<text x="45" y="65" style="font-family: Helvetica; font-size: 20px;fill: rgb(7%,17%,25%); stroke:none;" transform="translate(0,130) scale(1,-1)">Current training uses generated values. Next: train and test on measured data.</text>
+			<text x="45" y="31" style="font-family: Helvetica; font-size: 20px;fill: rgb(7%,17%,25%); stroke:none;" transform="translate(0,62) scale(1,-1)">Regional water totals and river needs still need to be built and tested.</text>
 		</g>
 	</g>
 </svg>
