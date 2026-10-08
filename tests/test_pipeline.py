@@ -160,12 +160,21 @@ def test_snapshot_duplicate_rows_rejected(resources):
 
 
 def test_coordinate_scoped_permit_needs_facility_coordinates(resources):
-    resources.permits = PermitStore(chunk_section(PermitSection(
-        document_id="coordinate-permit", title="Local cooling water permit", section="1",
-        text="Cooling water withdrawals require reporting.",
-        source_url="https://example.org/local-permit", latitude=38.9, longitude=-77.1,
-        radius_km=5, is_example=True,
-    )))
+    resources.permits = PermitStore(
+        chunk_section(
+            PermitSection(
+                document_id="coordinate-permit",
+                title="Local cooling water permit",
+                section="1",
+                text="Cooling water withdrawals require reporting.",
+                source_url="https://example.org/local-permit",
+                latitude=38.9,
+                longitude=-77.1,
+                radius_km=5,
+                is_example=True,
+            )
+        )
+    )
     with TestClient(create_app(resources)) as client:
         assert client.post("/forecast", json=payload()).json()["citations"] == []
         result = client.post("/forecast", json=payload(latitude=38.9, longitude=-77.1)).json()

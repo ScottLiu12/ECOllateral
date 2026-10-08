@@ -215,9 +215,36 @@ or interpreting compliance. Empty retrieval and example documents have distinct 
   tolerance plots, and separate toy groundwater reconstruction in meters. It clearly
   labels synthetic inputs, exposes paths for observed inputs, and saves research outputs.
 
-### Outstanding verification at this checkpoint
+### Outstanding verification at the previous checkpoint
 
 - Execute the notebook, inspect exported plots, and record the sensitivity results.
 - Rerun the suite for the coordinate-permit correction and finish focused commits.
 - Field accuracy and actual permit applicability remain unvalidated until measured
   facility labels, verified local station mappings, and real permit sections are supplied.
+
+## 2026-10-07 — Final local verification
+
+- API, CLI, and TypeScript client committed as `66230dc`. This brings the implementation
+  to six focused local commits since the README-only starting point.
+- Final suite after the coordinate-permit correction: **51 passed**. Ruff lint,
+  Ruff formatting, and TypeScript type checking passed. No warnings were suppressed.
+- Notebook runner initially tried to create the user's `.ipython` directory and hit
+  the sandbox's write boundary. Configured workspace-local IPython/Jupyter/Matplotlib
+  runtime directories and the virtual environment's kernel catalog instead. The runner
+  now completes without installing a global Jupyter kernel or modifying user settings.
+- Executed the full notebook with a real local kernel. All cells completed; exported
+  tables and two PNG figures were inspected. Generated artifacts stay out of commits.
+- Synthetic selected-model test metrics: cooling tower R² 0.99808 / MAE 0.003668 MGD;
+  direct evaporative R² 0.99728 / MAE 0.003191 MGD. Dry-cooling R² is undefined.
+- Nominal 90% prediction intervals achieved 88.29% and 87.99% coverage for the two
+  evaporative models on the held-out synthetic sample. This shortfall is documented
+  explicitly; no guaranteed 90% confidence claim is made.
+- The 50-replicate missingness experiment produced six stable synthetic cases: all
+  perturbations within ±0.05 MGD, with mean prediction variance from 3.295e-9 to
+  4.092e-8 MGD². Strong synthetic neighbor correlation limits what can be inferred.
+- Groundwater toy reconstruction retained meters and had separate reconstruction errors.
+- Detailed result tables, reproducible commands, limitations, and next field measurements
+  are recorded in `docs/validation-results.md`. Usage and data schemas are documented
+  in the README and `docs/data-contracts.md`.
+- No GitHub access was required for local implementation or commits. No remote push,
+  pull request, deployment, or account changes were performed.
