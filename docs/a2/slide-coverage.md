@@ -12,7 +12,7 @@ maps the current six-slide deck and notes to those requirements without predicti
 | 1 | Problem & users: ecosystems across an area | Project goal / Working demo; intended users named |
 | 2 | Semantic map: current system | Six inputs, learned cooling use, physical rules, words as numbers, source/location details; E3/E4 evidence |
 | 3 | Experiment E1: comparing AI models | Comparison chart, selection method, evidence source |
-| 4 | Experiment E2: missing readings | FAILURE: neighbors read too high |
+| 4 | Experiment E2: missing readings | FAILURE: high readings (neighbor stations) |
 | 5 | Experiment E5: prediction ranges | RELIABILITY ISSUE: below the 90% goal |
 | 6 | Decisions & next question | KEEP (ADOPT), CHANGE (MODIFY), DO NOT USE (REJECT), WAIT (DEFER); area next question |
 
@@ -62,7 +62,7 @@ for decisions/next question. Allow another two minutes for questions/transition.
 | A. Curated dossier snapshot | `dossier.md`, `dossier.pdf`, selected `evidence/` files |
 | B. One readable current semantic/system map | `semantic-system-map.svg`, `.png`, dossier diagram, editable slide 2 |
 | C. Approach/evidence/decision summary | `evidence-summary.csv`, dossier decision table, slide 6 |
-| D. Concise presentation materials | `review-slides.pptx`, `.pdf`, `presentation-script.md` and Q&A |
+| D. Concise presentation materials | `review-slides-simplified.pptx`, `review-slides.pdf`, `presentation-script.md` and Q&A |
 | E. One line per teammate | `team-contributions.md`; supporting duties remain assigned, not certified finished |
 
 The slides are the concise review, not the entire dossier. A2 explicitly does not require

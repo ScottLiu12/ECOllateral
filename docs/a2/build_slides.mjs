@@ -92,7 +92,8 @@ s = slide('Semantic map: current system',
 text(s, 'Demo request: equipment size, cooling type, watershed code, month. Exact location is optional.', 80, 231, 1135, 55, 22);
 const xPositions = [80, 313, 546, 779, 1012];
 function box(x, y, heading, body) {
-  const b = s.shapes.add({geometry: 'rect', position:{left:x, top:y, width:190, height:108},
+  // Invisible connector anchors shift arrows 8px left and 10px down while text stays put.
+  const b = s.shapes.add({geometry: 'rect', position:{left:x-8, top:y+10, width:190, height:108},
     fill:'none', line:{fill:'none',width:0}});
   text(s, heading.toUpperCase(), x, y, 190, 28, 20);
   rule(s,x,y+36,190);
@@ -154,7 +155,7 @@ rule(s,850,335,345);
 text(s, 'All main tests passed', 850, 351, 350, 33, 25);
 text(s, 'Change stayed within +/-0.05 MGD\n50 repeats on 121 drought days', 850, 398, 350, 95, 22, false, gray);
 rule(s,850,500,345);
-text(s, 'FAILURE: neighbors read too high\nonly 60.3% within limits', 850, 514, 350, 67, 24);
+text(s, 'FAILURE: high readings\nonly 60.3% within limits', 850, 514, 350, 67, 24);
 text(s, 'Next: test bad neighbor readings and stations losing data together. The bad-reading test uses a simple formula.',
   80, 607, 1140, 43, 21);
 note(s, 'Troy, 40 seconds. Main data source: missingness-summary.csv. Bar values are exact variance '
@@ -226,7 +227,7 @@ for (const match of scriptSections) {
 }
 const candidatePath = path.join(TMP_DIR, 'candidate.pptx');
 await (await PresentationFile.exportPptx(p)).save(candidatePath);
-const finalPath = path.join(out, process.env.FINAL_NAME ?? 'review-slides.pptx');
+const finalPath = path.join(out, process.env.FINAL_NAME ?? 'review-slides-simplified.pptx');
 const result = await finalizePresentation({workspaceDir:WORKSPACE_DIR, candidatePath, finalPath,
   pythonExecutable:RUNTIME_PYTHON,
   integrityValidatorPath:path.join(SKILL_DIR,'container_tools/inspect_presentation_package_integrity.py'),

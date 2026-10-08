@@ -602,3 +602,57 @@ or interpreting compliance. Empty retrieval and example documents have distinct 
 - Planned verification: render every slide, review wrapping/readability, check source
   values and notes are retained, confirm all seven A2 requirements, refresh the matching
   PDF/ZIP, and commit sources and verified exports separately. No core code changes.
+
+### Semantic-map arrow adjustment
+
+- User pointed out that slide 2's arrows should move slightly left and down. Offset
+  the native connectors' invisible anchors by -8px horizontally and +10px vertically.
+  Text boxes and diagram columns stay in their existing positions. Eight horizontal
+  arrows and the vertical quote/result arrow remain editable and point the same way.
+- First plain-language render preserved the overall layout but the longer failure
+  caption wrapped to three lines. Shorten it to "FAILURE: high readings" and retain
+  the explanation that neighboring stations read too high in the script and takeaway.
+- Re-render the adjusted map and shortened caption, then inspect all final slides.
+  The precise arrow offset, final counts, content checks, and package receipt will
+  be recorded with the export verification below.
+
+### Preserve the open deck and provide the revised version
+
+- PowerPoint now holds a write lock on `review-slides.pptx`; the attempted stable-file
+  copy failed. Do not close the user's app or change their open document. Saved the
+  validated revised bytes as `review-slides-simplified.pptx` alongside the preserved old deck.
+- Update the package README, requirements/coverage maps, builder default, and ZIP
+  required-file list to identify the simplified deck as current. Exclude the preserved
+  old deck from the ZIP so the handoff contains one current presentation, not two versions.
+- The first post-copy audit still referenced the old deck after the copy failed.
+  Correct the private audit paths to the actual simplified file and rerun them before
+  relying on the deck fingerprint, notes, or geometry results. The PDF uses the revised
+  reviewed renders. No failed copy is treated as evidence of a successful deck update.
+
+### Final plain-language export checks
+
+- Reviewed every first simplified render and the final adjusted semantic map and failure
+  slide. The other four final slides retain the same inspected layouts. Removed the
+  three-line failure-caption wrap by shortening it, keeping the causal explanation.
+- Verified all nine native connector offsets against `1d7b409`: each is -8px/+10px.
+  All six required section headings, four Evidence footers, failure/reliability labels,
+  four decision categories, and area-focused next question appear in the final PPTX.
+- Verified every speaker-notes part begins with the current simple talk, followed by
+  Extra details for questions. All six spoken sections match the script. Counts are
+  66/69/104/101/89/144 words, 573 total over four minutes (143.25 words/minute).
+- Full retention checks pass: 15 raw evidence files, 20 fingerprints, three command/schema
+  groups, 33 dossier references, nine numeric table rows, 21 course checklist items,
+  seven evidence IDs/decisions/paths, 13 chart values, and six original method-note sections.
+- Finalizer passes package structure, slide dimensions/count, heading fit, Georgia/Arial,
+  three editable charts and workbooks, and authoring-tool reimport. Final simplified
+  deck fingerprint is `40f38dc135c62cb3cd670b7b4f05b328707659d73aa2a0cf2474891dbd667185`.
+  All six matching slide-PDF images agree pixel for pixel with final reviewed renders.
+- Conservative remaining space is 42.92/44.70/41.67/41.62/40.12/54.54 percent. No purple
+  gradients were reintroduced. All core implementation and raw evidence remain unchanged.
+- Updated the packaging script to require the simplified deck and omit the locked old
+  deck. It passes Ruff and formatting. Move temporary exports/chart workbooks into the
+  ignored build area, then verify the refreshed 41-entry ZIP matches current workspace
+  bytes and contains one current deck. Preserve the user's application owner file.
+- No GitHub access, core-suite rerun, external submission, or app-session change is needed
+  for this wording and layout revision. Native PowerPoint/Google Slides opening remains
+  untested; use the new simplified filename to view the current deck.

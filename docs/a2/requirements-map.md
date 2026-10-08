@@ -29,7 +29,7 @@ or rejection. At least three meaningful investigations are required.
 | A. Curated dossier snapshot | `dossier.md`, `dossier.pdf`, selected `evidence/` artifacts |
 | B. Readable semantic/system map | `semantic-system-map.svg`, `semantic-system-map.png` |
 | C. Short evidence/decision summary | `evidence-summary.csv`, dossier evidence table |
-| D. Concise presentation materials | `review-slides.pptx`, `review-slides.pdf`, `presentation-script.md` |
+| D. Concise presentation materials | `review-slides-simplified.pptx`, `review-slides.pdf`, `presentation-script.md` |
 | E. One line per team member | `team-contributions.md`, dossier team snapshot |
 
 ## Rubric coverage

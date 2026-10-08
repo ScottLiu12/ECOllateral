@@ -17,7 +17,7 @@ The exact Submitty deadline is not supplied in the brief.
   evidence, and remaining human/course actions.
 - `semantic-system-map.svg` and `.png`: how the number and permit paths work together.
 - `evidence-summary.csv`: what we tested, what happened, and what we keep/change.
-- `review-slides.pptx` and `review-slides.pdf`: six-slide evidence review with the
+- `review-slides-simplified.pptx` and `review-slides.pdf`: current six-slide evidence review with the
   requested editorial design: Georgia headings, Arial body text, an off-white canvas,
   charcoal text, thin rules, and open spacing. Circular gradients and the decorative
   sphere were removed at the user's request; comparison bars retain muted colors.
@@ -34,7 +34,9 @@ The exact Submitty deadline is not supplied in the brief.
   reference documents. Review course logistics before uploading it.
 
 Read `explain-it-simply.md` first, then open `dossier.pdf` for full evidence or
-`review-slides.pptx` to edit the presentation. The speaker notes include the spoken script.
+`review-slides-simplified.pptx` to edit the presentation. The speaker notes include the spoken script.
+The older `review-slides.pptx` is preserved because it was open and locked in PowerPoint.
+The ZIP includes the simplified version and excludes that older deck.
 The Markdown and CSV files remain editable. `build_materials.py` and `build_slides.mjs`
 record how the exports were made; `collect_evidence.py` refreshes inspectable evidence.
 
@@ -72,7 +74,7 @@ digits; the CSV evidence retains full precision. Reconcile textual figures after
 experiments and visually inspect rebuilt materials. Validation receipts and previews
 stay in the ignored build directory. ZIP packaging is a separate handoff operation.
 After reviewing a rebuilt deck, promote the checked revision to the stable
-`review-slides.pptx` filename. Rebuild PDFs and run the bundled Python on
+`review-slides-simplified.pptx` filename. Rebuild PDFs and run the bundled Python on
 `docs/a2/package_materials.py` to refresh the ZIP. Keep verification notes and quoted
 figures consistent with the new snapshot.
 

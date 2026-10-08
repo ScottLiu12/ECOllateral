@@ -10,7 +10,7 @@ def main():
     required = [
         "dossier.pdf",
         "project-checkoff.pdf",
-        "review-slides.pptx",
+        "review-slides-simplified.pptx",
         "review-slides.pdf",
         "semantic-system-map.svg",
         "semantic-system-map.png",
@@ -28,6 +28,8 @@ def main():
         for path in sorted(here.rglob("*"))
         if path.is_file()
         and path.suffix != ".zip"
+        # Preserve the user's open older deck locally, but package only the current one.
+        and path.name != "review-slides.pptx"
         and not path.name.startswith("~$")
         and "__pycache__" not in path.parts
     ]

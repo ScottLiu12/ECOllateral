@@ -41,7 +41,10 @@ office-hours bookings were not changed.
   Git attributes to preserve their exact bytes across Windows checkouts.
 
 Final editable-deck SHA-256 fingerprint:
-`4ba13652d80b698ce942fd51dfa68a8e1b3fe251ca8b1e93111a98d7afe9fd54`.
+`40f38dc135c62cb3cd670b7b4f05b328707659d73aa2a0cf2474891dbd667185`.
+The current editable file is `review-slides-simplified.pptx`. The older
+`review-slides.pptx` was open and locked by PowerPoint, so it is preserved locally
+and excluded from the handoff ZIP. Open the simplified version for the latest slides.
 Detailed export receipts stay in `data/processed/a2-build/slides/`.
 
 The bundled Poppler wrapper could not find its executable. PDFium rendered the
@@ -61,8 +64,8 @@ changes were needed.
   README are unchanged.
 - The plain-English guide adds a short explanation, step-by-step walkthrough,
   experiment summaries, handoffs, and a glossary. The presentation script contains
-  572 spoken words over 240 seconds, about 143 words per minute. Technical evidence
-  notes and the simpler script are both included in the editable deck's speaker notes.
+  573 spoken words over 240 seconds, about 143 words per minute. The simpler talk
+  appears first in the deck's notes. Full methods follow under Extra details for questions.
 - The existing 51-test capture is preserved. The core suite was not rerun solely
   for this wording revision. A local comparison receipt is saved as
   `data/processed/a2-build/simplification-verification.json`.
@@ -81,7 +84,7 @@ changes were needed.
   unboxed editable process diagram. The final decision slide keeps open whitespace.
 - A conservative layout check counts complete text, chart, and illustration bounding
   rectangles as occupied. It excludes diffuse background glows and invisible connector
-  anchors. Remaining space is 42.92%, 44.69%, 41.67%, 41.62%, 40.12%, and 54.54% for
+  anchors. Remaining space is 42.92%, 44.70%, 41.67%, 41.62%, 40.12%, and 54.54% for
   slides 1-6, meeting the requested minimum of 40% on every slide.
 - All six final slide layouts were visually reviewed. Repairs removed a glow/chart
   boundary clash and a team-role/question overlap. All six images in the matching
@@ -127,6 +130,23 @@ changes were needed.
 - All 15 raw evidence files, 20 fingerprints, 13 chart values, six original component
   notes, and 21 checkoff items passed retention checks. No new experiment or completed
   teammate contribution was fabricated to satisfy the assignment.
+
+## Everyday wording and map-arrow checks
+
+- Visible wording replaces technical terms with short explanations: words as numbers,
+  source/location details, missing readings, neighbors reading too high, and real area
+  measurements. The A2 section labels, model names, sources, units, and results remain.
+- All six notes start with the current short talk, followed by the original method
+  details and sources. Notes match the rehearsal script. Per-slide counts are
+  66/69/104/101/89/144 words; the 240-second timing plan is unchanged.
+- All nine editable connectors on the semantic map moved exactly 8px left and 10px
+  down relative to the previously delivered clean-background deck. Text positions are
+  unchanged. The revised arrow positions and shorter failure caption were visually checked.
+- The current PPTX passed structural, heading, font, chart/workbook, and reimport checks.
+  All six PDF images match the current reviewed renders pixel for pixel. The original
+  evidence and method-retention checks pass against the simplified deck, not the locked one.
+- Detailed private receipts are in `data/processed/a2-build/plain-language-verification.json`
+  and `regional-verification.json`. The handoff ZIP contains 41 current files and one deck.
 
 ## Human/course checks still pending
 
