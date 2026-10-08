@@ -26,7 +26,10 @@ def main():
     files = [
         path
         for path in sorted(here.rglob("*"))
-        if path.is_file() and path.suffix != ".zip" and "__pycache__" not in path.parts
+        if path.is_file()
+        and path.suffix != ".zip"
+        and not path.name.startswith("~$")
+        and "__pycache__" not in path.parts
     ]
     files.extend(
         root / "docs" / name

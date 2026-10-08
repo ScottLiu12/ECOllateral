@@ -16,3 +16,5 @@ node_modules/
 .env
 coverage.xml
 .coverage
+# Temporary Office owner/lock files, including an open review-slide deck.
+~$*

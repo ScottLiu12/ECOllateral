@@ -388,3 +388,28 @@ or interpreting compliance. Empty retrieval and example documents have distinct 
   office hours, and rehearsal remain pending. Simplifying the materials does not turn
   assigned responsibilities, synthetic tests, or planned field validation into completed
   work. No external submission, GitHub push, or account access was needed.
+
+## 2026-10-08 - Editorial design for the review slides
+
+- User supplied an exact visual system for the review PowerPoint: off-white/white
+  canvas, #111827 primary text, #6B7280 metadata, a #9382FF glow with 45% center opacity,
+  uppercase editorial serif titles, thin title bars, clean sans-serif body text,
+  stat callouts, split layouts, and at least 40% negative space.
+- Applied the Presentations workflow to the existing six-slide content. Verified local
+  Georgia and Arial font files before choosing Georgia for headings and Arial for body,
+  charts, and metadata. Declared both font families in the export validation policy.
+- Kept the experiment order, three editable charts, precise chart values, full technical
+  speaker notes, simpler spoken script, course caveats, and synthetic-data disclosures.
+  Replaced filled diagram cards with editable text, fine rules, and light connectors.
+- Added native editable radial-gradient ellipses rather than raster decorative artwork.
+  The final decision slide uses a softly shaded sphere and thin orbit as decoration.
+  Decorative geometry does not represent a measured result or experimental evidence.
+- First draft export needed RUNTIME_NODE_MODULES explicitly set for the validator's
+  reimport subprocess. Set the complete bundled runtime environment and reran it.
+  The draft passed structural, heading, two-font, chart-workbook, and reimport checks.
+- Inspected all six first-draft slide renders. Reduced the heading glow height so
+  chart backgrounds do not cut across its edge. Repositioned the final slide's team
+  responsibilities to remove an overlap with the next research question.
+- Detected an Office owner file from the open PowerPoint. Preserve that temporary
+  file, ignore Office owner files in Git, and exclude them from the handoff ZIP.
+  This avoids packaging the user's application session metadata.
