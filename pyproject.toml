@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "ecollateral"
 version = "0.1.0"
-description = "Cooling water consumption forecasts with physical bounds and permit citations"
+description = "Regional ecosystem impact assessment project with a cooling-water pressure prototype"
 requires-python = ">=3.11"
 dependencies = [
     "fastapi>=0.115,<1",

@@ -65,14 +65,21 @@ def system_map():
             points = [x2, 530 - y2, x2 - 5, 530 - y2 - 9, x2 + 5, 530 - y2 - 9]
         drawing.add(Polygon(points, fillColor=TEAL, strokeColor=TEAL))
 
-    label(45, 34, "ECOllateral: predict water use and find permit quotations", 28, bold=True)
+    label(45, 34, "ECOllateral: regional water and watershed impacts", 28, bold=True)
     label(
         45,
         69,
-        "Enter IT size (MW), cooling type, watershed (HUC8), month; coordinates optional",
+        "Goal: seasonal impacts of development on area reserves and watershed conditions",
         20,
     )
-    label(45, 99, "Number path", 20, TEAL, True)
+    label(
+        45,
+        99,
+        "Current component: cooling-water scenario and place-matched documents",
+        20,
+        TEAL,
+        True,
+    )
     top_nodes = [
         ("Public data", ["USGS / NOAA", "values + units"]),
         ("Six inputs", ["size / weather / flow", "drought / season"]),
@@ -97,7 +104,7 @@ def system_map():
             arrow(x + 190, 170, x + 230, 170)
             arrow(x + 190, 360, x + 230, 360)
     arrow(1060, 310, 1060, 220)
-    label(45, 287, "Permit path", 20, TEAL, True)
+    label(45, 287, "Permit/context path", 20, TEAL, True)
     label(
         45,
         465,
@@ -107,7 +114,7 @@ def system_map():
     label(
         45,
         499,
-        "Rules depend on assumptions. A permit quotation does not prove legal compliance.",
+        "Regional balances, ecological thresholds, and recharge inference remain planned.",
         20,
     )
     renderSVG.drawToFile(drawing, str(HERE / "semantic-system-map.svg"))

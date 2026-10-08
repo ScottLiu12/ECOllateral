@@ -29,14 +29,14 @@ Terms and the short project explanation are in `explain-it-simply.md`.
 | --- | --- | --- |
 | Visual block diagram of component interactions | Prepared | Regional goal plus current number/permit components; editable diagram in slides; area balance remains planned |
 | Evaluation metrics for individual components | Documented / tested | Units and bad-input checks; error/fit (MAE/RMSE/R2); range coverage; missing-data spread in MGD2; eligible/ineligible locations |
-| Explicit success and failure criteria for outputs | Documented | Always enforce limits/warnings; R2 > 0.80 and MAE < 0.05 MGD benchmark goal; >=90% of missing-data changes within tolerance plus band checks; real-facility criteria unverified |
+| Explicit success and failure criteria for outputs | Documented | Enforce limits/warnings; R2 > 0.80 and MAE < 0.05 MGD component goal; >=90% of missing-data changes within tolerance plus band checks; regional/facility criteria unverified |
 | Component test plan | Implemented with limits | 51 local tests: forced wrong values, saved-model reload, train-only gap filling, bad neighbors, permit locations, API errors; real-permit relevance testing remains planned |
 
 ## Team Organization & Workflow
 
 | Item | Status | Project response / evidence |
 | --- | --- | --- |
-| Assign sub-goals and responsibilities to each member | Assigned | Shaun: code and connected components; Troy: environmental data and tests; Scott: permits, evidence, and slides |
+| Assign sub-goals and responsibilities to each member | Assigned | Shaun: code and area integration; Troy: environmental data and grounding; Scott: evaluation, regional evidence, and slides |
 | Shared GitHub repository with instructor/TA access | Partial | Configured remote: `https://github.com/ScottLiu12/ECOllateral`; actual collaborators, instructor/TA access, and pushed snapshot are unverified |
 
 ## Presentation Preparation
@@ -49,7 +49,7 @@ Terms and the short project explanation are in `explain-it-simply.md`.
 | Explain sub-goals, milestones, and teammate mapping | Prepared | Team snapshot and role-owned roadmap |
 | Identify AI concepts/tools used | Prepared | Engineering rules; RF/XGBoost tree models; TF-IDF/FAISS word search; nearby-station/time gap filling; no generative LLM experiment claimed |
 | Justify AI evaluation and feasibility takeaways | Prepared | Four approach investigations with evidence; clear limits of made-up data and about 88% prediction-range coverage |
-| Explain current state and remaining roadmap | Prepared | Local API and experiments work; need measured water use, checked station matches, real permits, and separate prediction-range tests |
+| Explain current state and remaining roadmap | Prepared | Component API/tests work; need regional supply/demand, returns, ecological baselines, checked boundaries/documents, measured targets, and independent range tests |
 | Schedule instructor office hours before presentation | Pending human action | Scott coordinates a course-approved slot; no booking or message has been sent |
 
 ## Final readiness checks

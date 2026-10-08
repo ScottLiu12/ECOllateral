@@ -29,8 +29,8 @@ The top path handles numbers. Weather, river flow, drought, season, and facility
 become six inputs. A tree-based AI model predicts water use. Separate engineering
 rules check the number and warn if it needs adjusting. The bottom path handles permit
 text. We search words, check the location, and return original quotations. Tests showed
-the physical limits and four location cases work. No language model calculates the
-water estimate or decides legal compliance.
+the limits and four location cases work. No language model calculates water use
+or decides compliance.
 
 ## Slide 3: compare models for one pressure component
 

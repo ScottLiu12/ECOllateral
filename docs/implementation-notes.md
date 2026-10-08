@@ -474,3 +474,29 @@ or interpreting compliance. Empty retrieval and example documents have distinct 
   Assignments are not claims of completed contributions.
 - Include the new scope document as the fourth project reference in the handoff ZIP.
   Preserve the user's editorial slide design while correcting the purpose and next question.
+
+### Regional storyline and export construction
+
+- Slide 1 now opens "Ecosystem impacts across an area" for municipal planners,
+  researchers, and utilities, with separate regional-goal/current-prototype columns.
+  The cooling model is explicitly one development-pressure case study.
+- Slide 2 labels the existing API and number/document paths as current components;
+  regional reserve/stress integration is planned. Slide 3 retains the exact model
+  comparisons as one pressure-component test rather than a regional stress benchmark.
+- Slides 4-5 keep missingness and range results unchanged. Slide 6 asks about seasonal
+  reserve and watershed impacts in an unseen area and prioritizes area balances,
+  ecological baselines, and regional tests. Component rules remain distinct from
+  ecological/utility thresholds. Sources and raw result references remain in the notes.
+- Kept Georgia/Arial, #F9FAFB canvas, charcoal text, muted captions, native lavender
+  glows, thin title bars, three editable charts, and the native decorative sphere.
+  Rebalanced the cover's two lines after visual review. Corrected spoken purpose and
+  final question while retaining the original component-method notes on all six slides.
+- Updated the standalone map with the regional goal above the current component paths
+  and a clear statement that area balances, ecological thresholds, and recharge inference
+  remain planned. Dossier/checkoff exports remain eight/three pages; slides remain six.
+- Current script is 565 words over 240 seconds (141.25 words/minute overall), with
+  77/79/103/96/84/126 words in the six timing slots. Regional framing Q&A distinguishes
+  intended assessment, current cooling evidence, and proposed studies in the user context.
+- Changed only the package description in pyproject.toml to match the project identity.
+  Parsed both old/new TOML and confirmed every other metadata/dependency field is identical.
+  No API behavior, model logic, or data schema changed.
