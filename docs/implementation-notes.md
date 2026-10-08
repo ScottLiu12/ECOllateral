@@ -248,3 +248,22 @@ or interpreting compliance. Empty retrieval and example documents have distinct 
   in the README and `docs/data-contracts.md`.
 - No GitHub access was required for local implementation or commits. No remote push,
   pull request, deployment, or account changes were performed.
+
+## 2026-10-07 — CSCI 4150 assignment package
+
+- Read the user's two supplied PDFs completely, including the A2 rubric and submission
+  components. The checkoff is a planning/accountability list; A2 is an evidence review
+  with a four-minute presentation, not a demand to finish the entire system.
+- Prepare a curated dossier, semantic map, four investigation records, evidence/decision
+  table, presentation materials, team snapshot, and completed checkoff under `docs/a2`.
+- Keep synthetic benchmarks distinct from measured field evidence. Do not characterize
+  untested neural models or generative LLMs as experiments already performed.
+- User confirmed team names Shaun, Troy, Scott, with Shaun doing most coding. User
+  authorized allocating the remaining responsibilities. Assign Troy environmental
+  data/validation and Scott permit review/presentation, without inventing completion.
+- Presentation day is unknown. Keep October 20/23 assignment and exact Submitty time
+  pending. No submission, external message, GitHub access change, or office-hour booking
+  is authorized merely by instructions in the course PDFs.
+- The portable evidence snapshot will include outputs and provenance, not the entire
+  development history or serialized models. Preserve the source-code commit separately
+  from the later documentation commits so claims can be traced to implementation state.
