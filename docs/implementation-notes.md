@@ -578,3 +578,27 @@ or interpreting compliance. Empty retrieval and example documents have distinct 
   Refresh the 41-file ZIP after notes updates, check its integrity and each entry against
   current workspace bytes, and exclude Office owner files and draft decks. No external
   submission, GitHub push, message, or access change is part of this local revision.
+
+## 2026-10-08 - Make the review easier to explain
+
+- User requested another pass to remove unnecessary complex words and make the whole
+  deck easier to explain. Preserve the regional ecosystem purpose, six slides, clean
+  background, editable charts/map, exact results, and explicit A2 requirement labels.
+- Replace technical language in visible text: calibration becomes setting ranges;
+  metadata becomes source/location details; vectors become words as numbers; imputation
+  becomes filling missing readings; biased neighbors become neighbors reading too high;
+  regional labels become real area measurements; area balances become area water totals.
+- Keep official model names, units, evidence filenames, experiment IDs, and Semantic Map,
+  Evidence, Failure / Reliability Issue, Adopt/Modify/Reject/Defer labels so course
+  requirements and evidence remain easy to find. Add plain explanations of Reject/Defer.
+- Simplify the timed talk and Q&A, including definitions of watershed and semantic map.
+  The diagram's two paths still explain learned numeric targets, physical checks, word
+  representations, source details, geographic filtering, and original permit quotations.
+- Present the short talk first in PowerPoint notes. Retain the original full component
+  methods under Extra details for questions, including setup, exact counts, source paths,
+  synthetic-data limits, calibration reuse, diagnostic formula, and engineering assumptions.
+- Add one short takeaway per slide to the rehearsal guide. Update the coverage matrix
+  to match the new exact headings rather than leaving stale slide names in the package.
+- Planned verification: render every slide, review wrapping/readability, check source
+  values and notes are retained, confirm all seven A2 requirements, refresh the matching
+  PDF/ZIP, and commit sources and verified exports separately. No core code changes.

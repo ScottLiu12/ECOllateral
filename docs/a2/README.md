@@ -22,6 +22,7 @@ The exact Submitty deadline is not supplied in the brief.
   charcoal text, thin rules, and open spacing. Circular gradients and the decorative
   sphere were removed at the user's request; comparison bars retain muted colors.
 - `presentation-script.md`: four-minute script, slide timing, team handoffs, and Q&A.
+  Everyday wording comes first in the deck's notes, followed by full details for questions.
 - `team-contributions.md`: Shaun, Troy, and Scott's responsibilities and accountability.
 - `data-governance.md`: public sources, where evidence came from, permissions, and limits.
 - `requirements-map.md`: A2 requirements and grading criteria mapped to the package.

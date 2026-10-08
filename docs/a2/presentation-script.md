@@ -14,99 +14,106 @@ Assigned day: still unknown, October 20/23, 2026. Allow 4 minutes for the talk a
 
 ## Slide 1: problem & users — ecosystems across an area
 
-ECOllateral aims to help planners, researchers, and utilities understand how proposed
-development affects an area's municipal water reserves and watershed conditions across
-seasons. The ecosystem and area are the focus. Our prototype connects environmental
-data, a cooling-water pressure model, physical checks, and local permit quotations.
-Cooling is one component test. The regional supply, demand, return-flow, and ecological
-assessment is still planned. Our model targets are made-up data, so we are not claiming
-validated regional impact forecasts yet.
+ECOllateral asks how new development could affect an area's water supply and rivers
+through the year. It is for town planners, researchers, and water providers. Our working
+demo estimates cooling water use, checks physical limits, and adds local permit quotes.
+Cooling is one example. We still need area water totals and river needs. The AI learns
+made-up water-use values, so real area tests are still needed.
 
 ## Slide 2: semantic map — current system
 
-The diagram shows current components. Six features describe size, weather, flow,
-drought, and season. The target is cooling water use. Trees learn number relationships;
-rules check physical limits. Permit documents keep original words, sources, and location
-metadata. TF-IDF creates word vectors, FAISS ranks matches, and location checks filter
-results. This connects learned numbers, symbolic rules, and text evidence. Four location
-tests pass; forced wrong predictions clip and warn. Quotations add context, without
-calculating risk or deciding compliance.
+The semantic map shows what each part means and how it connects. Six inputs describe
+size, two temperatures, river flow, drought, and season. AI predicts cooling water use.
+Rules check power and heat limits. The text path turns words into numbers to find local
+permit quotes with sources. All four location tests pass. Forced wrong numbers move
+inside the limits and trigger warnings. A person reviews the permit rules.
 
-## Slide 3: experiment E1 — model comparison
+## Slide 3: experiment E1 — comparing AI models
 
-We compared RandomForest and XGBoost using the same made-up inputs and water-use targets.
-We split dates in time order: 60 percent to train, 20 percent to choose the model and
-set its range, and 20 percent to test. XGBoost lowered average error for towers from
-about 0.00489 to 0.00367 million gallons per day. For direct evaporation, it improved
-from 0.00384 to 0.00319. Each test group has 333 rows. We kept XGBoost and retained
-RandomForest for comparison. Dry air cooling has zero on-site water use in our scope.
-These scores show we learned the generated pattern; real water-use measurements are
-still the main gap.
+We tested two AI models on the same made-up water-use values. RF means RandomForest.
+Lower bars mean smaller
+errors. XGBoost made smaller errors for both cooling types. Tower error fell from about
+0.00489 to 0.00367 million gallons per day. Direct cooling error fell from 0.00384 to
+0.00319. Each test group has 333 rows. We use the oldest 60 percent of dates to teach
+the model, the next 20 percent to choose it and set its range, and the last 20 percent
+to test it. We keep RandomForest to compare. Dry air cooling uses zero water here.
+Next, we need real water-use and area measurements.
 
-## Slide 4: experiment E2 — gaps & biased neighbors
+## Slide 4: experiment E2 — missing readings
 
 We removed 10, 25, and 40 percent of drought readings and repeated each test 50 times.
-Filling gaps from a nearby station or a straight line through time kept forecasts within
-0.05 million gallons per day of the complete-data result. But our made-up stations
-behave similarly. In a separate test, we raised neighboring flow by 100 million gallons
-per day. Nearby-station filling then passed only 60.3 percent of the tolerance checks.
-That test uses a simple formula, not the fitted AI model. We need tests with biased
-neighbors, long gaps, and several stations losing data together.
+We filled gaps using a nearby station or a straight line between readings. Lower bars
+mean predictions changed less. All main tests stayed within 0.05 million gallons per
+day of the result with no missing data. Our made-up stations act alike. What if a
+neighbor reads too high? In a separate test, we added 100 million gallons per day to
+neighbor readings. Only 60.3 percent stayed within limits. That test uses a simple
+formula. Next, test bad readings, long gaps, and stations losing data together.
 
-## Slide 5: experiment E5 — range reliability
+## Slide 5: experiment E5 — prediction ranges
 
-The models fit the made-up data well, but their prediction ranges missed our goal.
-Ranges intended to include 90 percent of test values included 88.3 percent for towers
-and 88.0 percent for direct evaporation. These are finite test samples, not proof of
-a statistically significant failure. We also used the same data to choose the model
-and set its range. We will separate those jobs and test by facility, time, and drought.
-R-squared measures fit; it is not the chance a prediction is right.
+A prediction range gives a low and high estimate. Our goal was to include 90 percent
+of test values. We reached 88.3 percent for towers and 88.0 percent for direct cooling.
+That is below our goal. We have not checked whether the difference is more than chance.
+The fit score, called R-squared, is high, but it cannot promise a useful range.
+We used the same data to choose the model and set its range. Next, use separate data
+for those jobs and test other facilities, dates, and drought conditions.
 
 ## Slide 6: decisions & next question
 
-We will keep the tested models, component rules, and location checks. Next, connect
-development pressures to observed area supply, reserves, other demands, returns, and
-ecological flow needs. We must define regional targets and test unseen areas and seasons
-with separate calibration. One cooling-water number cannot represent ecosystem health.
-We also reject R-squared as confidence and unconstrained language-model risk scoring.
-No zero-shot or generative comparison was run. Shaun leads coding and area integration.
-We defer neural/LLM comparisons until measured regional labels exist.
-Troy supports environmental baselines, drought analysis, and document grounding.
-Scott supports safety and interface evaluation, failure analysis, and regional evidence.
-These supporting duties still need completion confirmation. Our next question is whether
-verified area conditions and development demands can explain seasonal reserve and
-watershed impacts in an area not used to build the model.
+Keep, change, do not use, and wait are our four decisions. We keep XGBoost because its
+errors are smaller, along with the tested limits and location checks. We will improve
+gap filling and prediction ranges because the bad-reading test and the 90 percent goal
+show weaknesses. We must add water coming in, water used and returned, and river needs.
+A cooling-water estimate alone cannot show ecosystem health. A fit score cannot promise
+a correct answer. We also cannot let a language model invent a risk score. We will wait
+for real area measurements before comparing more AI methods. We have not run those
+comparisons yet. Shaun leads coding. Troy supports data and source quotes. Scott supports
+tests and results. Those supporting duties still need confirmation. Our next question:
+can we test effects on water reserves and rivers in a new area through the year?
 
 ## Short answers for Q&A
 
-- **Is this a data-center project?** The goal is regional ecosystem impact assessment
-  for proposed development. Cooling water is one pressure component in the current demo.
-- **Do you already predict ecosystem health or municipal reserves?** No. Regional
-  balance, ecological thresholds, cumulative demands, and outcome validation are still needed.
-- **Did you benchmark zero-shot LLMs or groundwater recharge?** No. Those passages in
-  the supplied context describe proposed work or anticipated risks. Our recorded tests
-  use cooling targets, synthetic streamflow, and separate groundwater depth in meters.
+- **What is a watershed?** Land that drains into the same river system. Its weather
+  and water use affect the river and nearby water supplies.
+- **What does "semantic map" mean?** A diagram showing what the information means
+  and how the parts use it. Features are inputs. The target is the value we want
+  to predict. Word vectors turn text into numbers. Metadata means source and location details.
+
+- **Is this a data-center project?** We study how development affects an area's
+  ecosystem. Cooling water is one example in the current demo.
+- **Do you already predict ecosystem health or town reserves?** No. We need area
+  water totals, river needs, and real tests before we can make those claims.
+- **Did you test language models or groundwater recharge?** No. Those are planned
+  studies. Our tests use made-up cooling and river-flow values. Groundwater depth
+  is a separate measurement, in meters. It does not tell us how fast water is replaced.
 
 - **Is the accuracy result real-world evidence?** No. Water-use targets are made up.
   The two-day public-data download tests parsing and units, not forecast accuracy.
-- **Why XGBoost?** It had lower RMSE when we chose the models and lower average error
-  on the test dates. RMSE gives bigger errors extra weight. Keep RF for future comparisons.
+- **Why XGBoost?** It had smaller errors when we chose the models and when we tested
+  them. The selection score is RMSE, which gives large errors more weight. Keep
+  RandomForest to compare against future results.
 - **What does 90% mean?** The intended fraction of values inside the prediction range.
-  We measured about 88%. Missing-data sensitivity bands describe a different kind of change.
-- **Is 88% significantly worse than 90%?** We did not test statistical significance.
-  It misses our observed-result goal. Next, use separate calibration data and report
-  uncertainty around the measured coverage.
-- **What AI did you actually test?** RF/XGBoost, spatial/time gap filling, symbolic
-  engineering rules, and TF-IDF/FAISS word search with location metadata. We did not
-  compare neural or generative LLM models. Exact class studio names still need checking.
+  We measured about 88%. Missing-data tests measure how much results change when
+  readings disappear. That is a different question.
+- **Is 88% meaningfully worse than 90%?** We did not check whether the difference
+  is more than chance. We missed the goal in this test. Next, set ranges using
+  separate data and show how much the measured percentage could vary.
+- **What AI did you actually test?** RandomForest and XGBoost predict numbers.
+  We also tested gap filling, physical rules, and permit word search. TF-IDF turns
+  words into numbers. FAISS searches them. Source and location details help select
+  the right quotes. We did not compare neural models or language models that write
+  new answers. Exact class studio names still need checking.
 - **Do physical limits guarantee the right answer?** No. They enforce our assumptions
-  about load, PUE, evaporation heat, and included water uses. Those need engineering review.
+  about power, heat, and which water uses count. PUE means total facility power
+  divided by equipment power. Those assumptions need engineering review.
 - **Does a permit match prove compliance?** No. It gives a source quotation for a
-  person to review. We still need real-document relevance and applicability checks.
+  person to review. We still need to check real permits and whether their rules
+  apply to the request.
 - **Can a watershed code stand in for facility coordinates?** No. A watershed match
-  and a coordinate-radius match are different. River gauge coordinates are not facility coordinates.
+  and a match within a distance are different. A river station's location cannot
+  tell us the facility's exact location. The watershed code is called HUC8.
 - **Why keep groundwater in meters?** It is a depth. Turning it into MGD needs geometry
-  and a separate physical relationship; meters and flow are not interchangeable.
+  and a model of how water moves. Depth and flow measure different things.
 - **Can you fill a live gap with a straight line?** Our historical method can use a
   later reading. A live forecast needs a method using only readings available then.
 

@@ -2,20 +2,34 @@
 
 ## The 20-second explanation
 
-ECOllateral aims to explain how proposed development could affect an area's water
-reserves and watershed conditions across seasons. The ecosystem and surrounding area
-are the focus. Our current prototype connects environmental data, a cooling-water
-pressure model, physical checks, and local permit quotations. That is one component
-test, not a complete regional impact forecast. We still need measured regional supply,
-demands, returns, and ecological baselines.
+ECOllateral asks how new development could affect an area's water supply and rivers
+through the year. Our demo estimates cooling water use, checks the number, and adds
+quotes from local permits. Cooling is one example. We still need real measurements
+of water coming in, water used and returned, and water needed by rivers.
 
 ## The goal and the part we can demonstrate
 
-The goal is an area-wide assessment for planners, researchers, and utilities. Start
-with the watershed and seasonal conditions, then examine development pressure in that
-context. Cooling is one possible pressure, not the project identity. We have not yet
-implemented or validated the regional supply/demand balance. `../project-scope.md`
-lists the current components and the area-level work still needed.
+Town planners, researchers, and water providers need to know how development changes
+the surrounding ecosystem. A watershed is land that drains into the same river system.
+Start with the area's water and weather, then look at water use. Cooling is one example.
+The full area assessment is still to build and test. `../project-scope.md` lists what
+works now and what we still need.
+
+## One easy takeaway per slide
+
+| Slide | What to say |
+| --- | --- |
+| 1. Problem & users | We want to explain how development affects water across an area |
+| 2. Semantic map | AI estimates water use, rules check it, and local permit quotes add context |
+| 3. Experiment E1 | XGBoost made smaller errors on our made-up test data |
+| 4. Experiment E2 | Gap filling worked on similar stations, but high neighbor readings caused problems |
+| 5. Experiment E5 | Our ranges included about 88% of test values, below the 90% goal |
+| 6. Decisions & next question | Keep the tested parts, improve the weak points, and test real area data |
+
+Keep **Semantic Map**, **Experiment**, **Evidence**, **Failure / Reliability Issue**,
+and **Adopt / Modify / Reject / Defer** visible because these identify the A2 sections.
+Explain them in ordinary words: how it works, what we tested, what happened, what went
+wrong, and what we keep, change, do not use, or wait to try.
 
 ## Explain the current component in five steps
 

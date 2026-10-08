@@ -9,16 +9,20 @@ maps the current six-slide deck and notes to those requirements without predicti
 
 | Slide | Exact section heading | Additional requirement label |
 | --- | --- | --- |
-| 1 | Problem & users: ecosystems across an area | Regional goal / Current prototype; intended users named |
-| 2 | Semantic map: current system | Features, target, rules, word vectors, metadata; E3/E4 evidence |
-| 3 | Experiment E1: model comparison | Comparison chart, selection method, evidence source |
-| 4 | Experiment E2: gaps & biased neighbors | FAILURE: biased neighbors |
-| 5 | Experiment E5: range reliability | RELIABILITY ISSUE: below the 90% goal |
-| 6 | Decisions & next question | KEEP (ADOPT), CHANGE (MODIFY), REJECT, DEFER; regional next question |
+| 1 | Problem & users: ecosystems across an area | Project goal / Working demo; intended users named |
+| 2 | Semantic map: current system | Six inputs, learned cooling use, physical rules, words as numbers, source/location details; E3/E4 evidence |
+| 3 | Experiment E1: comparing AI models | Comparison chart, selection method, evidence source |
+| 4 | Experiment E2: missing readings | FAILURE: neighbors read too high |
+| 5 | Experiment E5: prediction ranges | RELIABILITY ISSUE: below the 90% goal |
+| 6 | Decisions & next question | KEEP (ADOPT), CHANGE (MODIFY), DO NOT USE (REJECT), WAIT (DEFER); area next question |
 
 Experiment IDs match the dossier and evidence table. E3/E4 remain additional safeguard
 investigations on the semantic map; E1, E2, and E5 each have a dedicated chart slide.
 Slides 2-5 explicitly label their source footers **Evidence:** with matching result files.
+The visible text uses ordinary words. The spoken script comes first in the notes, with
+full methods and technical terms under **Extra details for questions**. For example,
+"words as numbers" explains vectors and "source/location details" explains metadata.
+Model names and the experiment IDs remain so the audience can follow the evidence.
 
 ## Seven required things to show
 
