@@ -142,4 +142,39 @@ tests, and record failures or unverified behavior rather than inventing results.
   use FAISS cosine ranking. Geographic filtering happens before counting top-k results.
 - Narratives are deterministic and extractive. They format the previously calculated
   model output and quote permit excerpts verbatim, without calculating cap exceedances
-  or interpreting compliance. Empty retrieval and example documents have distinct warnings.
+or interpreting compliance. Empty retrieval and example documents have distinct warnings.
+
+## 2026-10-07 — Live-source checks and application wiring
+
+- Public read-only USGS requests returned HTTP 200 for HUC-prefix CQL filtering and
+  daily streamflow. The actual monitoring-location property is `id`, not the historical
+  documentation's `monitoring_location_id`. Corrected the client and fixtures.
+- Current daily USGS records use scalar `approval_status`; older documentation used
+  list `approvals_status`. Preserve both, plus scalar/list qualifiers.
+- Limit site discovery to the USGS agency, and allow explicit station selection in
+  the HUC query to avoid fetching irrelevant monitoring sites. The ingestion CLI uses
+  a required representative flow station and optional additional stations.
+- A live NOAA GSOD request for July 1–2, 2024 returned HTTP 200, native Fahrenheit
+  TEMP/DEWP fields and precipitation attributes. Conversion assumptions were confirmed.
+- NOAA's old nClimDiv directory now redirects (301) to the `monitoring-content` monthly
+  current directory. Updated the canonical URL; the CLI also follows redirects.
+- Regression/missingness implementation and tests committed as `151326e`.
+- Ingestion builds daily aligned observations and monthly median feature snapshots.
+  Preserve period, station identifiers, climate division, and record counts. Forecasts
+  use historical monthly conditions, not an asserted forecast of future weather.
+- The API returns 503 when model or environmental artifacts are absent, and 422 for
+  invalid inputs, unsupported months/locations, or absent cooling-type models.
+  Missing permits produce an explicit grounding warning and empty citations.
+- Coordinate requests select the nearest configured representative station within
+  50 km and label that approximation. This is not a polygon-based HUC delineation.
+  Supplying an authoritative HUC is preferable near watershed boundaries.
+- Model resources load once at application startup. Training does not run in request
+  handlers. Forecast requests perform local inference/retrieval without external calls.
+- Demo artifacts live in a separate `data/processed/demo` directory, carry synthetic
+  labels, and require explicit API data-directory selection. Demo permits are fictional
+  and visibly marked; no fabricated EPA citation is used as evidence.
+- Added tests for bad requests, unconfigured startup, coordinate resolution, absent
+  grounding, source counts, model serialization, training-only imputation, clipping,
+  groundwater-depth gap filling, and deliberately unstable spatial donors.
+- Added a small typed TypeScript fetch client and CI configuration. CI files are local
+  changes; GitHub Actions has not run because no push has been requested.
