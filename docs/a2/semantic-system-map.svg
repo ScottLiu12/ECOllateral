@@ -10,9 +10,9 @@
 	</clipPath>
 	<g id="group" transform="scale(1,-1) translate(0,-530)" style="clip-path: url(#clip)">
 		<g transform="">
-			<text x="45" y="496" style="font-family: Helvetica-Bold; font-size: 28px;fill: rgb(7%,17%,25%); stroke:none;" transform="translate(0,992) scale(1,-1)">ECOllateral: predict water use and find permit quotations</text>
-			<text x="45" y="461" style="font-family: Helvetica; font-size: 20px;fill: rgb(7%,17%,25%); stroke:none;" transform="translate(0,922) scale(1,-1)">Enter IT size (MW), cooling type, watershed (HUC8), month; coordinates optional</text>
-			<text x="45" y="431" style="font-family: Helvetica-Bold; font-size: 20px;fill: rgb(8%,49%,55%); stroke:none;" transform="translate(0,862) scale(1,-1)">Number path</text>
+			<text x="45" y="496" style="font-family: Helvetica-Bold; font-size: 28px;fill: rgb(7%,17%,25%); stroke:none;" transform="translate(0,992) scale(1,-1)">ECOllateral: regional water and watershed impacts</text>
+			<text x="45" y="461" style="font-family: Helvetica; font-size: 20px;fill: rgb(7%,17%,25%); stroke:none;" transform="translate(0,922) scale(1,-1)">Goal: seasonal impacts of development on area reserves and watershed conditions</text>
+			<text x="45" y="431" style="font-family: Helvetica-Bold; font-size: 20px;fill: rgb(8%,49%,55%); stroke:none;" transform="translate(0,862) scale(1,-1)">Current component: cooling-water scenario and place-matched documents</text>
 			<rect x="45" y="310" width="190" height="100" style="stroke: rgb(8%,49%,55%); stroke-linecap: butt; stroke-width: 1.5; fill: rgb(93%,96%,96%); fill-rule: evenodd;"/>
 			<text x="57" y="383" style="font-family: Helvetica-Bold; font-size: 20px;fill: rgb(7%,17%,25%); stroke:none;" transform="translate(0,766) scale(1,-1)">Public data</text>
 			<text x="57" y="356" style="font-family: Helvetica; font-size: 18px;fill: rgb(7%,17%,25%); stroke:none;" transform="translate(0,712) scale(1,-1)">USGS / NOAA</text>
@@ -71,9 +71,9 @@
 			<text x="977" y="144" style="font-family: Helvetica; font-size: 18px;fill: rgb(7%,17%,25%); stroke:none;" transform="translate(0,288) scale(1,-1)">exact quotations</text>
 			<path d="M 1060,220 L 1060,310 Z" style="stroke: rgb(8%,49%,55%); stroke-linecap: butt; stroke-width: 2;"/>
 			<polygon points="1060 310, 1055 301, 1065 301" style="stroke: rgb(8%,49%,55%); stroke-linecap: butt; stroke-width: 1; fill: rgb(8%,49%,55%); fill-rule: evenodd;"/>
-			<text x="45" y="243" style="font-family: Helvetica-Bold; font-size: 20px;fill: rgb(8%,49%,55%); stroke:none;" transform="translate(0,486) scale(1,-1)">Permit path</text>
+			<text x="45" y="243" style="font-family: Helvetica-Bold; font-size: 20px;fill: rgb(8%,49%,55%); stroke:none;" transform="translate(0,486) scale(1,-1)">Permit/context path</text>
 			<text x="45" y="65" style="font-family: Helvetica; font-size: 20px;fill: rgb(7%,17%,25%); stroke:none;" transform="translate(0,130) scale(1,-1)">Before use: made-up water targets -&gt; train / choose + set ranges / test -&gt; saved models</text>
-			<text x="45" y="31" style="font-family: Helvetica; font-size: 20px;fill: rgb(7%,17%,25%); stroke:none;" transform="translate(0,62) scale(1,-1)">Rules depend on assumptions. A permit quotation does not prove legal compliance.</text>
+			<text x="45" y="31" style="font-family: Helvetica; font-size: 20px;fill: rgb(7%,17%,25%); stroke:none;" transform="translate(0,62) scale(1,-1)">Regional balances, ecological thresholds, and recharge inference remain planned.</text>
 		</g>
 	</g>
 </svg>

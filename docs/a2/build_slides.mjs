@@ -35,15 +35,9 @@ function rule(s,x,y,w,color=ruleColor) {
   return s.shapes.add({geometry:'rect',position:{left:x,top:y,width:w,height:1},
     fill:color,line:{fill:'none',width:0}});
 }
-function glow(s,x,y,w=580,h=450) {
-  return s.shapes.add({geometry:'ellipse',position:{left:x,top:y,width:w,height:h},
-    fill:'radial(#9382FF/45 0%, #9382FF/18 35%, #9382FF/4 65%, #9382FF/0 100%)',
-    line:{fill:'none',width:0}});
-}
 function slide(title, source, cover=false) {
   const s = p.slides.add();
   s.background.fill = canvas;
-  glow(s,cover?85:660,cover?50:-65,cover?750:520,cover?560:300);
   text(s, 'E C O L L A T E R A L   /   C S C I  4 1 5 0  A 2', 80, 36, 1000, 22, 14, false, gray);
   const titleY=cover?143:91, titleH=cover?180:110;
   s.shapes.add({geometry:'rect',position:{left:66,top:titleY+2,width:1.5,height:titleH-7},
@@ -200,14 +194,8 @@ text(s, 'E5: R2 is fit, not confidence.\nCooling use is not regional ecosystem i
 text(s, 'DEFER', 80, 539, 605, 23, 17, false, gray);
 rule(s,80,565,610);
 text(s, 'No neural/LLM benchmark or regional labels yet.', 80, 578, 620, 31, 22);
-// Native, editable abstract composition: softly shaded sphere and thin orbit.
-// Decorative only; it represents no experimental evidence or measured geometry.
-glow(s,755,215,450,350);
-s.shapes.add({geometry:'ellipse',position:{left:835,top:247,width:270,height:270},
-  fill:'radial(#FFFFFF 0%, #EEEBFF 40%, #C8BFFF 75%, #9382FF/45 100%)',
-  line:{fill:ruleColor,width:1}});
-s.shapes.add({geometry:'ellipse',position:{left:803,top:350,width:335,height:75},
-  fill:'none',line:{fill:'#9CA3AF/60',width:1}});
+// The user removed circular gradients and the decorative sphere from the design.
+// Keep this area open; all evidence remains in the charts and decision text.
 text(s, 'Can we validate seasonal reserve and watershed impacts in an unseen area?',
   80, 620, 1130, 33, 24);
 text(s, 'Shaun: code + area integration\nTroy: data + grounding\nScott: evaluation + evidence',

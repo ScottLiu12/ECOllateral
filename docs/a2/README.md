@@ -19,7 +19,8 @@ The exact Submitty deadline is not supplied in the brief.
 - `evidence-summary.csv`: what we tested, what happened, and what we keep/change.
 - `review-slides.pptx` and `review-slides.pdf`: six-slide evidence review with the
   requested editorial design: Georgia headings, Arial body text, an off-white canvas,
-  charcoal text, soft lavender glows, thin rules, and open spacing.
+  charcoal text, thin rules, and open spacing. Circular gradients and the decorative
+  sphere were removed at the user's request; comparison bars retain muted colors.
 - `presentation-script.md`: four-minute script, slide timing, team handoffs, and Q&A.
 - `team-contributions.md`: Shaun, Troy, and Scott's responsibilities and accountability.
 - `data-governance.md`: public sources, where evidence came from, permissions, and limits.

@@ -537,3 +537,44 @@ or interpreting compliance. Empty retrieval and example documents have distinct 
 - Actual teammate contributions, presentation date/deadline, studio links, instructor
   access, office hours, and all three members' understanding still require human/course
   confirmation. The local package is prepared evidence, not proof of those actions.
+
+### Remove the circular gradients
+
+- User explicitly requested removing the purple circle gradient decoration. This
+  supersedes the earlier requested glow/abstract-sphere treatment. Removed every
+  background radial glow, the final slide's shaded sphere, and its thin orbit.
+- Keep the off-white canvas, charcoal type, serif headings, thin rules, open layout,
+  three editable charts, explicit A2 labels, and full evidence. Muted chart colors
+  remain comparison encodings; no circular-gradient decoration remains.
+- Update the reproducible builder and package description so rebuilding does not
+  bring the removed decoration back. Re-export and visually inspect the final deck
+  before refreshing the matching slide PDF and prepared handoff ZIP.
+
+### Final regional/A2 export verification
+
+- Reviewed all six final clean-background slide renders at full size, including
+  serif title wrapping, explicit assignment names, Evidence footers, semantic paths,
+  failures, four decision rows, proposed roles, and the unseen-area next question.
+  Rechecked the final checkoff pages after regional roadmap/role updates; dossier,
+  checkoff, and slides remain eight/three/six pages. All dossier pages were reviewed.
+- Finalizer passed slide dimensions/count, structure, heading fit, Georgia/Arial,
+  three native charts, embedded literal workbooks, and authoring-tool reimport.
+  Final deck SHA-256:
+  `4ba13652d80b698ce942fd51dfa68a8e1b3fe251ca8b1e93111a98d7afe9fd54`.
+- Final foreground-rectangle space check gives 42.92 / 44.69 / 41.67 / 41.62 /
+  40.12 / 54.54 percent unused space. Every slide meets the requested minimum 40%.
+  No slide retains gradient-fill shapes or decorative ellipses.
+- Refreshed the stable PowerPoint and matching slide PDF; all six PDF images match
+  the reviewed slide renders pixel for pixel. Preserve the open Office owner file;
+  an already-open PowerPoint needs reopening to display the updated disk version.
+- Content comparisons pass for 15 raw evidence files, 20 recorded fingerprints,
+  three command/schema-block groups, 33 original dossier references, nine numeric
+  dossier-table rows, 21 checkoff items, seven evidence IDs/decisions/paths, 13 native
+  chart values, and all six original component-method notes. Core behavior is unchanged.
+- Ruff and formatting pass for all three Python capture/export/packaging scripts.
+  No core-suite rerun is needed for this documentation/design revision; its historical
+  51-test result remains intact. Native PowerPoint/Google Slides opening is untested.
+- Move temporary drafts and chart-data folders into the ignored workspace build area.
+  Refresh the 41-file ZIP after notes updates, check its integrity and each entry against
+  current workspace bytes, and exclude Office owner files and draft decks. No external
+  submission, GitHub push, message, or access change is part of this local revision.
