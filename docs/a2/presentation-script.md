@@ -12,7 +12,7 @@ Assigned day: still unknown, October 20/23, 2026. Allow 4 minutes for the talk a
 | 5 | Troy | 35 | 3:00 | Prediction ranges missed the goal |
 | 6 | Scott | 60 | 4:00 | Decisions, roles, and next test |
 
-## Slide 1: ecosystem impacts across an area
+## Slide 1: problem & users — ecosystems across an area
 
 ECOllateral aims to help planners, researchers, and utilities understand how proposed
 development affects an area's municipal water reserves and watershed conditions across
@@ -22,17 +22,17 @@ Cooling is one component test. The regional supply, demand, return-flow, and eco
 assessment is still planned. Our model targets are made-up data, so we are not claiming
 validated regional impact forecasts yet.
 
-## Slide 2: two paths, one response
+## Slide 2: semantic map — current system
 
-This diagram shows current components, not the full regional assessment.
-The top path handles numbers. Weather, river flow, drought, season, and facility size
-become six inputs. A tree-based AI model predicts water use. Separate engineering
-rules check the number and warn if it needs adjusting. The bottom path handles permit
-text. We search words, check the location, and return original quotations. Tests showed
-the limits and four location cases work. No language model calculates water use
-or decides compliance.
+The diagram shows current components. Six features describe size, weather, flow,
+drought, and season. The target is cooling water use. Trees learn number relationships;
+rules check physical limits. Permit documents keep original words, sources, and location
+metadata. TF-IDF creates word vectors, FAISS ranks matches, and location checks filter
+results. This connects learned numbers, symbolic rules, and text evidence. Four location
+tests pass; forced wrong predictions clip and warn. Quotations add context, without
+calculating risk or deciding compliance.
 
-## Slide 3: compare models for one pressure component
+## Slide 3: experiment E1 — model comparison
 
 We compared RandomForest and XGBoost using the same made-up inputs and water-use targets.
 We split dates in time order: 60 percent to train, 20 percent to choose the model and
@@ -43,7 +43,7 @@ RandomForest for comparison. Dry air cooling has zero on-site water use in our s
 These scores show we learned the generated pattern; real water-use measurements are
 still the main gap.
 
-## Slide 4: test missing drought readings
+## Slide 4: experiment E2 — gaps & biased neighbors
 
 We removed 10, 25, and 40 percent of drought readings and repeated each test 50 times.
 Filling gaps from a nearby station or a straight line through time kept forecasts within
@@ -53,7 +53,7 @@ per day. Nearby-station filling then passed only 60.3 percent of the tolerance c
 That test uses a simple formula, not the fitted AI model. We need tests with biased
 neighbors, long gaps, and several stations losing data together.
 
-## Slide 5: check the prediction ranges
+## Slide 5: experiment E5 — range reliability
 
 The models fit the made-up data well, but their prediction ranges missed our goal.
 Ranges intended to include 90 percent of test values included 88.3 percent for towers
@@ -62,7 +62,7 @@ a statistically significant failure. We also used the same data to choose the mo
 and set its range. We will separate those jobs and test by facility, time, and drought.
 R-squared measures fit; it is not the chance a prediction is right.
 
-## Slide 6: build and validate the regional assessment
+## Slide 6: decisions & next question
 
 We will keep the tested models, component rules, and location checks. Next, connect
 development pressures to observed area supply, reserves, other demands, returns, and
@@ -70,6 +70,7 @@ ecological flow needs. We must define regional targets and test unseen areas and
 with separate calibration. One cooling-water number cannot represent ecosystem health.
 We also reject R-squared as confidence and unconstrained language-model risk scoring.
 No zero-shot or generative comparison was run. Shaun leads coding and area integration.
+We defer neural/LLM comparisons until measured regional labels exist.
 Troy supports environmental baselines, drought analysis, and document grounding.
 Scott supports safety and interface evaluation, failure analysis, and regional evidence.
 These supporting duties still need completion confirmation. Our next question is whether

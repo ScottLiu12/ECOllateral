@@ -24,6 +24,7 @@ The exact Submitty deadline is not supplied in the brief.
 - `team-contributions.md`: Shaun, Troy, and Scott's responsibilities and accountability.
 - `data-governance.md`: public sources, where evidence came from, permissions, and limits.
 - `requirements-map.md`: A2 requirements and grading criteria mapped to the package.
+- `slide-coverage.md`: item-by-item A2 slide/rubric coverage and the remaining human checks.
 - `evidence/`: portable benchmark tables, forecast output, failure cases, research charts,
   test output, source metadata, and checksums. No serialized model is included.
 - `verification-notes.md`: export checks, visual review, and practical validation limits.

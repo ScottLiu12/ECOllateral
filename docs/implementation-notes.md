@@ -500,3 +500,40 @@ or interpreting compliance. Empty retrieval and example documents have distinct 
 - Changed only the package description in pyproject.toml to match the project identity.
   Parsed both old/new TOML and confirmed every other metadata/dependency field is identical.
   No API behavior, model logic, or data schema changed.
+
+### A2 assignment audit and explicit slide labels
+
+- Reread all three pages of the supplied A2 brief and the project checkoff PDF.
+  The seven required presentation topics are problem/users, current semantic map,
+  at least three investigations, concrete evidence, consequential failure/limitation,
+  evidence-supported decisions, and the most important next question. The five
+  submission components are dossier, map, evidence/decision summary, slides, and
+  one-line teammate statements. Course instructions do not authorize external submission.
+- Added `docs/a2/slide-coverage.md` with a seven-item requirement matrix, exact visible
+  headings by slide, the six rubric categories, timing, five deliverables, and pending
+  human checks. The matrix documents coverage and makes no prediction about a grade.
+- Made slide 2 explain meaning representation directly: observation units/dates,
+  six features, cooling-use target, RF/XGBoost, PUE/heat rules, original document words,
+  TF-IDF word vectors, source/section/location metadata, geographic filtering, quotations.
+  Explain how learned numbers, symbolic checks, and retrieved context work together.
+- Added concrete E3 fault-injection clipping range and E4 four-case location result
+  on slide 2; E1/E2/E5 each retain their own native chart and evidence source footer.
+  E3/E4 are extra investigations, not substitutes for the three main chart slides.
+- Split slide 6 into four explicit decisions with reasons: E1 lower XGBoost error and
+  E3/E4 passing safeguards support Adopt; E2 biased donors and E5 observed coverage
+  shortfall support Modify; fit cannot stand for confidence and cooling use cannot
+  stand for area impact; absent regional labels/LLM benchmarks support Defer.
+- User requested visible names for assignment sections. Headings now say Problem &
+  Users, Semantic Map, Experiment E1/E2/E5, and Decisions & Next Question. The failure
+  and reliability issue are explicitly labeled in slides 4/5; slides 2-5 identify their
+  sources with an Evidence footer. IDs match the dossier and evidence summary.
+- Retained regional ecosystem purpose and distinguish current component evidence from
+  planned area assessment. Keep actual results, chart values, raw evidence, and original
+  component-method notes unchanged; do not invent regional validation or LLM experiments.
+- Updated the timed talk and speaker notes. Current spoken counts are 77/77/103/96/84/135,
+  totaling 572 words over 240 seconds (143 words/minute). The 30/30/45/40/35/60-second
+  allocation follows 1 minute problem/map, 2 minutes experiments/failures, 1 minute
+  decisions/next question; allow 2 minutes for questions and rehearse to verify pacing.
+- Actual teammate contributions, presentation date/deadline, studio links, instructor
+  access, office hours, and all three members' understanding still require human/course
+  confirmation. The local package is prepared evidence, not proof of those actions.

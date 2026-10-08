@@ -49,7 +49,8 @@ function slide(title, source, cover=false) {
   s.shapes.add({geometry:'rect',position:{left:66,top:titleY+2,width:1.5,height:titleH-7},
     fill:navy,line:{fill:'none',width:0}});
   text(s, title.toUpperCase(), 85, titleY, cover?1060:1105, titleH, cover?58:43, false, navy, headingFamily);
-  text(s, source, 80, 664, 1070, 35, 13, false, gray);
+  const sourceLabel = /^E[1-5]/.test(source) ? 'Evidence: '+source : source;
+  text(s, sourceLabel, 80, 664, 1070, 35, 13, false, gray);
   text(s, String(p.slides.items.length).padStart(2,'0'), 1180, 664, 36, 24, 14, false, gray);
   return s;
 }
@@ -76,22 +77,22 @@ function chart(s, categories, series, yTitle, yMax, format,
   return c;
 }
 
-let s = slide('Ecosystem impacts\nacross an area',
+let s = slide('Problem & users:\necosystems across an area',
   'October 7 component evidence | Synthetic model targets; regional assessment not yet validated',true);
 text(s, 'Shaun, Troy, Scott', 85, 100, 650, 28, 20, false, gray);
-text(s, 'For municipal planners, environmental researchers, and utilities', 85, 340, 1100, 43, 25);
+text(s, 'How could development change area water reserves and watershed conditions across seasons?', 85, 334, 1100, 65, 25);
 text(s, 'R E G I O N A L  G O A L', 85, 426, 510, 30, 16, false, gray);
 rule(s,85,465,435);
 text(s, 'Seasonal area conditions\nDevelopment demands + returns\nMunicipal reserves + watershed', 85, 483, 530, 115, 25);
 text(s, 'C U R R E N T  P R O T O T Y P E', 660, 426, 540, 30, 16, false, gray);
 rule(s,660,465,535);
 text(s, 'Environmental data + cooling model\nPhysical checks + permit quotes\nRegional assessment still planned', 660, 483, 535, 115, 25);
-text(s, 'Cooling water is one development-pressure case study.', 85, 616, 1110, 27, 19, false, gray);
+text(s, 'Cooling is one case study. Users: municipal planners, researchers, utilities.', 85, 616, 1110, 27, 19, false, gray);
 note(s, 'Shaun, 30 seconds. Source: docs/a2/dossier.md section 1; docs/a2/evidence/forecast.json. '
   + 'Synthetic labels and fictional permits. Public ingestion is a parser smoke test. '
   + 'The current collateral stress field is an on-site consumption proxy. Assigned day is pending.');
 
-s = slide('Environmental data and pressure evidence',
+s = slide('Semantic map: current system',
   'E3/E4: constraint-failure-cases.json; retrieval-cases.json | Diagram shows current prototype');
 text(s, 'Current API example: IT size, cooling type, watershed (HUC8), month; coordinates optional', 80, 231, 1135, 55, 22);
 const xPositions = [80, 313, 546, 779, 1012];
@@ -105,12 +106,12 @@ function box(x, y, heading, body) {
 }
 const top = [
   ['Public data','USGS / NOAA\nunits + dates'], ['6 inputs','size, dry/wet C\nflow, PDSI, season'],
-  ['AI model','RF / XGBoost\npredict a number'], ['Heat rules','size + weather\nlimits + warnings'],
+  ['AI model','RF / XGBoost\ncooling-use target'], ['Heat rules','PUE + heat rules\nlimits + warnings'],
   ['Response','MGD + range\nlimits + warnings']
 ];
 const lower = [
-  ['Permit text','source + section\noriginal words'], ['Doc info','HUC or radius\nsection IDs'],
-  ['Word search','TF-IDF / FAISS\nrank word matches'], ['Location','HUC or radius\nkeep eligible k'],
+  ['Permit text','source + section\noriginal words'], ['Doc info','HUC or radius\nsource/section IDs'],
+  ['Word search','TF-IDF / FAISS\nword-pair vectors'], ['Location','HUC or radius\nkeep eligible k'],
   ['Quotes','source + section\nexact quotations']
 ];
 const row1=top.map((v,i)=>box(xPositions[i],315,...v));
@@ -121,9 +122,9 @@ for (const row of [row1,row2]) for (let i=0;i<4;i++) {
 }
 s.shapes.connect(row2[4],row1[4],{kind:'straight',fromSide:'top',toSide:'bottom',
   line:{fill:'#9CA3AF',width:1},tail:{type:'arrow',width:'sm',length:'sm'}});
-text(s, 'Train the component on made-up targets. Regional reserve/stress integration is still planned.',
+text(s, 'Rules check learned numbers. Place metadata filters word vectors. Quotes add context.',
   80, 592, 1140, 28, 20);
-text(s, 'Forced wrong numbers trigger warnings. Four permit-location tests pass.',
+text(s, 'E3: 40 MW fault test clips to [0, 0.446484] MGD. E4: four location checks pass.',
   80, 625, 1140, 26, 20);
 note(s, 'Shaun, 30 seconds. Sources: src/models/regression.py, src/rules/thermodynamic.py, '
   + 'src/grounding/store.py, src/grounding/generator.py; docs/a2/evidence E3/E4 JSON. '
@@ -131,7 +132,7 @@ note(s, 'Shaun, 30 seconds. Sources: src/models/regression.py, src/rules/thermod
   + '0/0.446484 MGD for 40 MW, 30 C dry, 20 C wet. Four fictional retrieval cases pass. '
   + 'No LLM arithmetic or legal compliance decision.');
 
-s = slide('Model comparison for one water-pressure component',
+s = slide('Experiment E1: model comparison',
   'E1: regression-comparison.csv | 333 test rows per evaporative type | MGD = million US gallons/day');
 chart(s, ['Cooling tower', 'Direct evaporative'], [
   {name:'RandomForest', values:[0.004889693030131237,0.0038419326899621887],fill:'#D1D5DB'},
@@ -147,7 +148,7 @@ note(s, 'Shaun, 45 seconds. Source: docs/a2/evidence/regression-comparison.csv a
   + '1,600 synthetic rows per type, six years, seed 42. Selected tower R2 .99808, direct .99728. '
   + 'No field generalization claim. Model selection and interval sizing reuse calibration partition.');
 
-s = slide('Similar nearby stations made gaps easier to fill',
+s = slide('Experiment E2: gaps & biased neighbors',
   'E2: missingness-summary.csv; biased-donor-diagnostic.csv | Main test uses trained AI and made-up river data');
 chart(s, ['10% gaps','25% gaps','40% gaps'], [
   {name:'Nearby station',values:[0.3294740911224772,0.6313760632259535,0.9053629337832835],fill:lavender},
@@ -158,7 +159,7 @@ rule(s,850,335,345);
 text(s, 'All main cases passed', 850, 351, 350, 33, 25);
 text(s, 'Change within +/-0.05 MGD\n50 repeats; 121 drought dates', 850, 398, 350, 95, 22, false, gray);
 rule(s,850,500,345);
-text(s, 'Biased-neighbor test:\nonly 60.3% within limits', 850, 514, 350, 67, 24);
+text(s, 'FAILURE: biased neighbors\nonly 60.3% within limits', 850, 514, 350, 67, 24);
 text(s, 'Improve: check neighbors and shared outages. The biased test uses a separate simple formula.',
   80, 607, 1140, 43, 21);
 note(s, 'Troy, 40 seconds. Main data source: missingness-summary.csv. Bar values are exact variance '
@@ -166,7 +167,7 @@ note(s, 'Troy, 40 seconds. Main data source: missingness-summary.csv. Bar values
   + 'donors, 40% gaps, 20 repeats, predictor=.01*flow, spatial coverage .603305785, linear .985950413. '
   + 'Not a fitted-model failure rate. Interpolation is retrospective; sensitivity bands are not forecast intervals.');
 
-s = slide('The prediction ranges missed our 90% goal',
+s = slide('Experiment E5: range reliability',
   'E5: interval-coverage.csv; benchmark.json | Made-up test values; 333 per model');
 chart(s, ['Tower XGB','Direct XGB','Goal'],[
   {name:'Coverage',values:[0.8828828828828829,0.8798798798798799,0.9],fill:lavender,
@@ -174,7 +175,7 @@ chart(s, ['Tower XGB','Direct XGB','Goal'],[
 ], 'Test values inside range', 1, '0%',{left:660,top:270,width:545,height:295});
 text(s, '88.3% / 88.0%', 80, 266, 560, 102, 73);
 rule(s,80,375,530);
-text(s, 'Tower / direct evaporative coverage', 80, 393, 550, 32, 23, false, gray);
+text(s, 'RELIABILITY ISSUE: below the 90% goal', 80, 393, 550, 32, 23, false, gray);
 text(s, 'Tower R2 = 0.998\nGood fit does not prove the range is reliable.', 80, 443, 525, 101, 26);
 rule(s,80,555,1120);
 text(s, 'Improve: use separate data to choose models and set ranges.', 80, 575, 1120, 37, 24);
@@ -185,17 +186,20 @@ note(s, 'Troy, 35 seconds. Sources: interval-coverage.csv; src/models/regression
   + 'Chronological dependence complicates exchangeability. These finite samples do not establish '
   + 'statistical significance. R2 is not confidence; air zero target excluded.');
 
-s = slide('Next: validate the regional assessment',
+s = slide('Decisions & next question',
   'Decisions: E1-E5 | Proposed responsibilities: Shaun / Troy / Scott | Presentation day pending');
-text(s, 'KEEP (ADOPT)', 80, 238, 605, 28, 19, false, gray);
-rule(s,80,272,610);
-text(s, 'Tree models, physical limits, permit-location checks', 80, 286, 620, 55, 26);
-text(s, 'IMPROVE (MODIFY)', 80, 355, 605, 28, 19, false, gray);
-rule(s,80,389,610);
-text(s, 'Add regional balances, ecology baselines, and area tests', 80, 403, 620, 55, 26);
-text(s, 'REJECT / DEFER', 80, 472, 605, 28, 19, false, gray);
-rule(s,80,506,610);
-text(s, 'Reject R2-as-confidence and ungrounded risk scoring.\nDefer neural/LLM comparisons.', 80, 520, 620, 88, 23);
+text(s, 'KEEP (ADOPT)', 80, 234, 605, 23, 17, false, gray);
+rule(s,80,260,610);
+text(s, 'E1: lower XGBoost error. E3/E4: safeguards pass.\nKeep models, rules, and location checks.', 80, 273, 620, 53, 22);
+text(s, 'CHANGE (MODIFY)', 80, 333, 605, 23, 17, false, gray);
+rule(s,80,360,610);
+text(s, 'E2: biased neighbors. E5: ranges miss 90%.\nImprove gaps/ranges and add area balances.', 80, 373, 620, 53, 22);
+text(s, 'REJECT', 80, 438, 605, 23, 17, false, gray);
+rule(s,80,464,610);
+text(s, 'E5: R2 is fit, not confidence.\nCooling use is not regional ecosystem impact.', 80, 477, 620, 53, 22);
+text(s, 'DEFER', 80, 539, 605, 23, 17, false, gray);
+rule(s,80,565,610);
+text(s, 'No neural/LLM benchmark or regional labels yet.', 80, 578, 620, 31, 22);
 // Native, editable abstract composition: softly shaded sphere and thin orbit.
 // Decorative only; it represents no experimental evidence or measured geometry.
 glow(s,755,215,450,350);
