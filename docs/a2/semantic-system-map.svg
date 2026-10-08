@@ -10,27 +10,27 @@
 	</clipPath>
 	<g id="group" transform="scale(1,-1) translate(0,-530)" style="clip-path: url(#clip)">
 		<g transform="">
-			<text x="45" y="496" style="font-family: Helvetica-Bold; font-size: 28px;fill: rgb(7%,17%,25%); stroke:none;" transform="translate(0,992) scale(1,-1)">ECOllateral: numeric and document representations</text>
-			<text x="45" y="461" style="font-family: Helvetica; font-size: 20px;fill: rgb(7%,17%,25%); stroke:none;" transform="translate(0,922) scale(1,-1)">Request: IT MW, cooling type, HUC8, month; coordinates optional</text>
-			<text x="45" y="431" style="font-family: Helvetica-Bold; font-size: 20px;fill: rgb(8%,49%,55%); stroke:none;" transform="translate(0,862) scale(1,-1)">Numeric path</text>
+			<text x="45" y="496" style="font-family: Helvetica-Bold; font-size: 28px;fill: rgb(7%,17%,25%); stroke:none;" transform="translate(0,992) scale(1,-1)">ECOllateral: predict water use and find permit quotations</text>
+			<text x="45" y="461" style="font-family: Helvetica; font-size: 20px;fill: rgb(7%,17%,25%); stroke:none;" transform="translate(0,922) scale(1,-1)">Enter IT size (MW), cooling type, watershed (HUC8), month; coordinates optional</text>
+			<text x="45" y="431" style="font-family: Helvetica-Bold; font-size: 20px;fill: rgb(8%,49%,55%); stroke:none;" transform="translate(0,862) scale(1,-1)">Number path</text>
 			<rect x="45" y="310" width="190" height="100" style="stroke: rgb(8%,49%,55%); stroke-linecap: butt; stroke-width: 1.5; fill: rgb(93%,96%,96%); fill-rule: evenodd;"/>
 			<text x="57" y="383" style="font-family: Helvetica-Bold; font-size: 20px;fill: rgb(7%,17%,25%); stroke:none;" transform="translate(0,766) scale(1,-1)">Public data</text>
 			<text x="57" y="356" style="font-family: Helvetica; font-size: 18px;fill: rgb(7%,17%,25%); stroke:none;" transform="translate(0,712) scale(1,-1)">USGS / NOAA</text>
 			<text x="57" y="334" style="font-family: Helvetica; font-size: 18px;fill: rgb(7%,17%,25%); stroke:none;" transform="translate(0,668) scale(1,-1)">values + units</text>
 			<rect x="45" y="120" width="190" height="100" style="stroke: rgb(8%,49%,55%); stroke-linecap: butt; stroke-width: 1.5; fill: rgb(93%,96%,96%); fill-rule: evenodd;"/>
-			<text x="57" y="193" style="font-family: Helvetica-Bold; font-size: 20px;fill: rgb(7%,17%,25%); stroke:none;" transform="translate(0,386) scale(1,-1)">Permit sources</text>
+			<text x="57" y="193" style="font-family: Helvetica-Bold; font-size: 20px;fill: rgb(7%,17%,25%); stroke:none;" transform="translate(0,386) scale(1,-1)">Permit text</text>
 			<text x="57" y="166" style="font-family: Helvetica; font-size: 18px;fill: rgb(7%,17%,25%); stroke:none;" transform="translate(0,332) scale(1,-1)">document + section</text>
-			<text x="57" y="144" style="font-family: Helvetica; font-size: 18px;fill: rgb(7%,17%,25%); stroke:none;" transform="translate(0,288) scale(1,-1)">source excerpt</text>
+			<text x="57" y="144" style="font-family: Helvetica; font-size: 18px;fill: rgb(7%,17%,25%); stroke:none;" transform="translate(0,288) scale(1,-1)">original words</text>
 			<path d="M 235,360 L 275,360 Z" style="stroke: rgb(8%,49%,55%); stroke-linecap: butt; stroke-width: 2;"/>
 			<polygon points="275 360, 266 365, 266 355" style="stroke: rgb(8%,49%,55%); stroke-linecap: butt; stroke-width: 1; fill: rgb(8%,49%,55%); fill-rule: evenodd;"/>
 			<path d="M 235,170 L 275,170 Z" style="stroke: rgb(8%,49%,55%); stroke-linecap: butt; stroke-width: 2;"/>
 			<polygon points="275 170, 266 175, 266 165" style="stroke: rgb(8%,49%,55%); stroke-linecap: butt; stroke-width: 1; fill: rgb(8%,49%,55%); fill-rule: evenodd;"/>
 			<rect x="275" y="310" width="190" height="100" style="stroke: rgb(8%,49%,55%); stroke-linecap: butt; stroke-width: 1.5; fill: rgb(93%,96%,96%); fill-rule: evenodd;"/>
-			<text x="287" y="383" style="font-family: Helvetica-Bold; font-size: 20px;fill: rgb(7%,17%,25%); stroke:none;" transform="translate(0,766) scale(1,-1)">Six features</text>
-			<text x="287" y="356" style="font-family: Helvetica; font-size: 18px;fill: rgb(7%,17%,25%); stroke:none;" transform="translate(0,712) scale(1,-1)">MW, C, MGD, PDSI</text>
-			<text x="287" y="334" style="font-family: Helvetica; font-size: 18px;fill: rgb(7%,17%,25%); stroke:none;" transform="translate(0,668) scale(1,-1)">seasonal position</text>
+			<text x="287" y="383" style="font-family: Helvetica-Bold; font-size: 20px;fill: rgb(7%,17%,25%); stroke:none;" transform="translate(0,766) scale(1,-1)">Six inputs</text>
+			<text x="287" y="356" style="font-family: Helvetica; font-size: 18px;fill: rgb(7%,17%,25%); stroke:none;" transform="translate(0,712) scale(1,-1)">size / weather / flow</text>
+			<text x="287" y="334" style="font-family: Helvetica; font-size: 18px;fill: rgb(7%,17%,25%); stroke:none;" transform="translate(0,668) scale(1,-1)">drought / season</text>
 			<rect x="275" y="120" width="190" height="100" style="stroke: rgb(8%,49%,55%); stroke-linecap: butt; stroke-width: 1.5; fill: rgb(93%,96%,96%); fill-rule: evenodd;"/>
-			<text x="287" y="193" style="font-family: Helvetica-Bold; font-size: 20px;fill: rgb(7%,17%,25%); stroke:none;" transform="translate(0,386) scale(1,-1)">Chunks / scope</text>
+			<text x="287" y="193" style="font-family: Helvetica-Bold; font-size: 20px;fill: rgb(7%,17%,25%); stroke:none;" transform="translate(0,386) scale(1,-1)">Document info</text>
 			<text x="287" y="166" style="font-family: Helvetica; font-size: 18px;fill: rgb(7%,17%,25%); stroke:none;" transform="translate(0,332) scale(1,-1)">text + identifiers</text>
 			<text x="287" y="144" style="font-family: Helvetica; font-size: 18px;fill: rgb(7%,17%,25%); stroke:none;" transform="translate(0,288) scale(1,-1)">HUC or radius</text>
 			<path d="M 465,360 L 505,360 Z" style="stroke: rgb(8%,49%,55%); stroke-linecap: butt; stroke-width: 2;"/>
@@ -38,42 +38,42 @@
 			<path d="M 465,170 L 505,170 Z" style="stroke: rgb(8%,49%,55%); stroke-linecap: butt; stroke-width: 2;"/>
 			<polygon points="505 170, 496 175, 496 165" style="stroke: rgb(8%,49%,55%); stroke-linecap: butt; stroke-width: 1; fill: rgb(8%,49%,55%); fill-rule: evenodd;"/>
 			<rect x="505" y="310" width="190" height="100" style="stroke: rgb(8%,49%,55%); stroke-linecap: butt; stroke-width: 1.5; fill: rgb(93%,96%,96%); fill-rule: evenodd;"/>
-			<text x="517" y="383" style="font-family: Helvetica-Bold; font-size: 20px;fill: rgb(7%,17%,25%); stroke:none;" transform="translate(0,766) scale(1,-1)">Regressor</text>
+			<text x="517" y="383" style="font-family: Helvetica-Bold; font-size: 20px;fill: rgb(7%,17%,25%); stroke:none;" transform="translate(0,766) scale(1,-1)">AI model</text>
 			<text x="517" y="356" style="font-family: Helvetica; font-size: 18px;fill: rgb(7%,17%,25%); stroke:none;" transform="translate(0,712) scale(1,-1)">RF / XGBoost</text>
-			<text x="517" y="334" style="font-family: Helvetica; font-size: 18px;fill: rgb(7%,17%,25%); stroke:none;" transform="translate(0,668) scale(1,-1)">learned trees</text>
+			<text x="517" y="334" style="font-family: Helvetica; font-size: 18px;fill: rgb(7%,17%,25%); stroke:none;" transform="translate(0,668) scale(1,-1)">predict a number</text>
 			<rect x="505" y="120" width="190" height="100" style="stroke: rgb(8%,49%,55%); stroke-linecap: butt; stroke-width: 1.5; fill: rgb(93%,96%,96%); fill-rule: evenodd;"/>
-			<text x="517" y="193" style="font-family: Helvetica-Bold; font-size: 20px;fill: rgb(7%,17%,25%); stroke:none;" transform="translate(0,386) scale(1,-1)">Vector retrieval</text>
+			<text x="517" y="193" style="font-family: Helvetica-Bold; font-size: 20px;fill: rgb(7%,17%,25%); stroke:none;" transform="translate(0,386) scale(1,-1)">Word search</text>
 			<text x="517" y="166" style="font-family: Helvetica; font-size: 18px;fill: rgb(7%,17%,25%); stroke:none;" transform="translate(0,332) scale(1,-1)">TF-IDF / FAISS</text>
-			<text x="517" y="144" style="font-family: Helvetica; font-size: 18px;fill: rgb(7%,17%,25%); stroke:none;" transform="translate(0,288) scale(1,-1)">lexical ranking</text>
+			<text x="517" y="144" style="font-family: Helvetica; font-size: 18px;fill: rgb(7%,17%,25%); stroke:none;" transform="translate(0,288) scale(1,-1)">rank word matches</text>
 			<path d="M 695,360 L 735,360 Z" style="stroke: rgb(8%,49%,55%); stroke-linecap: butt; stroke-width: 2;"/>
 			<polygon points="735 360, 726 365, 726 355" style="stroke: rgb(8%,49%,55%); stroke-linecap: butt; stroke-width: 1; fill: rgb(8%,49%,55%); fill-rule: evenodd;"/>
 			<path d="M 695,170 L 735,170 Z" style="stroke: rgb(8%,49%,55%); stroke-linecap: butt; stroke-width: 2;"/>
 			<polygon points="735 170, 726 175, 726 165" style="stroke: rgb(8%,49%,55%); stroke-linecap: butt; stroke-width: 1; fill: rgb(8%,49%,55%); fill-rule: evenodd;"/>
 			<rect x="735" y="310" width="190" height="100" style="stroke: rgb(8%,49%,55%); stroke-linecap: butt; stroke-width: 1.5; fill: rgb(93%,96%,96%); fill-rule: evenodd;"/>
-			<text x="747" y="383" style="font-family: Helvetica-Bold; font-size: 20px;fill: rgb(7%,17%,25%); stroke:none;" transform="translate(0,766) scale(1,-1)">Thermal rules</text>
-			<text x="747" y="356" style="font-family: Helvetica; font-size: 18px;fill: rgb(7%,17%,25%); stroke:none;" transform="translate(0,712) scale(1,-1)">capacity + ambient</text>
-			<text x="747" y="334" style="font-family: Helvetica; font-size: 18px;fill: rgb(7%,17%,25%); stroke:none;" transform="translate(0,668) scale(1,-1)">clip + flag</text>
+			<text x="747" y="383" style="font-family: Helvetica-Bold; font-size: 20px;fill: rgb(7%,17%,25%); stroke:none;" transform="translate(0,766) scale(1,-1)">Heat rules</text>
+			<text x="747" y="356" style="font-family: Helvetica; font-size: 18px;fill: rgb(7%,17%,25%); stroke:none;" transform="translate(0,712) scale(1,-1)">capacity + weather</text>
+			<text x="747" y="334" style="font-family: Helvetica; font-size: 18px;fill: rgb(7%,17%,25%); stroke:none;" transform="translate(0,668) scale(1,-1)">adjust + warn</text>
 			<rect x="735" y="120" width="190" height="100" style="stroke: rgb(8%,49%,55%); stroke-linecap: butt; stroke-width: 1.5; fill: rgb(93%,96%,96%); fill-rule: evenodd;"/>
-			<text x="747" y="193" style="font-family: Helvetica-Bold; font-size: 20px;fill: rgb(7%,17%,25%); stroke:none;" transform="translate(0,386) scale(1,-1)">Geo eligibility</text>
+			<text x="747" y="193" style="font-family: Helvetica-Bold; font-size: 20px;fill: rgb(7%,17%,25%); stroke:none;" transform="translate(0,386) scale(1,-1)">Location check</text>
 			<text x="747" y="166" style="font-family: Helvetica; font-size: 18px;fill: rgb(7%,17%,25%); stroke:none;" transform="translate(0,332) scale(1,-1)">HUC / coordinates</text>
-			<text x="747" y="144" style="font-family: Helvetica; font-size: 18px;fill: rgb(7%,17%,25%); stroke:none;" transform="translate(0,288) scale(1,-1)">filter before top-k</text>
+			<text x="747" y="144" style="font-family: Helvetica; font-size: 18px;fill: rgb(7%,17%,25%); stroke:none;" transform="translate(0,288) scale(1,-1)">eligible top-k</text>
 			<path d="M 925,360 L 965,360 Z" style="stroke: rgb(8%,49%,55%); stroke-linecap: butt; stroke-width: 2;"/>
 			<polygon points="965 360, 956 365, 956 355" style="stroke: rgb(8%,49%,55%); stroke-linecap: butt; stroke-width: 1; fill: rgb(8%,49%,55%); fill-rule: evenodd;"/>
 			<path d="M 925,170 L 965,170 Z" style="stroke: rgb(8%,49%,55%); stroke-linecap: butt; stroke-width: 2;"/>
 			<polygon points="965 170, 956 175, 956 165" style="stroke: rgb(8%,49%,55%); stroke-linecap: butt; stroke-width: 1; fill: rgb(8%,49%,55%); fill-rule: evenodd;"/>
 			<rect x="965" y="310" width="190" height="100" style="stroke: rgb(8%,49%,55%); stroke-linecap: butt; stroke-width: 1.5; fill: rgb(93%,96%,96%); fill-rule: evenodd;"/>
-			<text x="977" y="383" style="font-family: Helvetica-Bold; font-size: 20px;fill: rgb(7%,17%,25%); stroke:none;" transform="translate(0,766) scale(1,-1)">Forecast JSON</text>
-			<text x="977" y="356" style="font-family: Helvetica; font-size: 18px;fill: rgb(7%,17%,25%); stroke:none;" transform="translate(0,712) scale(1,-1)">MGD + interval</text>
-			<text x="977" y="334" style="font-family: Helvetica; font-size: 18px;fill: rgb(7%,17%,25%); stroke:none;" transform="translate(0,668) scale(1,-1)">bounds + warnings</text>
+			<text x="977" y="383" style="font-family: Helvetica-Bold; font-size: 20px;fill: rgb(7%,17%,25%); stroke:none;" transform="translate(0,766) scale(1,-1)">Response (JSON)</text>
+			<text x="977" y="356" style="font-family: Helvetica; font-size: 18px;fill: rgb(7%,17%,25%); stroke:none;" transform="translate(0,712) scale(1,-1)">MGD + range</text>
+			<text x="977" y="334" style="font-family: Helvetica; font-size: 18px;fill: rgb(7%,17%,25%); stroke:none;" transform="translate(0,668) scale(1,-1)">limits + warnings</text>
 			<rect x="965" y="120" width="190" height="100" style="stroke: rgb(8%,49%,55%); stroke-linecap: butt; stroke-width: 1.5; fill: rgb(93%,96%,96%); fill-rule: evenodd;"/>
-			<text x="977" y="193" style="font-family: Helvetica-Bold; font-size: 20px;fill: rgb(7%,17%,25%); stroke:none;" transform="translate(0,386) scale(1,-1)">Quoted summary</text>
+			<text x="977" y="193" style="font-family: Helvetica-Bold; font-size: 20px;fill: rgb(7%,17%,25%); stroke:none;" transform="translate(0,386) scale(1,-1)">Quotes</text>
 			<text x="977" y="166" style="font-family: Helvetica; font-size: 18px;fill: rgb(7%,17%,25%); stroke:none;" transform="translate(0,332) scale(1,-1)">source + section</text>
-			<text x="977" y="144" style="font-family: Helvetica; font-size: 18px;fill: rgb(7%,17%,25%); stroke:none;" transform="translate(0,288) scale(1,-1)">exact excerpt</text>
+			<text x="977" y="144" style="font-family: Helvetica; font-size: 18px;fill: rgb(7%,17%,25%); stroke:none;" transform="translate(0,288) scale(1,-1)">exact quotations</text>
 			<path d="M 1060,220 L 1060,310 Z" style="stroke: rgb(8%,49%,55%); stroke-linecap: butt; stroke-width: 2;"/>
 			<polygon points="1060 310, 1055 301, 1065 301" style="stroke: rgb(8%,49%,55%); stroke-linecap: butt; stroke-width: 1; fill: rgb(8%,49%,55%); fill-rule: evenodd;"/>
-			<text x="45" y="243" style="font-family: Helvetica-Bold; font-size: 20px;fill: rgb(8%,49%,55%); stroke:none;" transform="translate(0,486) scale(1,-1)">Document path</text>
-			<text x="45" y="65" style="font-family: Helvetica; font-size: 20px;fill: rgb(7%,17%,25%); stroke:none;" transform="translate(0,130) scale(1,-1)">Offline: synthetic label (MGD) -&gt; train / calibration / test -&gt; saved models</text>
-			<text x="45" y="31" style="font-family: Helvetica; font-size: 20px;fill: rgb(7%,17%,25%); stroke:none;" transform="translate(0,62) scale(1,-1)">Rules use stated assumptions. Quotations do not establish legal compliance.</text>
+			<text x="45" y="243" style="font-family: Helvetica-Bold; font-size: 20px;fill: rgb(8%,49%,55%); stroke:none;" transform="translate(0,486) scale(1,-1)">Permit path</text>
+			<text x="45" y="65" style="font-family: Helvetica; font-size: 20px;fill: rgb(7%,17%,25%); stroke:none;" transform="translate(0,130) scale(1,-1)">Before use: made-up water targets -&gt; train / choose + set ranges / test -&gt; saved models</text>
+			<text x="45" y="31" style="font-family: Helvetica; font-size: 20px;fill: rgb(7%,17%,25%); stroke:none;" transform="translate(0,62) scale(1,-1)">Rules depend on assumptions. A permit quotation does not prove legal compliance.</text>
 		</g>
 	</g>
 </svg>

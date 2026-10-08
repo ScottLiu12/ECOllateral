@@ -2,8 +2,8 @@
 
 - **Shaun:** Main coding contributor; connects data downloads, physical rules, prediction
   models, FastAPI, and the TypeScript client.
-- **Troy:** Check where environmental data come from and whether station/HUC/climate-
-  division locations match; review drought-gap results and explain test limits.
+- **Troy:** Check environmental sources and location matches for stations, HUCs, and
+  climate divisions; review drought-gap results and explain test limits.
 - **Scott:** Check permit sources and their location coverage; organize evidence and
   slides; coordinate rehearsal and instructor-access checks.
 

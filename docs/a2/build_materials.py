@@ -65,22 +65,27 @@ def system_map():
             points = [x2, 530 - y2, x2 - 5, 530 - y2 - 9, x2 + 5, 530 - y2 - 9]
         drawing.add(Polygon(points, fillColor=TEAL, strokeColor=TEAL))
 
-    label(45, 34, "ECOllateral: numeric and document representations", 28, bold=True)
-    label(45, 69, "Request: IT MW, cooling type, HUC8, month; coordinates optional", 20)
-    label(45, 99, "Numeric path", 20, TEAL, True)
+    label(45, 34, "ECOllateral: predict water use and find permit quotations", 28, bold=True)
+    label(
+        45,
+        69,
+        "Enter IT size (MW), cooling type, watershed (HUC8), month; coordinates optional",
+        20,
+    )
+    label(45, 99, "Number path", 20, TEAL, True)
     top_nodes = [
         ("Public data", ["USGS / NOAA", "values + units"]),
-        ("Six features", ["MW, C, MGD, PDSI", "seasonal position"]),
-        ("Regressor", ["RF / XGBoost", "learned trees"]),
-        ("Thermal rules", ["capacity + ambient", "clip + flag"]),
-        ("Forecast JSON", ["MGD + interval", "bounds + warnings"]),
+        ("Six inputs", ["size / weather / flow", "drought / season"]),
+        ("AI model", ["RF / XGBoost", "predict a number"]),
+        ("Heat rules", ["capacity + weather", "adjust + warn"]),
+        ("Response (JSON)", ["MGD + range", "limits + warnings"]),
     ]
     bottom_nodes = [
-        ("Permit sources", ["document + section", "source excerpt"]),
-        ("Chunks / scope", ["text + identifiers", "HUC or radius"]),
-        ("Vector retrieval", ["TF-IDF / FAISS", "lexical ranking"]),
-        ("Geo eligibility", ["HUC / coordinates", "filter before top-k"]),
-        ("Quoted summary", ["source + section", "exact excerpt"]),
+        ("Permit text", ["document + section", "original words"]),
+        ("Document info", ["text + identifiers", "HUC or radius"]),
+        ("Word search", ["TF-IDF / FAISS", "rank word matches"]),
+        ("Location check", ["HUC / coordinates", "eligible top-k"]),
+        ("Quotes", ["source + section", "exact quotations"]),
     ]
     for i, ((heading, lines), (lower, lower_lines)) in enumerate(
         zip(top_nodes, bottom_nodes, strict=True)
@@ -92,12 +97,18 @@ def system_map():
             arrow(x + 190, 170, x + 230, 170)
             arrow(x + 190, 360, x + 230, 360)
     arrow(1060, 310, 1060, 220)
-    label(45, 287, "Document path", 20, TEAL, True)
+    label(45, 287, "Permit path", 20, TEAL, True)
     label(
-        45, 465, "Offline: synthetic label (MGD) -> train / calibration / test -> saved models", 20
+        45,
+        465,
+        "Before use: made-up water targets -> train / choose + set ranges / test -> saved models",
+        20,
     )
     label(
-        45, 499, "Rules use stated assumptions. Quotations do not establish legal compliance.", 20
+        45,
+        499,
+        "Rules depend on assumptions. A permit quotation does not prove legal compliance.",
+        20,
     )
     renderSVG.drawToFile(drawing, str(HERE / "semantic-system-map.svg"))
     map_pdf = BUILD / "system-map-preview.pdf"

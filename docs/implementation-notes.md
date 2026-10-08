@@ -335,3 +335,56 @@ or interpreting compliance. Empty retrieval and example documents have distinct 
   project/reference documents without changing commands, schemas, or software behavior.
 - Rebuild the editable deck, diagram, three PDFs, and ZIP; check information retention
   against the committed originals and inspect all regenerated pages/slides.
+
+### Plain-English changes and information retained
+
+- Added the rehearsal guide and glossary in `explain-it-simply.md`, then committed it
+  separately as `daa796b`. The guide starts with a short project explanation and walks
+  through inputs, predictions, physical checks, permit quotes, experiments, and limits.
+- Rewrote the project README, data contracts, validation explanation, A2 README,
+  governance notes, dossier, course checkoff, requirements map, contribution snapshot,
+  evidence summaries, and evidence README. Committed that connected wording change as
+  `7d16905`. Historical notes and captured raw results are preserved.
+- Changed slides to everyday labels such as "water use," "heat rules," "prediction
+  range," "nearby station," and "straight line." Kept the technical names, units,
+  experiment IDs, assumptions, full result tables, and source paths in supporting
+  documents and speaker notes. Adopt/Modify/Reject/Defer decisions remain explicit.
+- Kept the six-slide structure and all three editable charts. Chart category names
+  are easier to say; all 13 numerical chart values are identical to the original deck.
+  Full-precision evidence CSVs are unchanged.
+- Embedded the simplified presentation script alongside the original technical speaker
+  notes. The six speaking slots remain 30/30/45/40/35/60 seconds, totaling four minutes.
+  The script contains 552 spoken words, approximately 138 words per minute overall.
+- Rebuilt the semantic map, eight-page dossier, three-page checkoff, six-page slide PDF,
+  and native PPTX. Inspected every dossier/checkoff page and all slides. Adjusted diagram
+  body spacing and shortened chart legends after visual review to avoid cramped text.
+- Finalized revisions under separate filenames, copied the checked deck to
+  `review-slides.pptx`, and moved draft decks and generated chart scratch folders into
+  the ignored build directory after checking absolute source/destination paths.
+
+### Content retention and export verification
+
+- Compared the simplified package with the original committed package `ba3839a`.
+  All 15 raw evidence files match; Git text comparisons normalize only CRLF/LF because
+  Windows working files and Git blobs use different line endings. Separately verified
+  all 20 manifest fingerprints against actual working files without normalization.
+- Confirmed all 21 course checklist items; seven experiment IDs/decisions/paths;
+  nine numeric dossier-table rows; and 33 inline code/evidence references are retained.
+  Commands and schema code blocks are unchanged in all three reference READMEs/contracts.
+- Native slide charts contain the same 13 values as the original package. The final
+  editable deck passes structural, font, geometry, workbook, and reimport checks.
+  Its SHA-256 is `42c9fca3141627dedf24b4a1f77a71872e4a9b06857c48752e34dc5dad4c8dfe`.
+- Confirmed PDF page counts of 8/3/6. All six embedded slide-PDF images match the final
+  reviewed slide renders pixel for pixel. The slide PDF is a visual export; native
+  editable text, shapes, and charts remain in the PPTX.
+- Saved the comparison receipt in the ignored build directory. Preserved the original
+  51-test evidence rather than rerunning unchanged core software for a prose revision.
+  PowerPoint/Google Slides opening remains untested; no compatibility claim was added.
+- Confirmed all six original technical speaker notes are still present alongside the
+  simpler script. All three Python document scripts pass Ruff and formatting checks;
+  `git diff --check` passes. The refreshed handoff ZIP contains 39 files, passes its
+  integrity check, and matches current source bytes. Draft exports are excluded.
+- Presentation date, Submitty deadline, actual supporting contributions, course access,
+  office hours, and rehearsal remain pending. Simplifying the materials does not turn
+  assigned responsibilities, synthetic tests, or planned field validation into completed
+  work. No external submission, GitHub push, or account access was needed.
