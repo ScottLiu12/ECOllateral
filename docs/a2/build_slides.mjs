@@ -17,7 +17,7 @@ const {resolvePresentationFont, applyPresentationChartFont, finalizePresentation
 const family = resolvePresentationFont({fontFamily:'Arial'});
 const headingFamily = resolvePresentationFont({fontFamily:'Georgia'});
 const p = Presentation.create({slideSize: {width: 1280, height: 720}});
-const navy = '#111827', lavender = '#9382FF', gray = '#6B7280';
+const navy = '#111827', lavender = '#B8ADF3', gray = '#6B7280';
 const canvas = '#F9FAFB', ruleColor = '#E5E7EB';
 const out = path.join(WORKSPACE_DIR, 'docs/a2');
 await fs.mkdir(TMP_DIR, {recursive: true});

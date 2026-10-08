@@ -27,7 +27,7 @@ office-hours bookings were not changed.
   Diagram labels, text wrapping, spacing, and arrow direction were checked. The
   standalone map also exists as SVG/PNG.
 - The presentation export passed checks on PPTX structure, slide size/count, heading
-  placement, Arial font declarations, and reopening through the authoring tool.
+  placement, Georgia/Arial font declarations, and reopening through the authoring tool.
 - Three charts remain editable, with embedded workbooks. Their stored values and
   workbook references passed checks. Chart numbers use ten significant digits to
   stay within Excel's precision limit; source CSVs keep their original precision.
@@ -41,7 +41,7 @@ office-hours bookings were not changed.
   Git attributes to preserve their exact bytes across Windows checkouts.
 
 Final editable-deck SHA-256 fingerprint:
-`42c9fca3141627dedf24b4a1f77a71872e4a9b06857c48752e34dc5dad4c8dfe`.
+`0a8b06ad977d9bb627130779d834ce7bcfb55709a12ee59f1b915265c6061329`.
 Detailed export receipts stay in `data/processed/a2-build/slides/`.
 
 The bundled Poppler wrapper could not find its executable. PDFium rendered the
@@ -66,6 +66,31 @@ changes were needed.
 - The existing 51-test capture is preserved. The core suite was not rerun solely
   for this wording revision. A local comparison receipt is saved as
   `data/processed/a2-build/simplification-verification.json`.
+
+## Checks on the requested editorial slide design
+
+- The October 8 design revision keeps six 16:9 slides, three editable charts, the
+  full original speaker notes, and the simpler spoken script from `4f4ae28`.
+- The canvas is #F9FAFB, primary text #111827, metadata #6B7280, and the soft radial
+  glow starts at #9382FF with 45% opacity and fades to transparent. Chart bars use
+  muted lavender #B8ADF3 and gray #D1D5DB. Rules use #E5E7EB and title bars are 1.5px.
+- Headings use uppercase Georgia. Body, metadata, chart axes, and legends use Arial.
+  Both families were verified in the installed font inventory and final package.
+- The slides use a title layout, large stat callouts, open chart/text splits, an
+  unboxed editable process diagram, and a decorative editable sphere/orbit.
+- A conservative layout check counts complete text, chart, and illustration bounding
+  rectangles as occupied. It excludes diffuse background glows and invisible connector
+  anchors. Remaining space is 48.14%, 44.69%, 41.67%, 41.62%, 40.12%, and 47.43% for
+  slides 1-6, meeting the requested minimum of 40% on every slide.
+- All six final slide layouts were visually reviewed. Repairs removed a glow/chart
+  boundary clash and a team-role/question overlap. All six images in the matching
+  slide PDF agree pixel for pixel with the reviewed final slide renders.
+- Raw evidence, fingerprints, chart numbers, source notes, script, dossier, and
+  checklist content remain intact. The comparison receipt is stored in
+  `data/processed/a2-build/editorial-verification.json`.
+- The ZIP excludes temporary Office owner files. An open PowerPoint's owner file
+  was preserved locally and ignored in Git. Native PowerPoint/Google Slides opening
+  remains outside these export checks.
 
 ## Human/course checks still pending
 

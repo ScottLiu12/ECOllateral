@@ -413,3 +413,35 @@ or interpreting compliance. Empty retrieval and example documents have distinct 
 - Detected an Office owner file from the open PowerPoint. Preserve that temporary
   file, ignore Office owner files in Git, and exclude them from the handoff ZIP.
   This avoids packaging the user's application session metadata.
+
+### Final editorial export and content checks
+
+- Softened chart bars to #B8ADF3 rather than the stronger glow-center color, with
+  #D1D5DB comparison/goal bars. All results remain readable against #F9FAFB.
+- Re-rendered all six finalized layouts and reviewed the charts, serif title wraps,
+  model-selection explanation, source footers, interval warning, role labels, and
+  final question. The sphere remains a native editable decorative shape.
+- Measured unused space conservatively by subtracting the union of complete foreground
+  text/chart/illustration rectangles from the 1280x720 canvas. Excluded only background
+  glows and invisible connector anchors. Percentages are 48.14 / 44.69 / 41.67 /
+  41.62 / 40.12 / 47.43 for slides 1-6, so every slide exceeds the requested 40%.
+- Compared all six original speaker-note parts with `4f4ae28`; every original note
+  text is retained. All 13 chart values match the earlier package, and all 20 recorded
+  manifest fingerprints still match source/result bytes. Raw evidence is untouched.
+- Repeated the existing content-retention checks: 15 raw evidence files, 21 checklist
+  items, seven evidence IDs/decisions/paths, nine numeric dossier rows, 33 code/evidence
+  references, and all three sets of command/schema blocks remain intact.
+- Export validation passed structure, slide dimensions/count, heading placement,
+  Georgia/Arial fonts, native charts and embedded workbook snapshots, and first-party
+  reimport. Final deck SHA-256:
+  `0a8b06ad977d9bb627130779d834ce7bcfb55709a12ee59f1b915265c6061329`.
+- Refreshed only the six-page slide PDF from the reviewed images. All six embedded
+  PDF images match the final renders pixel for pixel. The dossier/checkoff PDFs and
+  other evidence are unchanged. Export receipts remain in the ignored build directory.
+- Copied the validated bytes to the stable `review-slides.pptx` filename successfully
+  despite an existing Office owner file. Reopening a previously open deck is necessary
+  to view the updated disk version. No application-session state was changed.
+- Refreshed the 39-file handoff ZIP, verified its integrity, and checked every archived
+  file against current workspace bytes. Temporary Office owner files and draft decks
+  are excluded. The packaging script passes Ruff and formatting; `git diff --check`
+  passes. This design-only task needs no core software test rerun or GitHub access.
