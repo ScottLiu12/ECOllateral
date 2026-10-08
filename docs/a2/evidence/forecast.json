@@ -1,0 +1,45 @@
+{
+  "huc8": "02070010",
+  "seasonal_target": 7,
+  "thermodynamic_bounds": {
+    "min_mgd": 0.0,
+    "max_mgd": 0.4469143526829617,
+    "thermal_load_kwh_day": 1152000.0,
+    "max_liters_per_thermal_kwh": 1.4685372023305687,
+    "max_site_wue_l_per_it_kwh": 1.7622446427966825,
+    "pue": 1.2,
+    "utilization": 1.0,
+    "evaporative_fraction_max": 1.0
+  },
+  "predicted_collateral_stress_mgd": 0.20433878898620605,
+  "raw_prediction_mgd": 0.20433878898620605,
+  "heldout_r2": 0.9980797070115837,
+  "prediction_interval90": {
+    "nominal_coverage": 0.9,
+    "min_mgd": 0.19709127187782463,
+    "max_mgd": 0.21158630609458748,
+    "method": "split_conformal_absolute_residuals"
+  },
+  "model_name": "xgboost",
+  "model_data_kind": "synthetic",
+  "environment_data_kind": "synthetic",
+  "source_period_start": "2023-01-01",
+  "source_period_end": "2023-12-31",
+  "regulatory_risk_summary": "Calculated daily on-site cooling consumption: 0.2043 MGD.\n\nRetrieved excerpts for review; applicability is not a compliance decision.\n\nExample document: Fictional municipal cooling-water permit, section IV.B: \"Example only: cooling-water withdrawals require monthly reporting to the municipal utility. This text is not an actual permit or water cap.\"",
+  "citations": [
+    {
+      "document_id": "demo-permit",
+      "title": "Fictional municipal cooling-water permit",
+      "section": "IV.B",
+      "source_url": "https://example.org/ecollateral-demo-permit",
+      "excerpt": "Example only: cooling-water withdrawals require monthly reporting to the municipal utility. This text is not an actual permit or water cap.",
+      "is_example": true
+    }
+  ],
+  "warnings": [
+    "historical_monthly_conditions_not_a_weather_forecast",
+    "synthetic_model_not_validated_for_real_facilities",
+    "example_permits_not_regulatory_evidence",
+    "synthetic_environment_not_observed_conditions"
+  ]
+}

@@ -1,0 +1,4 @@
+cooling_type,nominal_coverage,test_coverage,test_rows,data_kind,radius_mgd
+air_cooled,0.9,1.0,329,synthetic,0.0
+cooling_tower,0.9,0.8828828828828829,333,synthetic,0.007247517108381424
+direct_evaporative,0.9,0.8798798798798799,333,synthetic,0.006231747797002557

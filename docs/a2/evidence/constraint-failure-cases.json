@@ -1,0 +1,62 @@
+{
+  "inputs": {
+    "facility_mw": 40.0,
+    "dry_bulb_c": 30.0,
+    "wet_bulb_c": 20.0,
+    "historical_streamflow_mgd": 70.0,
+    "pdsi": -3.0,
+    "month": 7.0
+  },
+  "cases": [
+    {
+      "case": "fault_injected_estimator_output",
+      "raw_mgd": -1.0,
+      "predicted_mgd": 0.0,
+      "bounds": {
+        "min_mgd": 0.0,
+        "max_mgd": 0.44648433663152887,
+        "thermal_load_kwh_day": 1152000.0,
+        "max_liters_per_thermal_kwh": 1.467124192062858,
+        "max_site_wue_l_per_it_kwh": 1.7605490304754294,
+        "assumptions": {
+          "pue": 1.2,
+          "utilization": 1.0,
+          "evaporative_fraction_max": 1.0
+        },
+        "warnings": []
+      },
+      "interval90_min_mgd": 0.0,
+      "interval90_max_mgd": 0.007247517108381424,
+      "heldout_r2": 0.9980797070115837,
+      "warnings": [
+        "constraint_violation",
+        "synthetic_model_not_validated_for_real_facilities"
+      ]
+    },
+    {
+      "case": "fault_injected_estimator_output",
+      "raw_mgd": 1000000.0,
+      "predicted_mgd": 0.44648433663152887,
+      "bounds": {
+        "min_mgd": 0.0,
+        "max_mgd": 0.44648433663152887,
+        "thermal_load_kwh_day": 1152000.0,
+        "max_liters_per_thermal_kwh": 1.467124192062858,
+        "max_site_wue_l_per_it_kwh": 1.7605490304754294,
+        "assumptions": {
+          "pue": 1.2,
+          "utilization": 1.0,
+          "evaporative_fraction_max": 1.0
+        },
+        "warnings": []
+      },
+      "interval90_min_mgd": 0.4392368195231474,
+      "interval90_max_mgd": 0.44648433663152887,
+      "heldout_r2": 0.9980797070115837,
+      "warnings": [
+        "constraint_violation",
+        "synthetic_model_not_validated_for_real_facilities"
+      ]
+    }
+  ]
+}

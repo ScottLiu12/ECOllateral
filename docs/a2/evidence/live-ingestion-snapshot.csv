@@ -1,0 +1,2 @@
+month,dry_bulb_c,wet_bulb_c,historical_streamflow_mgd,pdsi,huc8,latitude,longitude,data_kind,source_period_start,source_period_end,flow_station_id,noaa_station_id,climate_division,weather_record_count,streamflow_record_count
+7,22.97222222222222,16.09954973696835,1696.5818354557798,0.7,02070008,38.949777777777776,-77.12763888888888,observed,2024-07-01,2024-07-02,USGS-01646500,72403093738,4401,2,2

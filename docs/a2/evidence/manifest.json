@@ -1,0 +1,92 @@
+{
+  "review_date": "2026-10-07",
+  "implementation_snapshot_commit": "125aa4051da7f8b2392a95f22dc436866ad1335c",
+  "capture_commit": "4caa8213524f84296237856f7c0a521deffd28e0",
+  "python": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+  "seed": 42,
+  "data_kind": "synthetic_benchmark_and_research",
+  "live_ingestion_scope": "two-day parser smoke test; climate division is not spatially validated",
+  "diagnostic_predictor": "biased-donor test uses 0.01 * streamflow; not the fitted ML model",
+  "files": [
+    {
+      "path": "src/models/regression.py",
+      "sha256": "62f973fc7e39fdcceb9623a4a6e37de4edf33db86333bd2be6b86dc369bc20dc"
+    },
+    {
+      "path": "src/rules/thermodynamic.py",
+      "sha256": "7dcc410e71cc4fdfbc1ea621195ca36bcfaf81f41577bc5116d5f9edb35cb482"
+    },
+    {
+      "path": "src/models/missingness.py",
+      "sha256": "c554d53e6b7739333f88c67cd17b7a465c91e1458c4227ad2ef795fab04ce408"
+    },
+    {
+      "path": "src/grounding/store.py",
+      "sha256": "5216d72d129ae8dca69b80f1d478cddc50325aaf3baf828c07a926f93c0368e2"
+    },
+    {
+      "path": "src/api/app.py",
+      "sha256": "a4d5b9013b71b31a3737b6d493e116844c4c1db5a81aa82a29257db10225f2d3"
+    },
+    {
+      "path": "src/demo.py",
+      "sha256": "7d30183b3432b2e8c4ec3bbc3a07766e4cc08dcab93651382f97bf4025acec48"
+    },
+    {
+      "path": "evidence/benchmark.json",
+      "sha256": "813495464f0d869efa470b422f07aaae229d88aed873a4b80aaa198f37c4c058"
+    },
+    {
+      "path": "evidence/biased-donor-diagnostic.csv",
+      "sha256": "0fc9a24c409af2ff987ed10add799beca678c1ae2feb0d839507ab8483cfda29"
+    },
+    {
+      "path": "evidence/constraint-failure-cases.json",
+      "sha256": "dbf2c9d140242c00548bdf9e0fc5252e6536c1c9a385078edb8d4342a454bdff"
+    },
+    {
+      "path": "evidence/forecast-request.json",
+      "sha256": "0dfb9aeb1d99b4631253ae7366075dbd4efb09076d4ec56c6d61339aa95383b0"
+    },
+    {
+      "path": "evidence/forecast.json",
+      "sha256": "69e012b258ffe31370576b8eed539c60671eee5bb858ba8667c779cc38671482"
+    },
+    {
+      "path": "evidence/groundwater-reconstruction.csv",
+      "sha256": "55ae077dd9a6c007bf897a4a507083042807d8f115d91dc96abf0a82537fe740"
+    },
+    {
+      "path": "evidence/interval-coverage.csv",
+      "sha256": "bdc17a15f80d2294a8db57c195db97d473b11afde80e7ff3ea92e2522aad245f"
+    },
+    {
+      "path": "evidence/live-ingestion-snapshot.csv",
+      "sha256": "e4d139742054a0c583606a8c12204ab87ee7ca231ff7817622c4e36439843c45"
+    },
+    {
+      "path": "evidence/missingness-band90.png",
+      "sha256": "237854e3f7e30fed5eb7c769d4ec15b59e2f5e6ba86b071b07047d1a5a33cb41"
+    },
+    {
+      "path": "evidence/missingness-sensitivity.png",
+      "sha256": "f0c24a5bfc24693d4f65e3f2ad68e2bcad452ba0840056f9d06f5b053d543ad4"
+    },
+    {
+      "path": "evidence/missingness-summary.csv",
+      "sha256": "28bbb0cef7d07c9d1f28388bb9cb3de5eccdd7d64096b7fcf6c01d3cd0d15d9d"
+    },
+    {
+      "path": "evidence/regression-comparison.csv",
+      "sha256": "a151e4e5f8d5409efa5af45fa830703efbe8d6f3126d4687fad5437a45110d6c"
+    },
+    {
+      "path": "evidence/retrieval-cases.json",
+      "sha256": "2d44904482574b746882db47d6f7b172fa4137bfc230a172f7557d2068d00e41"
+    },
+    {
+      "path": "evidence/test-results.txt",
+      "sha256": "cee8ce5fd5805f0ae652fad1a8164c24ad0d88546b30c991e89ee812baee5958"
+    }
+  ]
+}

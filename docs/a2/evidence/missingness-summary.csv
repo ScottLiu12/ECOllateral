@@ -1,0 +1,7 @@
+missing_rate,strategy,repeats,drought_records,dropped_per_repeat,prediction_variance_mgd2,tolerance_coverage,drought_band_within_tolerance_fraction,stable
+0.1,spatial_nearest,50,121,12,3.2947409112247723e-09,1.0,1.0,True
+0.1,linear_time,50,121,12,6.001259730487575e-09,1.0,1.0,True
+0.25,spatial_nearest,50,121,30,6.313760632259535e-09,1.0,1.0,True
+0.25,linear_time,50,121,30,2.2120857291241645e-08,1.0,1.0,True
+0.4,spatial_nearest,50,121,48,9.053629337832835e-09,1.0,1.0,True
+0.4,linear_time,50,121,48,4.0922905094192156e-08,1.0,1.0,True

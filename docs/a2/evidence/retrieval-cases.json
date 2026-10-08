@@ -1,0 +1,85 @@
+{
+  "corpus_kind": "fictional_test_sections",
+  "cases": [
+    {
+      "case": "huc_filter",
+      "query_geography": {
+        "huc8": "02070010"
+      },
+      "retrieved_document_ids": [
+        "local-huc"
+      ],
+      "scores": [
+        0.6425754427909851
+      ],
+      "summary": "Calculated daily on-site cooling consumption: 0.2043 MGD.\n\nRetrieved excerpts for review; applicability is not a compliance decision.\n\nExample document: Example cooling water permit, section IV.B: \"Example cooling water withdrawals require reporting.\"",
+      "citations": [
+        {
+          "document_id": "local-huc",
+          "title": "Example cooling water permit",
+          "section": "IV.B",
+          "source_url": "https://example.org/a2-permit",
+          "excerpt": "Example cooling water withdrawals require reporting.",
+          "is_example": true
+        }
+      ],
+      "warnings": [
+        "example_permits_not_regulatory_evidence"
+      ]
+    },
+    {
+      "case": "wrong_huc_empty",
+      "query_geography": {
+        "huc8": "99999999"
+      },
+      "retrieved_document_ids": [],
+      "scores": [],
+      "summary": "Calculated daily on-site cooling consumption: 0.2043 MGD. No indexed regulatory excerpt matches this location. Local permit and allocation review is required.",
+      "citations": [],
+      "warnings": [
+        "no_regulatory_grounding"
+      ]
+    },
+    {
+      "case": "huc_only_coordinate_permit_excluded",
+      "query_geography": {
+        "huc8": "02070010"
+      },
+      "retrieved_document_ids": [],
+      "scores": [],
+      "summary": "Calculated daily on-site cooling consumption: 0.2043 MGD. No indexed regulatory excerpt matches this location. Local permit and allocation review is required.",
+      "citations": [],
+      "warnings": [
+        "no_regulatory_grounding"
+      ]
+    },
+    {
+      "case": "coordinates_coordinate_permit_included",
+      "query_geography": {
+        "huc8": "02070010",
+        "latitude": 38.9,
+        "longitude": -77.1
+      },
+      "retrieved_document_ids": [
+        "coordinate-only"
+      ],
+      "scores": [
+        0.6425754427909851
+      ],
+      "summary": "Calculated daily on-site cooling consumption: 0.2043 MGD.\n\nRetrieved excerpts for review; applicability is not a compliance decision.\n\nExample document: Example cooling water permit, section IV.B: \"Example cooling water withdrawals require reporting.\"",
+      "citations": [
+        {
+          "document_id": "coordinate-only",
+          "title": "Example cooling water permit",
+          "section": "IV.B",
+          "source_url": "https://example.org/a2-permit",
+          "excerpt": "Example cooling water withdrawals require reporting.",
+          "is_example": true
+        }
+      ],
+      "warnings": [
+        "example_permits_not_regulatory_evidence"
+      ]
+    }
+  ]
+}
