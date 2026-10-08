@@ -1,22 +1,24 @@
 # CSCI 4150 A2: ECOllateral evidence review
 
 Prepared against the supplied Fall 2026 project checkoff and A2 brief. This package
-reviews the implemented research prototype and its evidence, with explicit limits on
-synthetic validation. Presentation day is pending: October 20 or October 23, 2026.
+explains the working prototype, what we tested, and the limits of made-up test data.
+Presentation day is pending: October 20 or October 23, 2026.
 The exact Submitty deadline is not supplied in the brief.
 
 ## Deliverables
 
-- `dossier.md` and `dossier.pdf`: curated project problem, semantic map, experiments,
-  limitations, decisions, next question, and team contribution snapshot.
+- `explain-it-simply.md`: start here for the short explanation, five system steps,
+  experiment takeaways, glossary, and numbers to remember.
+- `dossier.md` and `dossier.pdf`: full problem, system/information map, experiments,
+  limits, decisions, next question, and team roles in plain English.
 - `project-checkoff.md` and `project-checkoff.pdf`: every project checklist item, its
   evidence, and remaining human/course actions.
-- `semantic-system-map.svg` and `.png`: readable component and representation map.
-- `evidence-summary.csv`: tested approach, hypothesis, evidence, decision, and implication.
+- `semantic-system-map.svg` and `.png`: how the number and permit paths work together.
+- `evidence-summary.csv`: what we tested, what happened, and what we keep/change.
 - `review-slides.pptx` and `review-slides.pdf`: six-slide evidence review.
 - `presentation-script.md`: four-minute script, slide timing, team handoffs, and Q&A.
 - `team-contributions.md`: Shaun, Troy, and Scott's responsibilities and accountability.
-- `data-governance.md`: public sources, provenance, rights references, and access limits.
+- `data-governance.md`: public sources, where evidence came from, permissions, and limits.
 - `requirements-map.md`: A2 requirements and grading criteria mapped to the package.
 - `evidence/`: portable benchmark tables, forecast output, failure cases, research charts,
   test output, source metadata, and checksums. No serialized model is included.
@@ -24,7 +26,8 @@ The exact Submitty deadline is not supplied in the brief.
 - `submission-package.zip`: deliverables and editable sources plus the three project
   reference documents. Review course logistics before uploading it.
 
-Open `dossier.pdf` for the review and `review-slides.pptx` for presentation editing.
+Read `explain-it-simply.md` first, then open `dossier.pdf` for full evidence or
+`review-slides.pptx` to edit the presentation. The speaker notes include the spoken script.
 The Markdown and CSV files remain editable. `build_materials.py` and `build_slides.mjs`
 record how the exports were made; `collect_evidence.py` refreshes inspectable evidence.
 
@@ -68,12 +71,13 @@ figures consistent with the new snapshot.
 
 ## Scope of the evidence
 
-The regression and missingness metrics use synthetic facility labels and synthetic
-hydrology. Live public ingestion only verifies connectivity, parsing, and units.
-Fictional permit sections test retrieval mechanics and cannot establish compliance.
-AI approaches investigated in the repository include symbolic constraints, tabular ML,
-time/spatial interpolation, and TF-IDF/FAISS retrieval. Neural models and generative LLM
-summaries have not been tested. The actual class studio roster was not supplied.
+Model accuracy and missing-data results use made-up facility water use and river data.
+The real public-data download checks connectivity, parsing, and units. Made-up permits
+test document search, not compliance. Tested approaches include symbolic engineering
+rules, tree-based models, time/nearby-station gap filling, and TF-IDF/FAISS word search.
+Neural and generative LLM summaries have not been tested. The class studio list was
+not supplied and still needs confirmation. Simplified wording keeps all original
+results, evidence references, limits, decisions, and checklist requirements.
 
 ## Before submitting
 

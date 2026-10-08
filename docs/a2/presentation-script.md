@@ -1,109 +1,115 @@
-# Four-minute presentation and Q&A
+# Four-minute talk and Q&A
 
-Presentation day: pending October 20/23, 2026. Budget: 4 minutes plus 2 minutes Q&A.
-These are proposed speaking assignments; rehearse and adjust them together.
+Assigned day: still unknown, October 20/23, 2026. Allow 4 minutes for the talk and
+2 minutes for questions. These speaking roles are proposed; rehearse together.
 
-| Slide | Speaker | Seconds | Cumulative | Purpose |
+| Slide | Speaker | Seconds | End time | Main point |
 | --- | --- | --- | --- | --- |
-| 1 | Shaun | 30 | 0:30 | Problem and scope |
-| 2 | Shaun | 30 | 1:00 | Semantic/system map and component safeguards |
-| 3 | Shaun | 45 | 1:45 | RF/XGBoost experiment |
-| 4 | Troy | 40 | 2:25 | Missingness experiment and counterexample |
-| 5 | Troy | 35 | 3:00 | Interval coverage failure and decision |
-| 6 | Scott | 60 | 4:00 | Decisions, roles, and next question |
+| 1 | Shaun | 30 | 0:30 | The problem and what works |
+| 2 | Shaun | 30 | 1:00 | How the system works |
+| 3 | Shaun | 45 | 1:45 | Which model made smaller errors |
+| 4 | Troy | 40 | 2:25 | Missing data and bad neighbors |
+| 5 | Troy | 35 | 3:00 | Prediction ranges missed the goal |
+| 6 | Scott | 60 | 4:00 | Decisions, roles, and next test |
 
-## Slide 1: problem and users
+## Slide 1: estimate cooling water use
 
-We are building ECOllateral to compare on-site cooling water demand for proposed data
-center scenarios. A researcher or planner supplies capacity, cooling type, watershed,
-and month. The system returns consumption in million gallons per day, physical bounds,
-an uncertainty interval, warnings, and relevant permit quotations. We have a working
-local prototype. Our facility labels are synthetic, so today's evidence concerns the
-architecture and experiments, not validated accuracy at real facilities.
+ECOllateral estimates how much water a proposed data center would use for cooling.
+A researcher or planner enters facility size, cooling type, watershed, and month.
+The system returns water use, calculated physical limits, a prediction range, warnings,
+and permit quotations for the location. Water is measured in million gallons per day.
+The local prototype works, but our water-use targets are made-up test data. We have
+not shown accuracy at real facilities yet.
 
-## Slide 2: where meaning lives
+## Slide 2: two paths, one response
 
-The upper path represents environmental conditions as six numeric features. Trees
-predict consumption, and independent engineering rules bound the result. The lower
-path represents permit text as TF-IDF vectors with geographic metadata, then returns
-quotations. Fault injection showed impossible values are clipped and flagged. Four
-retrieval cases showed the HUC and coordinate rules work. These are separate,
-auditable components; the text generator performs no LLM calculations.
+The top path handles numbers. Weather, river flow, drought, season, and facility size
+become six inputs. A tree-based AI model predicts water use. Separate engineering
+rules check the number and warn if it needs adjusting. The bottom path handles permit
+text. We search words, check the location, and return original quotations. Tests showed
+the physical limits and four location cases work. No language model calculates the
+water estimate or decides legal compliance.
 
-## Slide 3: model comparison
+## Slide 3: compare two AI models
 
-Our first investigation compared RandomForest and XGBoost on the same synthetic
-features. We used chronological training, calibration, and test dates, selecting by
-calibration RMSE. XGBoost reduced held-out mean absolute error from about 0.00489 to
-0.00367 MGD for cooling towers, and from 0.00384 to 0.00319 for direct evaporation.
-Each test set has 333 rows. We adopted XGBoost while retaining the forest baseline.
-Dry air cooling has a constant zero on-site water label, so its R-squared is undefined.
-The strong scores show that we learned the synthetic response surface; measured
-facility labels are still the main gap.
+We compared RandomForest and XGBoost using the same made-up inputs and water-use targets.
+We split dates in time order: 60 percent to train, 20 percent to choose the model and
+set its range, and 20 percent to test. XGBoost lowered average error for towers from
+about 0.00489 to 0.00367 million gallons per day. For direct evaporation, it improved
+from 0.00384 to 0.00319. Each test group has 333 rows. We kept XGBoost and retained
+RandomForest for comparison. Dry air cooling has zero on-site water use in our scope.
+These scores show we learned the generated pattern; real water-use measurements are
+still the main gap.
 
-## Slide 4: missingness and donor bias
+## Slide 4: test missing drought readings
 
-Our second investigation removed 10, 25, and 40 percent of drought observations,
-repeating each condition 50 times. Spatial and linear filling both stayed within
-0.05 MGD of the complete-data prediction on our correlated synthetic stations.
-That success depended on the donors. In a separate diagnostic, shifting neighboring
-streamflow upward by 100 MGD reduced spatial tolerance coverage to 60.3 percent.
-That diagnostic uses a simple flow-sensitive predictor, not our fitted model.
-We will test biased, contiguous, and shared outages before trusting spatial filling.
+We removed 10, 25, and 40 percent of drought readings and repeated each test 50 times.
+Filling gaps from a nearby station or a straight line through time kept forecasts within
+0.05 million gallons per day of the complete-data result. But our made-up stations
+behave similarly. In a separate test, we raised neighboring flow by 100 million gallons
+per day. Nearby-station filling then passed only 60.3 percent of the tolerance checks.
+That test uses a simple formula, not the fitted AI model. We need tests with biased
+neighbors, long gaps, and several stations losing data together.
 
-## Slide 5: high fit does not establish coverage
+## Slide 5: check the prediction ranges
 
-Our interval investigation exposes another limitation. The cooling tower model has
-R-squared 0.998, but its nominal 90 percent interval covers only 88.3 percent of held-out
-labels. Direct evaporation covers 88.0 percent. These are finite synthetic samples,
-but they miss our observed-coverage gate. The implementation also reuses calibration
-data for model selection and interval sizing. We will separate those steps and
-evaluate coverage by facility, drought state, and time. R-squared remains a fit metric,
-not a confidence probability.
+The models fit the made-up data well, but their prediction ranges missed our goal.
+Ranges intended to include 90 percent of test values included 88.3 percent for towers
+and 88.0 percent for direct evaporation. These are finite test samples, not proof of
+a statistically significant failure. We also used the same data to choose the model
+and set its range. We will separate those jobs and test by facility, time, and drought.
+R-squared measures fit; it is not the chance a prediction is right.
 
-## Slide 6: decisions and next question
+## Slide 6: what we keep and test next
 
-The evidence supports keeping the tree baselines, physical constraints, and
-geographically scoped retrieval. It supports modifying the missingness and uncertainty
-evaluation. We reject describing R-squared as confidence, and we defer neural or
-generative language models because we have not compared them and they do not fix the
-label gap. Our next question is whether this constrained model generalizes to measured
-consumption at an unseen facility during drought with adequate interval coverage.
-Shaun leads code and independent calibration. Troy owns environmental geography and
-outage evaluation. Scott owns real permit evidence and presentation review. Those
-supporting roles are assigned, and we will confirm actual completed contributions
-before submission. The dossier includes the experiments, failure cases, provenance,
-and the remaining course logistics.
+We will keep the tree models, physical limits, and permit location checks. We will
+improve the missing-data tests and how prediction ranges are set. We reject using
+R-squared as confidence, and we will wait on neural or generative language models
+because we have not compared them and they do not solve the missing-label problem.
+Our next question is whether the system works at a real facility it has never seen
+during drought, with enough values inside its prediction range. Shaun leads code
+and separate calibration. Troy checks environmental locations and drought tests.
+Scott checks real permits and prepares the evidence. These supporting roles are
+assigned; we still need to confirm actual completed contributions. The dossier keeps
+the full methods, results, limits, and remaining course steps.
 
-## Two-minute Q&A preparation
+## Short answers for Q&A
 
-- **Where does the accuracy evidence come from?** Synthetic consumption labels.
-  Public ingestion is a two-day parser/unit smoke test. Neither establishes field accuracy.
-- **Why XGBoost?** Lower calibration RMSE in both evaporative comparisons; held-out
-  MAE also improves. We retain RF so future data can reverse the decision.
-- **What does 90% mean here?** A nominal residual interval level. Measured test coverage
-  is approximately 88%; drought sensitivity bands answer a different question.
-- **Is 88% significantly below 90%?** We did not conduct a significance test. It misses
-  the observed prototype gate; finite-sample uncertainty and independent calibration
-  belong in the next evaluation.
-- **What AI approaches were actually investigated?** RF/XGBoost, spatial/time filling,
-  symbolic bounds, and lexical-vector retrieval with geographic metadata. No neural
-  or LLM comparison was run; confirm specific studio names against class materials.
-- **Do bounds guarantee engineering correctness?** They enforce stated assumptions.
-  PUE/utilization, latent heat, and water-use scope require engineering validation.
-- **Does retrieval establish compliance?** No. It preserves matching source quotations;
-  actual applicability and real-corpus relevance require review.
-- **Can a HUC stand in for facility coordinates?** No. HUC eligibility and coordinate
-  radius eligibility are distinct. Gauge coordinates are not facility coordinates.
-- **Why not convert groundwater depth to consumption?** Depth is measured in meters;
-  converting it to MGD needs geometry and a separate physical model.
-- **Can linear interpolation run live?** The retrospective method can use future
-  observations. A causal strategy must be evaluated separately.
+- **Is the accuracy result real-world evidence?** No. Water-use targets are made up.
+  The two-day public-data download tests parsing and units, not forecast accuracy.
+- **Why XGBoost?** It had lower RMSE when we chose the models and lower average error
+  on the test dates. RMSE gives bigger errors extra weight. Keep RF for future comparisons.
+- **What does 90% mean?** The intended fraction of values inside the prediction range.
+  We measured about 88%. Missing-data sensitivity bands describe a different kind of change.
+- **Is 88% significantly worse than 90%?** We did not test statistical significance.
+  It misses our observed-result goal. Next, use separate calibration data and report
+  uncertainty around the measured coverage.
+- **What AI did you actually test?** RF/XGBoost, spatial/time gap filling, symbolic
+  engineering rules, and TF-IDF/FAISS word search with location metadata. We did not
+  compare neural or generative LLM models. Exact class studio names still need checking.
+- **Do physical limits guarantee the right answer?** No. They enforce our assumptions
+  about load, PUE, evaporation heat, and included water uses. Those need engineering review.
+- **Does a permit match prove compliance?** No. It gives a source quotation for a
+  person to review. We still need real-document relevance and applicability checks.
+- **Can a watershed code stand in for facility coordinates?** No. A watershed match
+  and a coordinate-radius match are different. River gauge coordinates are not facility coordinates.
+- **Why keep groundwater in meters?** It is a depth. Turning it into MGD needs geometry
+  and a separate physical relationship; meters and flow are not interchangeable.
+- **Can you fill a live gap with a straight line?** Our historical method can use a
+  later reading. A live forecast needs a method using only readings available then.
 
-## Rehearsal and handoff checklist
+## Before presenting
 
-- Keep the spoken portion to 240 seconds; do not narrate every CSV entry.
-- Open the system map and evidence files before Q&A.
-- Verify that all three members can explain the synthetic scope and E1-E5 decisions.
-- Confirm presentation date, deadline, instructor access, and office hours externally.
-- Review the proposed contribution lines together before submitting them.
+- Rehearse to 240 seconds. Explain the result rather than reading every table row.
+- Keep the system map and evidence files ready for questions.
+- Make sure all three members can explain made-up data and decisions E1-E5.
+- Confirm presentation day, deadline, instructor access, and office hours externally.
+- Confirm each member's actual contribution before submitting the one-line statements.
+
+## Details to keep ready, rather than say during the timed talk
+
+Use `explain-it-simply.md` for definitions and memorable numbers. The dossier retains
+all exact metrics, setups, sources, and limits. In particular: R2 is undefined for
+the constant-zero dry-air target; the middle date group is reused for selection and
+range sizing; the biased-neighbor diagnostic is not the trained model; linear filling
+can use future readings; and a permit quotation is not a compliance decision.

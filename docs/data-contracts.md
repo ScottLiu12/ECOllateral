@@ -1,8 +1,11 @@
-# Data contracts
+# Data contracts: what each input file must contain
+
+These rules keep units, dates, and sources consistent. For a short explanation of
+the system and terms, see `a2/explain-it-simply.md`. Exact field names stay unchanged.
 
 ## Training CSV
 
-One row is one dated facility observation. Required columns:
+Each row describes one facility observation on one date. Required columns:
 
 | Column | Meaning |
 | --- | --- |
@@ -16,9 +19,9 @@ One row is one dated facility observation. Required columns:
 | `consumption_mgd` | Independently measured daily on-site cooling consumption target |
 
 `seasonal_factor` may be provided explicitly in [0, 1]; otherwise it is derived from
-the observation month with a July maximum and January minimum. Capacity, temperatures,
-and season must be complete. Missing flow/PDSI are allowed and imputed with training
-medians. At least 30 distinct dates per cooling technology are required.
+the observation month, highest in July and lowest in January. Capacity, temperatures,
+and season cannot be missing. Missing flow/PDSI can be filled with the median from
+the training data. Each cooling technology needs at least 30 different dates.
 
 Example header and rows (two rows alone are insufficient to train):
 
@@ -28,17 +31,18 @@ date,cooling_type,facility_mw,dry_bulb_c,wet_bulb_c,historical_streamflow_mgd,pd
 2023-07-02,cooling_tower,40,31,21,68,-3,0.214
 ```
 
-Do not label USGS streamflow as facility consumption or train on rule-generated bounds.
-The required feature matrix has six columns; cooling type selects a separate fitted
-model. Facility identity is not modeled. Temporal validation tests later observations,
-not generalization to unseen facilities. A deployment study needs a facility-separated
-holdout and representativeness checks in addition to the current temporal split.
+USGS river flow is not facility water consumption. Physical limits calculated by rules
+are not measured training targets. The model uses six input columns; each cooling type
+selects its own trained model. Facility identity is not an input. The current date-based
+test checks later observations. To show that the model works at new facilities, reserve
+whole facilities for testing and check that the data represent the intended users.
 
-Training saves `model.joblib` and `benchmark.json`. The report includes both candidates'
-calibration metrics and raw/bounded test MAE, RMSE, R², row counts, split boundaries,
-selected estimator, and interval coverage. R² is null for constant targets. Performance
-targets are strictly R² > 0.80 and MAE < 0.05 MGD, not enforced by changing predictions.
-Only load model/index joblib files from trusted local runs.
+Training saves `model.joblib` and `benchmark.json`. The report keeps both models'
+calibration scores, original/physically adjusted test scores, row counts, date boundaries,
+chosen model, and prediction-range coverage. MAE is average error size; RMSE weights big
+errors more strongly; R² measures fit. R² is null when all target values are the same.
+The targets are strictly R² > 0.80 and MAE < 0.05 MGD. Predictions are not changed just
+to make those targets pass. Only load model/index joblib files from trusted local runs.
 
 ## Environmental snapshots
 
@@ -48,27 +52,27 @@ Only load model/index joblib files from trusted local runs.
 `flow_station_id`, `noaa_station_id`, `climate_division`, and weather/flow record counts.
 HUCs are strings. Valid data kinds are `observed` and `synthetic`.
 
-The CLI uses one explicitly selected flow station as the HUC's representative series.
-It does not sum upstream and downstream gauges or claim that streamflow is allocatable
-municipal supply. Daily records retain gauge-height and groundwater-depth observations
-when USGS publishes a daily mean; discrete groundwater site visits are not included in
-this daily endpoint. Missing values and source quality flags remain visible in raw CSVs.
+Choose one flow station to represent each watershed. The command-line tool does not
+add upstream and downstream readings together. River flow is not a claim about water
+available for a town to allocate. Daily records keep gauge height and groundwater
+depth when USGS publishes a daily mean. Separate groundwater site visits are outside
+this daily endpoint. Raw CSVs keep missing values and source quality flags visible.
 
-Use additional `--station USGS-ID` arguments to ingest same-HUC donors. For neighboring
-HUCs, ingest those separately, then align station matrices by date. NOAA GSOD station
-selection and climate-division lookup are explicit; the tool does not infer climate
-divisions from HUC numbers. Check [NOAA's division catalog](https://psl.noaa.gov/data/correlation/climdivisions.html)
-and station metadata when assembling inputs.
+Use additional `--station USGS-ID` arguments for other stations in the same HUC that
+can help fill gaps. Download neighboring HUCs separately, then line up station rows by
+date. Choose the NOAA GSOD station and climate division explicitly. The tool cannot
+derive a climate division from a HUC number. Check [NOAA's division catalog](https://psl.noaa.gov/data/correlation/climdivisions.html)
+and station information when preparing inputs.
 
-Monthly medians retain missing PDSI/flow when no observations are available. Months
-without valid temperatures are omitted. Source periods and record counts should be
-reviewed before using sparse records as a seasonal scenario. Coordinates represent
-the streamflow station, not a watershed centroid. A nearest-station coordinate request
-is an approximation and can be misleading near catchment boundaries.
+If a month has no PDSI/flow readings, its monthly median remains missing. Months with
+no valid temperatures are left out. Check source dates and reading counts before using
+a month with little data as a seasonal scenario. Coordinates identify the river station,
+not the center of the watershed. Matching a request to the nearest station is an
+approximation and can be misleading near watershed boundaries.
 
 ## Permit JSONL
 
-Each line is one extracted, verified source section. Provide `document_id`, `title`,
+Each line contains one source section whose text and identifiers have been checked. Provide `document_id`, `title`,
 `section`, `text`, `source_url`, and either `huc8` (a list) or `latitude`, `longitude`, and
 `radius_km`. Set `is_example=true` for demonstration documents.
 
@@ -76,13 +80,13 @@ Each line is one extracted, verified source section. Provide `document_id`, `tit
 {"document_id":"sample","title":"Example water permit","section":"IV.B","text":"Example cooling-water reporting requirement.","source_url":"https://example.org/permit","huc8":["02070010"],"is_example":true}
 ```
 
-Convert PDF/HTML permit sections to text and verify section labels before indexing.
-The tool does not invent a permit registry, automatically download documents, or treat
-a retrieved passage as a compliance decision. Coordinate radius is an explicit source
-scope supplied by the operator, not an inferred legal jurisdiction. HUC-scoped excerpts
-only match their listed HUCs. Source URLs and section identifiers survive chunking and
-index reload. Excerpts are verbatim and may include numbers that the generator never
-interprets or compares to the forecast.
+Convert PDF/HTML sections to text and check section labels before adding them to search.
+The tool does not invent a permit registry or automatically download the documents.
+A matching passage is not a compliance decision. The operator supplies the coordinate
+radius describing source coverage; the tool does not infer legal jurisdiction. HUC-based
+sections match only their listed HUCs. Source URLs and section IDs stay attached when
+text is split into chunks and the saved index is reloaded. Quotations keep the exact
+words. Any numbers within them are not interpreted or compared with the forecast.
 
 ## Sensitivity CSVs
 
@@ -91,14 +95,16 @@ interprets or compares to the forecast.
 - `daily_features.csv`: `date`, the six model features (or month instead of seasonal
   factor), and PDSI for drought identification.
 
-Dates must be unique, sorted, and aligned between station series and feature rows.
-The target series must be complete for the reference experiment. Neighbor series may
-contain gaps; donors are tried in geographic order. No available donor is an explicit
-error. Choose donors with comparable hydrology: nearest geographic distance alone
-does not establish interchangeability or justify transferring a groundwater depth.
+Dates must be unique, sorted, and match between station readings and model input rows.
+The target station needs complete readings for the reference experiment. Nearby stations
+may have gaps; the tool tries them in distance order. If none has a usable reading, it
+returns an error. Choose stations with similar water behavior. Being nearest does not
+make a station interchangeable or justify copying its groundwater depth.
 
-Outputs distinguish MGD² prediction variance, MGD standard deviation, tolerance
-coverage, and per-date empirical 5th/95th percentiles. The band is over random masks,
-not a guarantee of 90% accuracy against true facility measurements. Station-wide outages,
-contiguous missing blocks, and missing extremes are not represented by this mask model.
-Groundwater filling is tested in meters, independently of the MGD forecast sensitivity.
+Results separately report variance in MGD², standard deviation in MGD, the share of
+changes within tolerance, and each date's 5th/95th percentiles. Variance and standard
+deviation describe how much predictions change. The percentile band comes from repeated
+random choices of missing readings; it is not a 90% accuracy guarantee against measured
+facility water use. These random masks do not cover whole-station outages, long missing
+blocks, or extreme readings being more likely to disappear. Groundwater filling stays
+in meters and is tested separately from changes in MGD forecasts.
