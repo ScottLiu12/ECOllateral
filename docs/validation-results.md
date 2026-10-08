@@ -4,6 +4,11 @@ These checks ran locally on Windows with Python 3.12.14. They show the prototype
 and handles its test cases. They do not establish accuracy at real facilities or whether
 a permit legally applies. Plain-English definitions are in `a2/explain-it-simply.md`.
 
+ECOllateral's purpose is to assess regional ecosystem impacts from development. The
+results below test the current environmental-data/cooling-pressure components; they
+do not validate area-wide municipal reserve or watershed-stress predictions. See
+`project-scope.md` for that distinction and the regional validation still required.
+
 ## Checks
 
 | Check | Result |

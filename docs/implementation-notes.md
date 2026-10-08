@@ -445,3 +445,32 @@ or interpreting compliance. Empty retrieval and example documents have distinct 
   file against current workspace bytes. Temporary Office owner files and draft decks
   are excluded. The packaging script passes Ruff and formatting; `git diff --check`
   passes. This design-only task needs no core software test rerun or GitHub access.
+
+## 2026-10-08 - Restore the regional ecosystem purpose
+
+- User corrected the presentation's data-center focus and supplied a fuller project
+  summary. The intended project is Environmental Impact Assessment and Regional Ecosystem
+  Forecasting: proposed development's effects on municipal water reserves and watershed
+  conditions across seasons, for planning boards, researchers, and utility operators.
+- The earlier review incorrectly elevated the implemented cooling demo into the project's
+  overarching purpose. Correct the current documents and slides while retaining historical
+  implementation notes and raw evidence. Cooling is one development-pressure component.
+- Added `docs/project-scope.md` with the regional question, current-versus-planned matrix,
+  area-assessment steps, target/validation requirements, and team ownership. The current
+  API is not a regional ecosystem assessment and its field must not be relabeled as one.
+- Reframed README, dossier, rehearsal guide, script/Q&A, checkoff, requirement map, team
+  assignments, governance, evidence explanations, contracts, and validation introduction.
+  Exact API/schema commands, experiment values, evidence paths, and source metadata remain.
+- Context contains planned/anticipated items despite its statement that three paradigms
+  were benchmarked. Do not invent an LLM experiment, historical heatwave study, dense
+  embeddings, HUC polygon implementation, EIA/EPA ingestion, or 2015-2022 recharge tests.
+  The current search is TF-IDF/FAISS; groundwater depth in meters is not recharge.
+- Regional validation requires observed supply/reserves, other demands, return flows,
+  ecological flow needs, checked area boundaries, regional labels, and unseen-area tests.
+  Preserve component checks and uncertainty limitations as evidence of reusable methods.
+- Supporting responsibilities follow the supplied breakdown: Troy environmental acquisition,
+  area/drought interpretation and grounding; Scott safety/interface evaluation, failure
+  analysis, regional evidence and slides. Shaun remains the main coding contributor.
+  Assignments are not claims of completed contributions.
+- Include the new scope document as the fourth project reference in the handoff ZIP.
+  Preserve the user's editorial slide design while correcting the purpose and next question.

@@ -1,7 +1,9 @@
 # CSCI 4150 A2: ECOllateral evidence review
 
 Prepared against the supplied Fall 2026 project checkoff and A2 brief. This package
-explains the working prototype, what we tested, and the limits of made-up test data.
+explains ECOllateral's regional ecosystem goal, the components we tested, and the limits
+of made-up test data. The cooling model is one development-pressure example, not the
+project's overall purpose. `../project-scope.md` records the goal and remaining work.
 Presentation day is pending: October 20 or October 23, 2026.
 The exact Submitty deadline is not supplied in the brief.
 
@@ -25,7 +27,7 @@ The exact Submitty deadline is not supplied in the brief.
 - `evidence/`: portable benchmark tables, forecast output, failure cases, research charts,
   test output, source metadata, and checksums. No serialized model is included.
 - `verification-notes.md`: export checks, visual review, and practical validation limits.
-- `submission-package.zip`: deliverables and editable sources plus the three project
+- `submission-package.zip`: deliverables and editable sources plus the four project
   reference documents. Review course logistics before uploading it.
 
 Read `explain-it-simply.md` first, then open `dossier.pdf` for full evidence or

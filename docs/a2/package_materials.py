@@ -33,7 +33,12 @@ def main():
     ]
     files.extend(
         root / "docs" / name
-        for name in ("implementation-notes.md", "data-contracts.md", "validation-results.md")
+        for name in (
+            "implementation-notes.md",
+            "data-contracts.md",
+            "validation-results.md",
+            "project-scope.md",
+        )
     )
     with ZipFile(target, "w", compression=ZIP_DEFLATED) as archive:
         for path in files:

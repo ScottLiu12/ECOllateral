@@ -3,6 +3,11 @@
 Captured October 7, 2026 from implementation `125aa40`. `manifest.json` records exact
 source/result fingerprints (SHA-256), random seed, Python version, and capture commit.
 
+These are component tests for a regional ecosystem impact project. Cooling-water
+results measure one development pressure. No regional reserve balance, ecosystem
+health score, zero-shot LLM benchmark, or groundwater recharge forecast is validated
+by this evidence. See `../../project-scope.md` for the regional goal and remaining work.
+
 | ID | Files | What the evidence establishes |
 | --- | --- | --- |
 | E1 | regression-comparison.csv, benchmark.json | Compare RF/XGB and choose a model using made-up water-use targets |

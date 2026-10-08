@@ -40,11 +40,20 @@ approval expectations. These materials do not claim instructor approval or an IR
 
 ## What the result means
 
+The goal is to assess development impacts on seasonal area reserves and watershed
+conditions. Regional balances and ecological thresholds still need observed data and
+validation; see `../project-scope.md`.
+
 The model estimates on-site cooling water use. It excludes water used to generate grid
 electricity, domestic water, return-flow accounting, other withdrawals, and ecological
 minimum flows. The existing field `predicted_collateral_stress_mgd` keeps a compatible
 API name; it is not a validated town-wide water-stress score. Permit text gives context
 for a person to review. A matching passage is not an automated compliance finding.
+
+The supplied context proposes EIA/EPA profiles, environmental impact statements, and
+regional assessments. Those collections have not been ingested or validated here.
+Groundwater depth is not recharge. Historical recharge and heatwave studies remain
+planned. Check the actual sources' access and rights when selecting those products.
 
 ## How to trace the evidence
 

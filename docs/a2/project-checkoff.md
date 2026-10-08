@@ -3,15 +3,15 @@
 The evidence and slides are prepared for the mid-semester review. The assigned
 October 20/23 presentation day and exact submission time still need confirmation.
 Each status describes that checklist item; it does not mean the whole project has
-been validated at real facilities. This follows the supplied two-page course handout.
+been validated for regional ecosystem impacts. This follows the supplied two-page course handout.
 Terms and the short project explanation are in `explain-it-simply.md`.
 
 ## Project Scope & AI Integration
 
 | Item | Status | Project response / evidence |
 | --- | --- | --- |
-| Clear goal, problem, and primary question | Documented | Estimate realistic on-site cooling water use and find permit quotations for review |
-| Achievable sub-goals and scope before mid-term | Documented | Working local prototype, four approach investigations, and a separate list of real-world tests still needed |
+| Clear goal, problem, and primary question | Documented | Assess development impacts on seasonal area reserves and watershed conditions; cooling is one pressure component |
+| Achievable sub-goals and scope before mid-term | Documented | Working component prototype, four approach investigations, explicit regional scope and remaining area-assessment work |
 | Class AI tools/concepts mapped or exclusions justified | Partial | Explain rules, tree models, word/vector search, prediction ranges, and missing data; wait on neural/LLM work; confirm actual studio names/links |
 
 ## Data Acquisition & Governance
@@ -27,7 +27,7 @@ Terms and the short project explanation are in `explain-it-simply.md`.
 
 | Item | Status | Project response / evidence |
 | --- | --- | --- |
-| Visual block diagram of component interactions | Prepared | SVG/PNG number and permit paths; editable diagram in slides |
+| Visual block diagram of component interactions | Prepared | Regional goal plus current number/permit components; editable diagram in slides; area balance remains planned |
 | Evaluation metrics for individual components | Documented / tested | Units and bad-input checks; error/fit (MAE/RMSE/R2); range coverage; missing-data spread in MGD2; eligible/ineligible locations |
 | Explicit success and failure criteria for outputs | Documented | Always enforce limits/warnings; R2 > 0.80 and MAE < 0.05 MGD benchmark goal; >=90% of missing-data changes within tolerance plus band checks; real-facility criteria unverified |
 | Component test plan | Implemented with limits | 51 local tests: forced wrong values, saved-model reload, train-only gap filling, bad neighbors, permit locations, API errors; real-permit relevance testing remains planned |

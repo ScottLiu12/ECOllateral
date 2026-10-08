@@ -1,14 +1,18 @@
 # ECOllateral
 
-Ecosystem Collateral Forecast Tool. Estimates how much water a data center uses for
-cooling each day. An AI model predicts the number, engineering rules check its physical
-limits, and a document search adds permit quotations for the location. Water is measured
-in million US gallons per day (MGD).
+Ecosystem Collateral Forecast Tool: an environmental impact assessment and regional
+ecosystem forecasting project. Its goal is to help municipal planners, environmental
+researchers, and utilities assess how proposed development affects an area's municipal
+water reserves and watershed conditions across seasons.
 
-The model predicts on-site cooling water use. To assess a town's water stress, we would
-also need water supply, other withdrawals, water returned to rivers, and ecological
-flow needs. Start with the [plain-English explanation](docs/a2/explain-it-simply.md)
-for the system steps, experiments, and technical terms.
+The area is the focus. The current prototype tests one development pressure: on-site
+cooling water consumption, measured in million US gallons per day (MGD). It connects
+public environmental data, tree models, physical checks, and location-matched permit
+quotations. It does not yet calculate a validated area-wide ecosystem or water-stress score.
+That needs regional supply/reserves, other withdrawals, returns, ecological flow needs,
+and measured regional outcomes. See the [project scope](docs/project-scope.md) and
+[plain-English explanation](docs/a2/explain-it-simply.md) for the goal, current evidence,
+and next work.
 
 ## Development
 

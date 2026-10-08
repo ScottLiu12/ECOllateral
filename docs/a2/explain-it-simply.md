@@ -2,13 +2,22 @@
 
 ## The 20-second explanation
 
-ECOllateral estimates how much water a proposed data center would use for cooling.
-It uses weather, river flow, drought conditions, and facility size. An AI model makes
-the estimate, engineering rules keep the number within a calculated range, and a
-document search adds relevant permit quotations. The prototype runs, but its accuracy
-tests use made-up data. We still need measurements from real facilities.
+ECOllateral aims to explain how proposed development could affect an area's water
+reserves and watershed conditions across seasons. The ecosystem and surrounding area
+are the focus. Our current prototype connects environmental data, a cooling-water
+pressure model, physical checks, and local permit quotations. That is one component
+test, not a complete regional impact forecast. We still need measured regional supply,
+demands, returns, and ecological baselines.
 
-## Explain the system in five steps
+## The goal and the part we can demonstrate
+
+The goal is an area-wide assessment for planners, researchers, and utilities. Start
+with the watershed and seasonal conditions, then examine development pressure in that
+context. Cooling is one possible pressure, not the project identity. We have not yet
+implemented or validated the regional supply/demand balance. `../project-scope.md`
+lists the current components and the area-level work still needed.
+
+## Explain the current component in five steps
 
 1. **Collect data.** USGS provides river measurements; NOAA provides weather and drought
    data. Each value keeps its unit, station name, date, and quality information.
@@ -23,6 +32,8 @@ tests use made-up data. We still need measurements from real facilities.
 
 The two paths in the map are the **number path** and the **permit path**. They meet in
 the API response. The API is the interface that lets another program request a result.
+These component tests support the regional project, but the API's current cooling
+number is not an ecosystem health score or a municipal reserve forecast.
 
 ## The experiments, in one sentence each
 
@@ -97,8 +108,8 @@ model's failure rate.
 
 ## Keep these limits in the explanation
 
-The current number is on-site cooling consumption. It does not measure a town's total
-water stress. Historical monthly weather is a scenario input, not a future weather
+The current number is on-site cooling consumption. It does not measure area-wide
+ecosystem impact, municipal reserves, or total water stress. Historical monthly weather is a scenario input, not a future weather
 forecast. Nearby stations may behave differently. Linear gap filling can use later
 readings, which a live forecast would not yet have. A matching permit quotation is
 context for a person to review, not a legal compliance decision.

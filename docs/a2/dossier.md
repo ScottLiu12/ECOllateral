@@ -4,25 +4,29 @@ CSCI 4150 A2 | Shaun, Troy, Scott | Evidence snapshot: October 7, 2026
 
 ## 1. What problem are we solving?
 
-**Main question:** Can an AI model plus engineering rules estimate realistic cooling water use, show how uncertain the estimate is, and attach permit quotations that match the proposed facility's location?
+**Main question:** Given proposed development demands, cooling requirements, and location, how could municipal water reserves and watershed conditions in the surrounding area change across seasons?
 
-Researchers and infrastructure planners could use this to compare cooling options before a detailed engineering study. They enter IT capacity in megawatts (MW), cooling type, an eight-digit watershed code (HUC8), and a month. The prototype returns on-site cooling consumption in million US gallons per day (MGD), physical limits, a prediction range based on earlier errors, data-quality warnings, and source quotations.
+ECOllateral is an environmental impact assessment and regional ecosystem forecasting project for municipal planners, environmental researchers, and utilities. The area and ecosystem are the focus. The intended assessment combines seasonal conditions, development pressures, supply/reserves, other demands, returns, and ecological flow needs. Cooling water is one pressure input, not the whole assessment.
+
+**Current demonstration:** a user enters IT capacity in megawatts (MW), cooling type, an eight-digit watershed code (HUC8), and a month. The component returns on-site consumption in million US gallons per day (MGD), physical limits, a prediction range, warnings, and location-matched quotations. It does not yet return a validated regional impact score.
 
 **What works now:** downloading public environmental data, converting units, building monthly inputs, using separate models for three cooling types, checking physical limits, finding permit sections for a location, a FastAPI interface, a typed TypeScript client, and a repeatable notebook for missing-data tests. The API is the interface another program uses to request a forecast. There are 51 passing local tests. The example request loads saved model files and returns HTTP 200, with warnings that the data are made up.
 
-**What the evidence does not show yet:** the facility water-use targets and research river data are synthetic, meaning generated for testing. Two days of real USGS/NOAA data show that downloading and parsing work; they do not test forecast accuracy. Made-up permit sections test the search rules; they do not prove compliance. The field `predicted_collateral_stress_mgd` currently means on-site cooling water use. We have not validated a model of a town's water supply and demand.
+**What the evidence does not show yet:** facility targets and research river data are synthetic. Two days of real USGS/NOAA data test downloading/parsing, not accuracy. Fictional permits test search rules, not compliance. `predicted_collateral_stress_mgd` means on-site consumption. Regional balances, ecological thresholds, recharge inference, and area-wide stress prediction remain unimplemented or unvalidated.
 
 ## What can we finish for this review?
 
-The software milestone is a repeatable local prototype. The A2 milestone is a readable system map, test comparisons, important limits, and design decisions supported by evidence. Real-world claims need measured facility water use, checked station locations, real permit sections, and a separate test of prediction ranges.
+The software milestone is a repeatable component prototype. A2 reviews its map, comparisons, limits, and decisions within the regional goal. Next we need measured development demand and area conditions, verified boundaries, real documents, regional targets, and independent range tests.
 
-This dossier is the selected project evidence. Full technical details remain in `../implementation-notes.md`, `../data-contracts.md`, and `../validation-results.md`. Results in `evidence/` have file fingerprints in `evidence/manifest.json` and refer to implementation commit `125aa40`. For rehearsal and term definitions, use `explain-it-simply.md`.
+Full details remain in `../implementation-notes.md`, `../data-contracts.md`, and `../validation-results.md`. `../project-scope.md` separates the regional goal from current features. Results in `evidence/` have fingerprints in `evidence/manifest.json` and refer to implementation commit `125aa40`. For rehearsal, use `explain-it-simply.md`.
 
 <!-- pagebreak -->
 
 ## 2. How does the system work?
 
 ![Semantic system map](semantic-system-map.png)
+
+The map shows reusable components already built. The regional reserve/stress assessment is planned. Cooling limits cannot stand in for ecological thresholds.
 
 **Number path:** six inputs describe facility size, ordinary air temperature (dry bulb), evaporative-cooling temperature (wet bulb), river flow, drought score (PDSI), and season. The training target is water consumption in MGD. Decision-tree models learn how those inputs relate to water use, including relationships that are not straight lines. Engineering rules calculate the allowed range.
 
@@ -137,9 +141,11 @@ Both results miss the prototype check of observed coverage >=90%. These are fini
 | Reject R2-as-confidence and town-stress claims | E1, E5, output scope | Explain fit, range coverage, and on-site consumption separately |
 | Defer neural and generative LLM models | No comparison run | Focus first on measured water use and checked sources |
 
-**Next question:** does the model, with physical limits, work at a real facility it has never seen during drought, with enough values inside its prediction range? Testing this matters more than adding a more complex model to the same made-up targets.
+**Next question:** can observed area conditions and development demands support an accurate seasonal assessment of reserves and watershed stress in an unseen area? The cooling component also needs unseen-facility tests as a supporting task.
 
-**Plan and owners:** Shaun separates model selection from range calibration and sets up tests that hold out whole facilities. Troy checks station/HUC/climate-division matches, looks for an eligible measured-water-use dataset, and tests long/shared drought gaps. Scott selects real permit sections with source/location information and builds a small relevance set reviewed by people. Compare RF and XGB again. Report MAE, RMSE, R2, coverage, range width, clipping frequency, missing-data warnings, and search precision/recall.
+**Plan and owners:** Shaun leads coding, area-assessment integration, regional targets, separate calibration, and area/facility holdouts. Troy checks station/HUC/climate-division matches, observed supply/demand and ecological baselines, drought gaps, and document grounding. Scott supports safety/interface review, failure analysis, regional documents, human-reviewed relevance checks, and evidence. Compare RF/XGB; report MAE, RMSE, R2, coverage, range width, clipping frequency, missing-data warnings, and search precision/recall for the actual target.
+
+**Scope decision: Modify.** Put regional conditions and cumulative pressures at the center. Add supply/reserve balances, returns, ecological flow needs, and verified boundaries before claiming regional stress. E1-E5 remain component evidence. A zero-shot LLM benchmark, dense embeddings, historical heatwave study, and 2015-2022 recharge analysis remain unperformed/planned.
 
 **Pass/fail checks:** predictions stay within calculated limits and expose clipped values; bad input and missing model files return controlled API errors; accuracy meets the stated benchmark goal; range coverage meets the agreed target on genuinely unused test data; missing-data changes meet tolerance, including band checks; search never returns an ineligible location. Real-world thresholds still need team/instructor review before deployment claims.
 
@@ -151,9 +157,9 @@ Both results miss the prototype check of observed coverage >=90%. These are fini
 
 **Shaun:** primary coding contributor; leads data downloading, rules, model/API integration, and the typed client.
 
-**Troy:** assigned checking data sources and station locations, reviewing drought-gap results, and explaining test limits.
+**Troy:** assigned environmental acquisition/area mapping, drought and groundwater interpretation, document grounding, and test limits.
 
-**Scott:** assigned checking permit sources and location coverage, preparing evidence/slides, and coordinating rehearsal and instructor-access checks.
+**Scott:** assigned safety/interface evaluation, regional document review, failure analysis, diagrams/slides, rehearsal, and instructor-access checks.
 
 The user confirmed Shaun's coding lead. Troy's and Scott's lines assign work; they do not certify completion. Each member must confirm actual completed contributions before submitting the one-line statements. Proposed speaking order: Shaun slides 1-3, Troy 4-5, Scott 6.
 

@@ -1,11 +1,11 @@
 # Team contribution snapshot
 
-- **Shaun:** Main coding contributor; connects data downloads, physical rules, prediction
-  models, FastAPI, and the TypeScript client.
-- **Troy:** Check environmental sources and location matches for stations, HUCs, and
-  climate divisions; review drought-gap results and explain test limits.
-- **Scott:** Check permit sources and their location coverage; organize evidence and
-  slides; coordinate rehearsal and instructor-access checks.
+- **Shaun:** Main coding contributor; leads architecture, data/model/API integration,
+  regional assessment design, and separate calibration.
+- **Troy:** Support environmental acquisition, station/area and climate-division checks,
+  drought/groundwater interpretation, and grounding of regional documents.
+- **Scott:** Support safety-rule and interface evaluation, failure analysis, regional
+  evidence review, diagrams/slides, rehearsal, and instructor-access checks.
 
 The user confirmed Shaun does most coding and authorized assigning supporting roles
 to Troy and Scott. These lines assign the work; they do not certify that every task is

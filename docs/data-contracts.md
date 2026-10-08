@@ -3,6 +3,10 @@
 These rules keep units, dates, and sources consistent. For a short explanation of
 the system and terms, see `a2/explain-it-simply.md`. Exact field names stay unchanged.
 
+ECOllateral's goal is regional ecosystem impact assessment. These contracts describe
+the existing cooling-water component and environmental data, not a completed regional
+stress model. `project-scope.md` separates the area-wide goal from implemented behavior.
+
 ## Training CSV
 
 Each row describes one facility observation on one date. Required columns:

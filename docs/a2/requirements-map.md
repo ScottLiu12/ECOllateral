@@ -14,13 +14,13 @@ or rejection. At least three meaningful investigations are required.
 
 | Requirement | Deliverable / evidence |
 | --- | --- |
-| Problem and intended user / setting | Dossier problem statement, slide 1 |
+| Problem and intended user / setting | Regional impacts for municipal planners/researchers/utilities, dossier section 1, slide 1, `../project-scope.md` |
 | Current semantic/system map | SVG/PNG map showing number/permit paths, dossier explains how information is represented, slide 2 |
 | At least three investigations | E1 tree models, E2 gap filling, E3 engineering rules, E4 document search |
 | Inspectable evidence for each major investigation | Evidence JSON/CSV, test output, forecast response, research figures |
 | Important failure or limitation | Prediction-range coverage below 90%, made-up targets, limits of document/location matches |
 | Evidence-supported architecture decisions | Evidence summary and dossier Adopt / Modify / Reject / Defer table |
-| Most important next question | Does it work on measured water use at new facilities during drought? |
+| Most important next question | Can observed area conditions and development demands support seasonal reserve/watershed assessments in unseen areas? |
 
 ## Five submission components
 
@@ -36,7 +36,7 @@ or rejection. At least three meaningful investigations are required.
 
 | Criterion | Points | Where demonstrated |
 | --- | ---: | --- |
-| Problem and semantic/system map | 20 | Users, included water uses, inputs/targets, watershed information, rules, numeric text vectors |
+| Problem and semantic/system map | 20 | Regional users/goal, planned assessment, current pressure-component inputs/targets, watershed information, rules, numeric text vectors |
 | Experiments and evidence quality | 25 | Four approach investigations, comparison tables, exact results, failure cases |
 | Failure/limitation interpretation | 15 | About 88% range coverage, made-up evidence, groundwater units, permit applicability |
 | Design decisions and rationale | 20 | Explicit decisions tied to evidence IDs, current architecture, next study |

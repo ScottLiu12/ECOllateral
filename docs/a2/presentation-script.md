@@ -12,17 +12,19 @@ Assigned day: still unknown, October 20/23, 2026. Allow 4 minutes for the talk a
 | 5 | Troy | 35 | 3:00 | Prediction ranges missed the goal |
 | 6 | Scott | 60 | 4:00 | Decisions, roles, and next test |
 
-## Slide 1: estimate cooling water use
+## Slide 1: ecosystem impacts across an area
 
-ECOllateral estimates how much water a proposed data center would use for cooling.
-A researcher or planner enters facility size, cooling type, watershed, and month.
-The system returns water use, calculated physical limits, a prediction range, warnings,
-and permit quotations for the location. Water is measured in million gallons per day.
-The local prototype works, but our water-use targets are made-up test data. We have
-not shown accuracy at real facilities yet.
+ECOllateral aims to help planners, researchers, and utilities understand how proposed
+development affects an area's municipal water reserves and watershed conditions across
+seasons. The ecosystem and area are the focus. Our prototype connects environmental
+data, a cooling-water pressure model, physical checks, and local permit quotations.
+Cooling is one component test. The regional supply, demand, return-flow, and ecological
+assessment is still planned. Our model targets are made-up data, so we are not claiming
+validated regional impact forecasts yet.
 
 ## Slide 2: two paths, one response
 
+This diagram shows current components, not the full regional assessment.
 The top path handles numbers. Weather, river flow, drought, season, and facility size
 become six inputs. A tree-based AI model predicts water use. Separate engineering
 rules check the number and warn if it needs adjusting. The bottom path handles permit
@@ -30,7 +32,7 @@ text. We search words, check the location, and return original quotations. Tests
 the physical limits and four location cases work. No language model calculates the
 water estimate or decides legal compliance.
 
-## Slide 3: compare two AI models
+## Slide 3: compare models for one pressure component
 
 We compared RandomForest and XGBoost using the same made-up inputs and water-use targets.
 We split dates in time order: 60 percent to train, 20 percent to choose the model and
@@ -60,20 +62,29 @@ a statistically significant failure. We also used the same data to choose the mo
 and set its range. We will separate those jobs and test by facility, time, and drought.
 R-squared measures fit; it is not the chance a prediction is right.
 
-## Slide 6: what we keep and test next
+## Slide 6: build and validate the regional assessment
 
-We will keep the tree models, physical limits, and permit location checks. We will
-improve the missing-data tests and how prediction ranges are set. We reject using
-R-squared as confidence, and we will wait on neural or generative language models
-because we have not compared them and they do not solve the missing-label problem.
-Our next question is whether the system works at a real facility it has never seen
-during drought, with enough values inside its prediction range. Shaun leads code
-and separate calibration. Troy checks environmental locations and drought tests.
-Scott checks real permits and prepares the evidence. These supporting roles are
-assigned; we still need to confirm actual completed contributions. The dossier keeps
-the full methods, results, limits, and remaining course steps.
+We will keep the tested models, component rules, and location checks. Next, connect
+development pressures to observed area supply, reserves, other demands, returns, and
+ecological flow needs. We must define regional targets and test unseen areas and seasons
+with separate calibration. One cooling-water number cannot represent ecosystem health.
+We also reject R-squared as confidence and unconstrained language-model risk scoring.
+No zero-shot or generative comparison was run. Shaun leads coding and area integration.
+Troy supports environmental baselines, drought analysis, and document grounding.
+Scott supports safety and interface evaluation, failure analysis, and regional evidence.
+These supporting duties still need completion confirmation. Our next question is whether
+verified area conditions and development demands can explain seasonal reserve and
+watershed impacts in an area not used to build the model.
 
 ## Short answers for Q&A
+
+- **Is this a data-center project?** The goal is regional ecosystem impact assessment
+  for proposed development. Cooling water is one pressure component in the current demo.
+- **Do you already predict ecosystem health or municipal reserves?** No. Regional
+  balance, ecological thresholds, cumulative demands, and outcome validation are still needed.
+- **Did you benchmark zero-shot LLMs or groundwater recharge?** No. Those passages in
+  the supplied context describe proposed work or anticipated risks. Our recorded tests
+  use cooling targets, synthetic streamflow, and separate groundwater depth in meters.
 
 - **Is the accuracy result real-world evidence?** No. Water-use targets are made up.
   The two-day public-data download tests parsing and units, not forecast accuracy.
