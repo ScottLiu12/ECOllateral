@@ -322,3 +322,16 @@ or interpreting compliance. Empty retrieval and example documents have distinct 
   Windows Git line-ending conversion cannot alter PDF byte offsets or package data
   on a later checkout. Git initially recognized ASCII-encoded PDFs as text; the
   binary attributes preserve them as exact artifacts.
+
+## 2026-10-07 - Plain-English revision
+
+- User requested simpler slides and project materials while keeping all content intact.
+  Keep the six-slide structure, experiments E1-E5, decisions, exact results, limitations,
+  roles, evidence IDs, source links, file contracts, and course checklist coverage.
+- Explain technical terms when first used, split dense sentences, and use everyday
+  slide labels. Add `docs/a2/explain-it-simply.md` for rehearsal and a glossary.
+- Rewrite the dossier and script together so spoken explanations match the slides.
+  Preserve the raw evidence and historical implementation log. Simplify current
+  project/reference documents without changing commands, schemas, or software behavior.
+- Rebuild the editable deck, diagram, three PDFs, and ZIP; check information retention
+  against the committed originals and inspect all regenerated pages/slides.
