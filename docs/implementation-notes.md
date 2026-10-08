@@ -267,3 +267,58 @@ or interpreting compliance. Empty retrieval and example documents have distinct 
 - The portable evidence snapshot will include outputs and provenance, not the entire
   development history or serialized models. Preserve the source-code commit separately
   from the later documentation commits so claims can be traced to implementation state.
+
+### Evidence collection and interpretation
+
+- Captured RF/XGBoost candidate metrics and selection RMSE, interval radii and held-out
+  coverage, an HTTP forecast response, and four fictional geographic retrieval cases.
+  Copied notebook sensitivity plots/tables and the preserved two-day ingestion sample.
+- Captured source/result SHA-256 hashes in a portable manifest. Evidence artifacts are
+  intentionally versioned under `docs/a2/evidence`, while runtime data and model pickles
+  remain ignored. This package records implementation `125aa40`, independently of
+  documentation commits `4caa821` and `133eade`.
+- Added a seeded biased-donor diagnostic: neighbors shifted by +100 MGD, 40% drought
+  gaps, 20 repeats, simple predictor `0.01 * streamflow`. Spatial tolerance coverage is
+  60.33%; linear is 98.60%; both fail the strict all-date sensitivity-band criterion.
+  Explicitly distinguish this diagnostic from the fitted-model missingness experiment.
+- Injected -1 and 1,000,000 MGD outputs for a 40 MW / 30 C dry / 20 C wet scenario.
+  Both clip to the computed [0, 0.446484] range with a constraint warning. These are
+  deliberate estimator stubs, not claims about observed production failures.
+- Interpreted nominal interval shortfall without claiming statistical significance.
+  Code inspection confirms model selection and residual-radius estimation reuse the
+  calibration partition; the next study needs independent tuning/calibration/testing.
+- Dossier provides four approach investigations plus the interval evaluation, explicit
+  Adopt/Modify/Reject/Defer decisions, semantic representations, component success/failure
+  gates, data governance, role-owned next questions, and a confirmed/pending checkoff.
+- Wrote a 240-second presentation script and evidence-specific Q&A. Shaun presents
+  slides 1-3, Troy 4-5, Scott 6 as proposed handoffs, with actual completion unclaimed.
+
+### Export construction and quality review
+
+- Built a native editable six-slide deck with Artifact Tool, an explicit two-path
+  component diagram, three native charts, source notes, and embedded chart workbooks.
+- Initial full-precision chart literals exceeded Excel snapshot precision. Rounded
+  workbook/chart values to ten significant digits while keeping the CSV evidence at
+  full precision. The export subsequently passed the editable-chart checks.
+- Visual review caught wrapped diagram headings overlapping body text and arrows
+  pointing toward the source. Shortened diagram labels and used the endpoint arrow
+  option appropriate to the renderer; checked the repaired final output.
+- Finalized to a new revision before copying the validated deck to its stable user
+  filename. Kept validation receipts and draft/revision decks in the ignored build path.
+  Moved finalizer-generated `.chart-data-*` scratch directories there after verifying
+  source and destination paths stayed inside the workspace.
+- ReportLab exports eight-page dossier and three-page checkoff with explicit page
+  breaks, repeating table headers, readable diagram, consistent page furniture, and
+  ASCII punctuation. Six-page presentation PDF uses reviewed final slide images.
+- Bundled Poppler wrapper was unavailable because its executable path did not resolve;
+  used bundled PDFium for visual verification. No installation was needed.
+- Every dossier/checkoff page and all slide layouts were rendered and inspected.
+  Native PowerPoint opening was not tested and is not claimed. Evidence hashes verified;
+  the two documentation Python scripts pass Ruff checks and formatting.
+- Added rebuild instructions, an export verification record, and a curated ZIP handoff
+  bundle. Outstanding human/course actions remain explicit; no GitHub access is needed
+  for these local deliverables.
+- Explicitly classify PDF/PPTX/PNG/ZIP artifacts as binary in `.gitattributes`, so
+  Windows Git line-ending conversion cannot alter PDF byte offsets or package data
+  on a later checkout. Git initially recognized ASCII-encoded PDFs as text; the
+  binary attributes preserve them as exact artifacts.

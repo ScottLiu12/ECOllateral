@@ -136,3 +136,11 @@ npm run typecheck
 Offline tests cover ingestion through the API, physical bounds, train-only imputation,
 artifact reload, citation geography, and stable/unstable missingness cases. GitHub Actions
 runs lint, tests, and TypeScript checking when changes are pushed.
+
+## CSCI 4150 mid-semester review
+
+The [A2 package](docs/a2/README.md) includes the project checkoff, an eight-page
+evidence dossier, semantic/system diagram, experiment tables and failure cases,
+editable six-slide presentation, four-minute script, and proposed team responsibilities.
+It separates synthetic benchmarks from field evidence and lists the course actions
+that still need confirmation. Start with `docs/a2/dossier.pdf` or the package index.

@@ -1,0 +1,5 @@
+# Prevent Windows line-ending conversion from corrupting document offsets/packages.
+*.pdf binary
+*.pptx binary
+*.png binary
+*.zip binary
