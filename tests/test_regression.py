@@ -1,3 +1,5 @@
+from types import SimpleNamespace
+
 import numpy as np
 import pandas as pd
 import pytest
@@ -33,8 +35,10 @@ def test_benchmarks_on_known_synthetic_response(fitted_model):
 
 @pytest.mark.parametrize("raw", [-1.0, 1_000_000.0])
 def test_clips_impossible_predictions_and_keeps_raw(fitted_model, monkeypatch, raw):
-    estimator = fitted_model.models["cooling_tower"].estimator
-    monkeypatch.setattr(estimator, "predict", lambda frame: np.full(len(frame), raw))
+    model = fitted_model.models["cooling_tower"]
+    monkeypatch.setattr(
+        model, "estimator", SimpleNamespace(predict=lambda frame: np.full(len(frame), raw))
+    )
     prediction = fitted_model.predict(facility(), "cooling_tower")[0]
     assert prediction.raw_mgd == raw
     assert "constraint_violation" in prediction.warnings
@@ -61,7 +65,7 @@ def test_imputer_fits_training_period_only(fitted_model, training_records):
     group = training_records[training_records.cooling_type == "cooling_tower"].copy()
     dates = np.sort(group.date.unique())
     train_end = dates[int(len(dates) * 0.6)]
-    train = group[group.date < train_end]
+    train = group[group.date < train_end].copy()
     train["month"] = train.date.dt.month
     expected = build_features(train).median().to_numpy()
     fitted = fitted_model.models["cooling_tower"].estimator.named_steps["impute"].statistics_

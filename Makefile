@@ -1,9 +1,9 @@
-.PHONY: lint test run ingest demo train sensitivity
+.PHONY: lint test run ingest demo train sensitivity notebook
 PYTHON ?= python
 
 lint:
-	$(PYTHON) -m ruff check src tests
-	$(PYTHON) -m ruff format --check src tests
+	$(PYTHON) -m ruff check src tests scripts
+	$(PYTHON) -m ruff format --check src tests scripts
 
 test:
 	$(PYTHON) -m pytest
@@ -22,3 +22,6 @@ train:
 
 sensitivity:
 	$(PYTHON) -m src.cli sensitivity $(ARGS)
+
+notebook:
+	$(PYTHON) scripts/run_notebook.py

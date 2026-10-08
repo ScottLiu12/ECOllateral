@@ -178,3 +178,46 @@ or interpreting compliance. Empty retrieval and example documents have distinct 
   groundwater-depth gap filling, and deliberately unstable spatial donors.
 - Added a small typed TypeScript fetch client and CI configuration. CI files are local
   changes; GitHub Actions has not run because no push has been requested.
+
+## 2026-10-07 — Validation and corrections
+
+- First complete suite: 47 passed and three temp-fixture setup errors. The sandbox
+  could not enumerate pytest's pre-existing shared temp directory. Set pytest's base
+  temp directory to the ignored workspace `.pytest-tmp`, avoiding that external path.
+- Rerun: 49 passed, one model-reload test failed. The clipping test had replaced the
+  sklearn Pipeline's dynamic `predict` descriptor; monkeypatch restoration stored a
+  bound method in the shared fixture, making that *test-mutated* object unpicklable.
+  Replaced the model's estimator temporarily instead. Actual demo artifacts had not
+  been mutated and loaded normally. Subsequent suite: **50 passed**.
+- One upstream Starlette warning remains: its latest TestClient deprecates httpx in
+  favor of httpx2. Current tests work with the declared httpx dependency. The warning
+  is recorded rather than suppressed.
+- `ruff check src tests scripts` and `npm run typecheck` passed. Installed TypeScript
+  with an npm lockfile and disabled package install scripts.
+- Offline `demo` command completed, writing synthetic training, model, environmental
+  snapshots, station matrices, benchmarks, and fictional permit index.
+- A two-day live ingestion smoke run completed against USGS + NOAA: two streamflow
+  records, two GSOD records, one monthly PDSI value, and one environmental snapshot.
+  Observed source period: 2024-07-01 through 2024-07-02. Saved only to ignored
+  `data/raw/live-smoke` and `data/processed/live-smoke` directories.
+- Verified USGS-01646500 actually belongs to HUC12 `020700081005`, hence HUC8
+  `02070008`. The demonstration HUC is a synthetic label and is not asserted to be
+  that station's real catchment. The smoke test's NOAA division `4401` checks parsing;
+  it is not a verified geographic division assignment for the facility or gauge.
+- Verified current NOAA PDSI filename: `climdiv-pdsidv-v1.0.0-20260904`.
+- Corrected monthly flow record counts to avoid pandas index-alignment shifts.
+- Moved geographic distance arithmetic to `src/geography.py` so ingestion does not
+  import the text-grounding/vector-store layer.
+- Coordinate-scoped permit retrieval now requires actual request coordinates. A
+  HUC-only forecast must not use the gauge's coordinates as the facility's location
+  to infer the applicability of a narrowly scoped permit. Added a regression test.
+- Notebook source now contains temporal benchmark tables, 50-repeat drought masking,
+  tolerance plots, and separate toy groundwater reconstruction in meters. It clearly
+  labels synthetic inputs, exposes paths for observed inputs, and saves research outputs.
+
+### Outstanding verification at this checkpoint
+
+- Execute the notebook, inspect exported plots, and record the sensitivity results.
+- Rerun the suite for the coordinate-permit correction and finish focused commits.
+- Field accuracy and actual permit applicability remain unvalidated until measured
+  facility labels, verified local station mappings, and real permit sections are supplied.

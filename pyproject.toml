@@ -21,7 +21,7 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
-dev = ["pytest>=8,<10", "ruff>=0.9,<1", "nbclient>=0.10,<1", "ipykernel>=6,<8"]
+dev = ["pytest>=8,<10", "ruff>=0.9,<1", "nbclient>=0.10,<1", "ipykernel>=6,<8", "matplotlib>=3.8,<4"]
 
 [project.scripts]
 ecollateral = "src.cli:main"
@@ -31,6 +31,7 @@ include = ["src*"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+addopts = "--basetemp=.pytest-tmp"
 
 [tool.ruff]
 target-version = "py311"

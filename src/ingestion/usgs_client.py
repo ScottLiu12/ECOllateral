@@ -1,3 +1,4 @@
+import re
 from datetime import date
 from typing import Any
 
@@ -55,16 +56,24 @@ def fetch_huc_observations(
     end: date,
     *,
     api_key: str | None = None,
+    station_ids: tuple[str, ...] | None = None,
 ) -> pd.DataFrame:
     if len(huc8) != 8 or not huc8.isascii() or not huc8.isdigit():
         raise ValueError("huc8 must be eight digits, including leading zeros")
     if end < start:
         raise ValueError("end must be on or after start")
+    scope = f"hydrologic_unit_code LIKE '{huc8}%' AND agency_code = 'USGS'"
+    if station_ids is not None:
+        if not station_ids or any(
+            not re.fullmatch(r"USGS-[0-9]{8,15}", station) for station in station_ids
+        ):
+            raise ValueError("station_ids must contain USGS station identifiers")
+        scope += " AND id IN (" + ",".join(f"'{station}'" for station in station_ids) + ")"
     sites = _items(
         client,
         "monitoring-locations",
         {
-            "filter": f"hydrologic_unit_code LIKE '{huc8}%'",
+            "filter": scope,
             "filter-lang": "cql2-text",
         },
         api_key,
@@ -74,7 +83,7 @@ def fetch_huc_observations(
         properties = site["properties"]
         if not str(properties.get("hydrologic_unit_code", "")).startswith(huc8):
             continue
-        station_id = properties["monitoring_location_id"]
+        station_id = properties["id"]
         coordinates = (site.get("geometry") or {}).get("coordinates", [np.nan, np.nan])
         for parameter in PARAMETERS:
             observations = _items(
@@ -105,6 +114,12 @@ def fetch_huc_observations(
                         raise ValueError(f"unexpected water-level unit: {unit}")
                     value *= 0.3048
                     output_unit = "m"
+                status = observation.get("approval_status", observation.get("approvals_status"))
+                qualifiers = observation.get("qualifier")
+                if isinstance(status, list):
+                    status = ";".join(status)
+                if isinstance(qualifiers, list):
+                    qualifiers = ";".join(qualifiers)
                 rows.append(
                     {
                         "date": observation["time"],
@@ -115,9 +130,7 @@ def fetch_huc_observations(
                         "unit": output_unit,
                         "longitude": coordinates[0],
                         "latitude": coordinates[1],
-                        "quality": ";".join(observation.get("approvals_status") or [])
-                        + "|"
-                        + ";".join(observation.get("qualifier") or []),
+                        "quality": (status or "") + "|" + (qualifiers or ""),
                     }
                 )
     frame = pd.DataFrame(rows, columns=OBSERVATION_COLUMNS)

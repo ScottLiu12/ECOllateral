@@ -20,7 +20,7 @@ def test_usgs_huc_pagination_conversion_and_quality():
                 "features": [
                     {
                         "properties": {
-                            "monitoring_location_id": "USGS-01646500",
+                            "id": "USGS-01646500",
                             "hydrologic_unit_code": "020700100101",
                         },
                         "geometry": {"coordinates": [-77.1, 38.9]},

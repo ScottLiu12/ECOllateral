@@ -6,7 +6,7 @@ import numpy as np
 import pandas as pd
 
 DATA_URL = "https://www.ncei.noaa.gov/access/services/data/v1"
-CLIMDIV_URL = "https://www.ncei.noaa.gov/pub/data/cirs/climdiv/"
+CLIMDIV_URL = "https://www.ncei.noaa.gov/monitoring-content/data/us/climdiv/monthly/current/"
 
 
 def wet_bulb_from_dewpoint(dry: pd.Series, dew: pd.Series) -> tuple[pd.Series, pd.Series]:
