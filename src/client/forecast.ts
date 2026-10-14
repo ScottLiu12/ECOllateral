@@ -68,7 +68,7 @@ export async function forecastFacility(
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(request),
-    ...(signal ? { signal } : {}),
+    signal: signal ?? null,
   });
   if (!response.ok) {
     const detail: unknown = response.headers.get("content-type")?.includes("application/json")
