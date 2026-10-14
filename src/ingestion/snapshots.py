@@ -24,8 +24,9 @@ def monthly_snapshots(
     drought = pdsi.set_index("date")["pdsi"] if not pdsi.empty else pd.Series(dtype=float)
     daily["pdsi"] = daily.index.to_period("M").to_timestamp().map(drought)
     daily["month"] = daily.index.month
+    by_month = daily.groupby("month")
     columns = ["dry_bulb_c", "wet_bulb_c", "historical_streamflow_mgd", "pdsi"]
-    monthly = daily.groupby("month")[columns].median().reset_index()
+    monthly = by_month[columns].median()
     monthly["huc8"] = huc8
     monthly["latitude"] = flow.iloc[0].latitude
     monthly["longitude"] = flow.iloc[0].longitude
@@ -35,13 +36,11 @@ def monthly_snapshots(
     monthly["flow_station_id"] = flow_station
     monthly["noaa_station_id"] = weather.iloc[0].station_id
     monthly["climate_division"] = pdsi.iloc[0].climate_division if not pdsi.empty else ""
-    monthly["weather_record_count"] = daily.groupby("month")["dry_bulb_c"].count().to_numpy()
-    monthly["streamflow_record_count"] = (
-        daily.groupby("month")["historical_streamflow_mgd"].count().to_numpy()
-    )
+    monthly["weather_record_count"] = by_month["dry_bulb_c"].count()
+    monthly["streamflow_record_count"] = by_month["historical_streamflow_mgd"].count()
     # Missing months are omitted, not replaced with a different month's conditions.
     monthly = monthly.dropna(subset=["dry_bulb_c", "wet_bulb_c", "latitude", "longitude"])
-    return daily.reset_index(), monthly.reset_index(drop=True)
+    return daily.reset_index(), monthly.reset_index()
 
 
 @dataclass(frozen=True)
