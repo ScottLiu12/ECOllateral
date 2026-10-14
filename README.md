@@ -1,32 +1,35 @@
 # ECOllateral
 
-Ecosystem Collateral Forecast Tool: an environmental impact assessment and regional
-ecosystem forecasting project. Its goal is to help municipal planners, environmental
-researchers, and utilities assess how proposed development affects an area's municipal
-water reserves and watershed conditions across seasons.
+A course prototype for studying development's effects on regional water conditions.
+The implemented component estimates daily on-site cooling consumption in million US
+gallons (MGD), combines USGS/NOAA observations with physical limits, and retrieves
+location-matched permit quotations. It does not yet calculate municipal reserves or a
+validated ecosystem stress score.
 
-The area is the focus. The current prototype tests one development pressure: on-site
-cooling water consumption, measured in million US gallons per day (MGD). It connects
-public environmental data, tree models, physical checks, and location-matched permit
-quotations. It does not yet calculate a validated area-wide ecosystem or water-stress score.
-That needs regional supply/reserves, other withdrawals, returns, ecological flow needs,
-and measured regional outcomes. See the [project scope](docs/project-scope.md) and
-[plain-English explanation](docs/a2/presentation-script.md) for the goal, current evidence,
-and next work.
+The project uses Python, FastAPI, pandas, RandomForest/XGBoost, and TF-IDF/FAISS.
+A small TypeScript fetch client is included; there is no frontend or hosted AI service.
+The [project scope](docs/project-scope.md) distinguishes the regional goal from this
+prototype. [Data contracts](docs/data-contracts.md) describe inputs, units, and splits.
 
-## Development
+## Setup and checks
+
+Python 3.11 or newer is supported. From the repository root:
 
 ```powershell
 py -3.11 -m venv .venv
 .venv\Scripts\python -m pip install -e ".[dev]"
+.venv\Scripts\python -m ruff check src tests scripts
+.venv\Scripts\python -m ruff format --check src tests scripts
 .venv\Scripts\python -m pytest
+npm ci --ignore-scripts
+npm run typecheck
 ```
 
-On systems with Make, `make lint`, `make test`, `make run`, and `make ingest ARGS="..."`
-wrap the same Python commands. Activate the virtual environment first, or set
-`PYTHON=.venv/Scripts/python.exe` on Windows. Python 3.11 or newer is supported.
+On systems with Make, activate the environment or set `PYTHON=.venv/Scripts/python.exe`.
+`make lint`, `make test`, `make run`, and `make ingest ARGS="..."` wrap these commands.
+GitHub Actions runs Python checks and TypeScript checking.
 
-## Run the offline demo
+## Offline demo and API
 
 ```powershell
 .venv\Scripts\python -m src.cli demo
@@ -34,9 +37,9 @@ $env:ECOLLATERAL_DATA_DIR = (Resolve-Path data/processed/demo).Path
 .venv\Scripts\python -m uvicorn src.api.app:app --reload
 ```
 
-The demo learns from made-up water-use targets and station readings, and uses a fictional
-permit. Every forecast labels those sources. It requires no API keys.
-Open [interactive API documentation](http://127.0.0.1:8000/docs), or send:
+The demo uses synthetic station readings and water-use targets, plus a fictional
+permit. Forecasts label these sources. No API keys are needed.
+See [interactive API documentation](http://127.0.0.1:8000/docs), or send:
 
 ```powershell
 $request = @{
@@ -49,22 +52,24 @@ Invoke-RestMethod http://127.0.0.1:8000/forecast -Method Post `
     -ContentType application/json -Body $request
 ```
 
-`seasonal_target` is a calendar month (1–12). Supply an eight-digit watershed code (HUC),
-keeping leading zeros, or both `latitude` and `longitude`. Coordinate lookup chooses
-the nearest configured station within 50 km. The response explains that this station
-match is an approximation.
+`seasonal_target` is a calendar month, 1–12. Supply an eight-digit watershed code
+(HUC8), preserving leading zeros, or both `latitude` and `longitude`. Coordinates
+match the nearest configured station within 50 km; this is an approximation.
+Monthly conditions are historical medians, not forecasts of future weather.
 
-The response includes physical limits, the original and adjusted water-use estimates,
-R² on test data, a prediction range intended for 90% coverage, source dates, citations,
-and warnings. R² measures model fit; it is not the chance a prediction is right.
-`predicted_collateral_stress_mgd` is the existing field name for on-site consumption.
-It is not a validated measure of a town's water stress.
+Responses include physical limits, raw and adjusted consumption, held-out R²,
+a nominal 90% prediction interval, source dates, citations, and warnings.
+`predicted_collateral_stress_mgd` is the existing name for on-site consumption.
+R² measures fit, not the chance a prediction is correct. The service returns 503
+until model and environmental artifacts exist; missing permit context is reported.
+`src/client/forecast.ts` exports `forecastFacility` and `ForecastError` for browsers
+and modern Node runtimes.
 
-## Use observed data
+## Observed data
 
-To download observed data, choose a USGS river-flow station, NOAA GSOD weather station,
-and NOAA climate division. Check that each represents the facility's conditions.
-A watershed code (HUC) is different from a NOAA climate division.
+Choose representative USGS and NOAA stations and a NOAA climate division. A HUC8
+is not a climate division. Environmental downloads do not provide the facility's
+water-use target; real training requires independently measured consumption.
 
 ```powershell
 .venv\Scripts\python -m src.cli ingest --huc8 YOUR_HUC8 `
@@ -77,42 +82,20 @@ Remove-Item Env:ECOLLATERAL_DATA_DIR -ErrorAction SilentlyContinue
 .venv\Scripts\python -m uvicorn src.api.app:app
 ```
 
-Set `USGS_API_KEY` if you need authenticated USGS quotas. These NOAA endpoints do not
-require a CDO token. A network failure returns an error; the tool does not quietly use
-made-up observations instead. The service returns 503 until a model and environmental
-snapshots exist. If permit context is missing, the forecast says so.
+Set `USGS_API_KEY` for authenticated USGS quotas. These NOAA endpoints need no CDO
+token. Network failures raise errors. USGS station IDs and quality flags are retained;
+GSOD temperature/dew point estimate wet-bulb temperature, and nClimDiv supplies PDSI.
+Only load model and index joblib files from trusted local runs.
 
-USGS river flow, gauge height, and daily groundwater depth keep their station IDs and
-quality flags. NOAA GSOD temperature and dew point are used to estimate wet-bulb
-temperature. Monthly drought scores (PDSI) come from nClimDiv. Monthly median values
-describe historical conditions for a scenario; they do not predict future weather.
-These environmental downloads do not include the facility's water-use training target.
-Training for real-world use needs independently measured facility consumption.
+Capacity means IT MW. Default physical assumptions are PUE 1.2, utilization 1.0,
+and maximum evaporative fraction 1.0; override them with training's `--pue`,
+`--utilization`, and `--evaporative-fraction-max`. Bounds use a latent-heat balance
+and exclude grid water, domestic uses, and returned blowdown. Dry cooling assumes
+no evaporative assistance. These are screening assumptions, not universal ASHRAE
+limits. See [implementation notes](docs/implementation-notes.md) for reasoning and
+references, and [validation results](docs/validation-results.md) for recorded evidence.
 
-See [data contracts](docs/data-contracts.md) for schemas, training splits, units, and
-station selection, and [implementation notes](docs/implementation-notes.md) for detailed
-decisions, research sources, and verification results.
-The measured local check results and synthetic benchmark tables are recorded in
-[validation results](docs/validation-results.md).
-
-## Physical assumptions
-
-Capacity means IT megawatts. By default, all available IT load is assumed in use
-(utilization 1.0). PUE is total facility power divided by IT power; the default is 1.2.
-Training accepts `--pue`, `--utilization`, and `--evaporative-fraction-max`, and saves those
-assumptions with the model. The upper limit uses the heat absorbed by evaporating water
-(a latent-heat balance). The lower limit is zero. Dry air cooling excludes added
-evaporative assistance (adiabatic assistance). The target excludes domestic uses,
-water used to generate grid electricity, and blowdown returned to the watershed.
-
-ASHRAE defines water usage effectiveness (WUE) as liters of site water per kWh of IT
-energy and provides heat-management guidance. The adjustable values here are engineering
-assumptions, not universal ASHRAE limits. The API returns water per unit of heat energy
-(thermal-water intensity) and the corresponding site WUE.
-Sources: [ASHRAE data-center handbook](https://handbook.ashrae.org/Handbooks/A23/SI/A23_Ch20/a23_ch20_si.aspx)
-and [cooling-tower handbook](https://handbook.ashrae.org/Handbooks/S24/IP/s24_ch40/s24_ch40_ip.aspx).
-
-## Missingness research
+## Missingness experiment
 
 ```powershell
 .venv\Scripts\python -m src.cli sensitivity `
@@ -123,40 +106,16 @@ and [cooling-tower handbook](https://handbook.ashrae.org/Handbooks/S24/IP/s24_ch
 .venv\Scripts\python scripts/run_notebook.py
 ```
 
-The notebook is [01_missingness_sensitivity_analysis.ipynb](notebooks/01_missingness_sensitivity_analysis.ipynb).
-Its default run uses the synthetic demo. Set `ECOLLATERAL_RESEARCH_DIR` and
-`ECOLLATERAL_TARGET_STATION` to analyze observed MGD station series with a trusted model.
-It exports tables, figures, and an executed notebook into ignored processed-data folders.
+The [notebook](notebooks/01_missingness_sensitivity_analysis.ipynb) compares nearest
+station filling and time interpolation after masking 10%, 25%, and 40% of drought
+readings. Seeded repeats report variance and central 90% change bands against a
+±0.05 MGD tolerance. Groundwater reconstruction is separate and stays in meters.
+Set `ECOLLATERAL_RESEARCH_DIR` and `ECOLLATERAL_TARGET_STATION` for observed inputs
+and a trusted model. Tables, plots, and executed notebooks go into ignored data folders.
 
-The experiment removes 10%, 25%, and 40% of target-station drought readings. Repeated
-tests compare borrowing from a nearby station with filling gaps along a straight line
-through time. A fixed seed makes the repeats reproducible. Results report how much
-predictions change (variance) and central 90% change bands against a ±0.05 MGD limit.
-Groundwater filling is tested separately in meters. Using it instead of river flow
-would require a measured relationship between groundwater and flow.
+## Course materials
 
-## Client and checks
-
-`src/client/forecast.ts` exports a typed `forecastFacility` fetch function and
-`ForecastError`. It works in browser or modern Node runtimes; no frontend is required.
-
-```powershell
-npm ci --ignore-scripts
-npm run typecheck
-.venv\Scripts\python -m ruff check src tests scripts
-.venv\Scripts\python -m ruff format --check src tests scripts
-.venv\Scripts\python -m pytest
-```
-
-Offline tests cover ingestion through the API, physical bounds, train-only imputation,
-artifact reload, citation geography, and stable/unstable missingness cases. GitHub Actions
-runs lint, tests, and TypeScript checking when changes are pushed.
-
-## CSCI 4150 mid-semester review
-
-The [A2 package](docs/a2/README.md) includes the project checkoff, an eight-page
-project evidence review, system diagram showing how information is represented,
-experiment tables and failure cases,
-editable six-slide presentation, four-minute script, and proposed team responsibilities.
-It separates synthetic benchmarks from field evidence and lists the course actions
-that still need confirmation. Start with `docs/a2/dossier.pdf` or the package index.
+The [A2 package](docs/a2/README.md) contains the checkoff, evidence review, system map,
+editable six-slide presentation, talk, and proposed team responsibilities. Historical
+evidence remains dated and separate from field validation. Course submission, access,
+and contribution confirmations still require the team's checks.
