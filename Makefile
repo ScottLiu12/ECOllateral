@@ -11,17 +11,8 @@ test:
 run:
 	$(PYTHON) -m uvicorn src.api.app:app --reload
 
-ingest:
-	$(PYTHON) -m src.cli ingest $(ARGS)
-
-demo:
-	$(PYTHON) -m src.cli demo
-
-train:
-	$(PYTHON) -m src.cli train $(ARGS)
-
-sensitivity:
-	$(PYTHON) -m src.cli sensitivity $(ARGS)
+ingest demo train sensitivity:
+	$(PYTHON) -m src.cli $@ $(ARGS)
 
 notebook:
 	$(PYTHON) scripts/run_notebook.py

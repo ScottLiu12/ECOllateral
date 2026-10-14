@@ -60,7 +60,6 @@ def train(args: argparse.Namespace) -> None:
             evaporative_fraction_max=args.evaporative_fraction_max,
         ),
     )
-    args.output.mkdir(parents=True, exist_ok=True)
     model.save(args.output / "model.joblib")
     report = {"data_kind": model.data_kind, "benchmark": model.benchmark}
     serialized = json.dumps(report, indent=2, allow_nan=False) + "\n"
