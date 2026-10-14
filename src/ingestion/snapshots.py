@@ -1,4 +1,3 @@
-from dataclasses import dataclass
 from pathlib import Path
 
 import numpy as np
@@ -43,12 +42,6 @@ def monthly_snapshots(
     return daily.reset_index(), monthly.reset_index()
 
 
-@dataclass(frozen=True)
-class EnvironmentSnapshot:
-    values: dict
-    warnings: tuple[str, ...]
-
-
 class EnvironmentData:
     def __init__(self, records: pd.DataFrame) -> None:
         self.records = records.copy()
@@ -89,7 +82,7 @@ class EnvironmentData:
 
     def resolve(
         self, month: int, huc8: str | None, latitude: float | None, longitude: float | None
-    ) -> EnvironmentSnapshot:
+    ) -> tuple[dict, tuple[str, ...]]:
         candidates = self.records[self.records.month == month]
         if huc8:
             candidates = candidates[candidates.huc8 == huc8]
@@ -109,4 +102,4 @@ class EnvironmentData:
             row = candidates.iloc[0]
         else:
             raise ValueError("provide huc8 or both coordinates")
-        return EnvironmentSnapshot(row.to_dict(), tuple(warnings))
+        return row.to_dict(), tuple(warnings)

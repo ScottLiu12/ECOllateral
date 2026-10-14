@@ -19,8 +19,7 @@ sys.path.insert(0, str(ROOT))
 from src.api.app import create_app
 from src.demo import create_demo, hydrology_data
 from src.grounding.chunking import PermitSection, chunk_section
-from src.grounding.generator import generate_summary
-from src.grounding.store import PermitStore
+from src.grounding.store import PermitStore, generate_summary
 from src.models.missingness import analyze_missingness
 from src.models.regression import ForecastModel
 

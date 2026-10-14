@@ -1,8 +1,7 @@
 from pathlib import Path
 
 from src.grounding.chunking import PermitSection, chunk_section
-from src.grounding.generator import generate_summary
-from src.grounding.store import PermitStore
+from src.grounding.store import PermitStore, generate_summary
 
 
 def section(huc="02070010", **kwargs):
