@@ -8,7 +8,7 @@ import pandas as pd
 
 BASE_URL = "https://api.waterdata.usgs.gov/ogcapi/v1"
 CFS_TO_MGD = 0.64631688969744
-PARAMETERS = {"00060": "streamflow_mgd", "00065": "gauge_height_m", "72019": "groundwater_depth_m"}
+PARAMETERS = ("00060", "00065", "72019")
 OBSERVATION_COLUMNS = [
     "date",
     "station_id",
@@ -116,10 +116,10 @@ def fetch_huc_observations(
                     output_unit = "m"
                 status = observation.get("approval_status", observation.get("approvals_status"))
                 qualifiers = observation.get("qualifier")
-                if isinstance(status, list):
-                    status = ";".join(status)
-                if isinstance(qualifiers, list):
-                    qualifiers = ";".join(qualifiers)
+                quality = "|".join(
+                    ";".join(value) if isinstance(value, list) else value or ""
+                    for value in (status, qualifiers)
+                )
                 rows.append(
                     {
                         "date": observation["time"],
@@ -130,7 +130,7 @@ def fetch_huc_observations(
                         "unit": output_unit,
                         "longitude": coordinates[0],
                         "latitude": coordinates[1],
-                        "quality": (status or "") + "|" + (qualifiers or ""),
+                        "quality": quality,
                     }
                 )
     frame = pd.DataFrame(rows, columns=OBSERVATION_COLUMNS)
