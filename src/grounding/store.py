@@ -5,7 +5,6 @@ from pathlib import Path
 
 import faiss
 import joblib
-import numpy as np
 from sklearn.feature_extraction.text import TfidfVectorizer
 
 from src.geography import distance_km
@@ -62,11 +61,9 @@ class PermitStore:
     ) -> list[Excerpt]:
         if not 1 <= top_k <= 20:
             raise ValueError("top_k must be between 1 and 20")
-        if not self.index:
+        if self.index is None:
             return []
         vector = self.vectorizer.transform([query]).toarray().astype("float32")
-        if np.linalg.norm(vector) == 0:
-            return []
         scores, positions = self.index.search(vector, len(self.chunks))
         matches = []
         for score, position in zip(scores[0], positions[0], strict=True):
