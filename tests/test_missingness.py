@@ -85,6 +85,29 @@ def test_analysis_detects_unstable_spatial_reconstruction():
     assert spatial.tolerance_coverage < 0.9
 
 
+def test_repeated_masks_preserve_donor_fallbacks_and_input_data():
+    stations, coords, features = hydrology_data()
+    stations.loc[stations.index[::2], "adjacent_a"] = np.nan
+    original = stations.copy(deep=True)
+    trials = []
+
+    def predict(frame):
+        trials.append(frame.historical_streamflow_mgd.copy())
+        return frame.historical_streamflow_mgd.to_numpy() * 0.01
+
+    analyze_missingness(
+        stations, "target", coords, features, predict, rates=(0.4,), repeats=20, seed=5
+    )
+    rng = np.random.default_rng(5)
+    for repeat in range(20):
+        mask = drought_mask(stations.target, features.pdsi <= -2, 0.4, rng)
+        masked = stations.copy()
+        masked.loc[mask, "target"] = np.nan
+        expected = spatial_fill(masked, "target", coords)
+        np.testing.assert_array_equal(trials[1 + 2 * repeat], expected)
+    pd.testing.assert_frame_equal(stations, original)
+
+
 @pytest.mark.parametrize("rate", MISSING_RATES)
 def test_groundwater_depth_gaps_use_the_same_masks_without_unit_conversion(rate):
     stations, coords, features = hydrology_data()
