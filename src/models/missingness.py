@@ -83,6 +83,11 @@ def analyze_missingness(
     drought = drought.fillna(False).astype(bool)
     if not drought.any():
         raise ValueError("no drought records to evaluate")
+    drought_rows = drought.to_numpy()
+    donor_stations = stations.copy()
+    donor_stations[target] = np.nan
+    # Donor readings stay fixed; only the target's mask changes between repeats.
+    donor_values = spatial_fill(donor_stations, target, coordinates)
     baseline_features = features.copy()
     baseline_features["historical_streamflow_mgd"] = stations[target]
     baseline = np.asarray(predict(baseline_features), dtype=float)
@@ -92,15 +97,12 @@ def analyze_missingness(
     summaries, bands = [], []
     for rate in rates:
         draws = {"spatial_nearest": [], "linear_time": []}
-        missing_counts = []
         for _ in range(repeats):
             mask = drought_mask(stations[target], drought, rate, rng)
-            missing_counts.append(int(mask.sum()))
-            masked = stations.copy()
-            masked.loc[mask, target] = np.nan
+            masked = stations[target].mask(mask)
             filled = {
-                "spatial_nearest": spatial_fill(masked, target, coordinates),
-                "linear_time": linear_fill(masked[target]),
+                "spatial_nearest": masked.fillna(donor_values),
+                "linear_time": linear_fill(masked),
             }
             for strategy, values in filled.items():
                 if values.isna().any():
@@ -114,8 +116,10 @@ def analyze_missingness(
         for strategy, values in draws.items():
             predictions = np.stack(values)
             low, high = np.quantile(predictions, [0.05, 0.95], axis=0)
-            deviations = predictions[:, drought.to_numpy()] - baseline[drought.to_numpy()]
+            drought_predictions = predictions[:, drought_rows]
+            deviations = drought_predictions - baseline[drought_rows]
             band_ok = (low >= baseline - tolerance_mgd) & (high <= baseline + tolerance_mgd)
+            drought_band_ok = band_ok[drought_rows]
             coverage = float(np.mean(np.abs(deviations) <= tolerance_mgd))
             summaries.append(
                 {
@@ -123,15 +127,13 @@ def analyze_missingness(
                     "strategy": strategy,
                     "repeats": repeats,
                     "drought_records": int(drought.sum()),
-                    "dropped_per_repeat": missing_counts[0],
+                    "dropped_per_repeat": int(mask.sum()),
                     "prediction_variance_mgd2": float(
-                        np.mean(np.var(predictions[:, drought.to_numpy()], axis=0, ddof=1))
+                        np.mean(np.var(drought_predictions, axis=0, ddof=1))
                     ),
                     "tolerance_coverage": coverage,
-                    "drought_band_within_tolerance_fraction": float(
-                        band_ok[drought.to_numpy()].mean()
-                    ),
-                    "stable": bool(coverage >= 0.9 and band_ok[drought.to_numpy()].all()),
+                    "drought_band_within_tolerance_fraction": float(drought_band_ok.mean()),
+                    "stable": bool(coverage >= 0.9 and drought_band_ok.all()),
                 }
             )
             bands.append(
@@ -144,7 +146,7 @@ def analyze_missingness(
                         "band90_low_mgd": low,
                         "band90_high_mgd": high,
                         "prediction_std_mgd": predictions.std(axis=0, ddof=1),
-                        "drought": drought.to_numpy(),
+                        "drought": drought_rows,
                     }
                 )
             )
