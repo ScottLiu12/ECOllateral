@@ -2,6 +2,7 @@
 
 Captured October 7, 2026 from implementation `125aa40`. `manifest.json` records exact
 source/result fingerprints (SHA-256), random seed, Python version, and capture commit.
+Source hashes describe that original implementation, not the refactored source.
 
 These are component tests for a regional ecosystem impact project. Cooling-water
 results measure one development pressure. No regional reserve balance, ecosystem
@@ -21,10 +22,10 @@ by this evidence. See `../../project-scope.md` for the regional goal and remaini
 | Separate research | groundwater-reconstruction.csv | Gap-filling error in meters, separate from water use in MGD |
 | Tests | test-results.txt | Local suite: 51 passing tests and one upstream deprecation warning |
 
-Refresh from the repository root with:
+Capture a new snapshot without replacing the historical results:
 
 ```powershell
-.venv\Scripts\python.exe scripts\a2\collect_evidence.py
+.venv\Scripts\python.exe scripts\a2\collect_evidence.py --output data/processed/new-evidence
 ```
 
 The script uses local made-up benchmark/research results and the saved real-data
@@ -32,7 +33,7 @@ download example. If those ignored files are missing, first follow the demo, tra
 missing-data, and download commands in the project README and validation notes.
 This collects a local evidence snapshot. It does not fetch external data or submit coursework.
 
-After refreshing, check rounded figures in the dossier/slides and rebuild the exports.
+Omit `--output` to replace this folder deliberately. After refreshing, check rounded figures in the dossier/slides and rebuild the exports.
 The manifest fingerprints the captured inputs/results, not itself. Updating evidence
 does not automatically update the slides. The dossier does not distribute pickled
 model objects. The repository's source code defines the software's actual behavior.

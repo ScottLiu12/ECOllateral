@@ -1,11 +1,13 @@
 # Standalone runner adds the repository root before importing project modules.
 # ruff: noqa: E402
+import argparse
 import hashlib
 import json
 import shutil
 import subprocess
 import sys
 from dataclasses import asdict, replace
+from datetime import date
 from pathlib import Path
 from types import SimpleNamespace
 
@@ -29,7 +31,9 @@ def write_json(path, value):
 
 
 def main():
-    output = ROOT / "docs/a2/evidence"
+    parser = argparse.ArgumentParser(description="Capture local prototype evidence")
+    parser.add_argument("--output", type=Path, default=ROOT / "docs/a2/evidence")
+    output = parser.parse_args().output
     output.mkdir(parents=True, exist_ok=True)
     demo = ROOT / "data/processed/demo"
     if not (demo / "model.joblib").exists():
@@ -156,19 +160,14 @@ def main():
 
     stations, coordinates, features = hydrology_data()
     research = ROOT / "data/processed/research"
-    if not (research / "missingness_summary.csv").exists():
-        result = analyze_missingness(
-            stations,
-            "target",
-            coordinates,
-            features,
-            lambda frame: np.array(
-                [p.predicted_mgd for p in model.predict(frame, "cooling_tower")]
-            ),
-        )
-        result.summary.to_csv(output / "missingness-summary.csv", index=False)
-    else:
-        shutil.copyfile(research / "missingness_summary.csv", output / "missingness-summary.csv")
+    result = analyze_missingness(
+        stations,
+        "target",
+        coordinates,
+        features,
+        lambda frame: np.array([p.predicted_mgd for p in model.predict(frame, "cooling_tower")]),
+    )
+    result.summary.to_csv(output / "missingness-summary.csv", index=False)
     for original, name in [
         ("missingness_sensitivity.png", "missingness-sensitivity.png"),
         ("missingness_band90.png", "missingness-band90.png"),
@@ -228,8 +227,8 @@ def main():
     write_json(
         output / "manifest.json",
         {
-            "review_date": "2026-10-07",
-            "implementation_snapshot_commit": git("rev-parse", "125aa40"),
+            "review_date": date.today().isoformat(),
+            "implementation_snapshot_commit": git("rev-parse", "HEAD"),
             "capture_commit": git("rev-parse", "HEAD"),
             "python": sys.version,
             "seed": 42,
