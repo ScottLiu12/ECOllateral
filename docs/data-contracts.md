@@ -1,11 +1,6 @@
-# Data contracts: what each input file must contain
+# Data contracts
 
-These rules keep units, dates, and sources consistent. For a short explanation of
-the system and terms, see `a2/presentation-script.md`. Exact field names stay unchanged.
-
-ECOllateral's goal is regional ecosystem impact assessment. These contracts describe
-the existing cooling-water component and environmental data, not a completed regional
-stress model. `project-scope.md` separates the area-wide goal from implemented behavior.
+File schemas for the current cooling-water prototype.
 
 ## Training CSV
 
@@ -112,3 +107,33 @@ random choices of missing readings; it is not a 90% accuracy guarantee against m
 facility water use. These random masks do not cover whole-station outages, long missing
 blocks, or extreme readings being more likely to disappear. Groundwater filling stays
 in meters and is tested separately from changes in MGD forecasts.
+
+
+## Sources and rights
+
+| Source | Exact download / format | Evidence we have | What it does not show |
+| --- | --- | --- | --- |
+| USGS Water Data OGC API | `https://api.waterdata.usgs.gov/ogcapi/v1/collections/monitoring-locations/items` and `/daily/items`; HUC prefix and chosen station ID | Two-day river-flow parsing check: USGS-01646500, HUC8 02070008 | A gauge measures one place; it does not show how much water a town can allocate |
+| NOAA NCEI GSOD | `https://www.ncei.noaa.gov/access/services/data/v1`; `dataset=global-summary-of-the-day`, chosen station and dates | Two weather readings: GSOD 72403093738, July 1-2, 2024 | Wet-bulb temperature is estimated using a sea-level approximation, not directly measured |
+| NOAA nClimDiv | `https://www.ncei.noaa.gov/monitoring-content/data/us/climdiv/monthly/current/`; newest `climdiv-pdsidv` file | Monthly drought-score (PDSI) parser and source filename | Division 4401's location match to the gauge/facility is not validated |
+| Made-up facility observations | Fixed-seed generator in `src/demo.py`, 1,600 rows per cooling type | Model comparison and demo forecast | Generated water-use targets cannot prove real-facility accuracy |
+| Made-up station readings | 365 dates, a target and two similar neighbors | Missing-data experiment | Random target gaps do not cover multiple stations failing together or extreme readings being more likely to disappear |
+| Permit sections | User-supplied JSONL: section, source URL, HUC or coordinate radius | Fictional `example.org` test documents | No real, checked EPA/EIA/municipal collection has been added to search yet |
+
+The observed parsing example used July 1-2, 2024. Preserve units, station IDs,
+quality flags, source filenames, and dates. Provisional/estimated flags remain visible;
+they are not all automatically rejected by the forecast.
+
+USGS [licensing guidance](https://www.usgs.gov/data-management/data-licensing) and
+NOAA's [FAQ](https://www.noaa.gov/office-education/outreach-communication/faq) were checked
+on October 7, 2026 for the public products used here. Check each new product's notices,
+third-party rights, and permit-sharing terms. The project cites ASHRAE and implements
+its own rules; it does not distribute handbook passages. No private accounts,
+commercial scraping, surveys, instructor approval, or IRB decision are claimed.
+Before expanding to scraping or studies involving people, confirm course/institutional
+requirements with the instructor.
+
+The original [evidence manifest](a2/evidence/manifest.json) records commits, seed,
+Python version, and SHA-256 fingerprints for the October 7 snapshot. Source hashes
+refer to that implementation, not today's refactored files. Selected results are
+portable; raw data and trusted model objects stay in ignored data folders.
