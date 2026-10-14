@@ -5,8 +5,7 @@ import pandas as pd
 import pytest
 
 from src.models.evaluation import evaluate
-from src.models.feature_pipeline import FEATURE_COLUMNS, build_features
-from src.models.regression import ForecastModel, train_model
+from src.models.regression import FEATURE_COLUMNS, ForecastModel, build_features, train_model
 
 
 def facility():

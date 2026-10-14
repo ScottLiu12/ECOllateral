@@ -5,8 +5,7 @@ import pandas as pd
 
 from src.grounding.chunking import PermitSection, chunk_section
 from src.grounding.store import PermitStore
-from src.models.feature_pipeline import seasonal_factor
-from src.models.regression import train_model
+from src.models.regression import seasonal_factor, train_model
 from src.rules.thermodynamic import CoolingType
 
 
