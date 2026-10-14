@@ -163,7 +163,7 @@ def train_model(
                 random_state=seed,
             ),
         }
-        fitted, calibration_scores, results = {}, {}, {}
+        fitted, results = {}, {}
         for name, estimator in candidates.items():
             pipeline = Pipeline(
                 [
@@ -174,23 +174,20 @@ def train_model(
             pipeline.fit(x_train, y_train)
             calibration = pipeline.predict(x_cal)
             test = pipeline.predict(x_test)
-            fitted[name] = pipeline
-            calibration_scores[name] = evaluate(y_cal, calibration)
+            bounded_test = _clip_predictions(test, x_test, cooling, assumptions)
+            fitted[name] = (pipeline, calibration, bounded_test)
             results[name] = {
-                "calibration": calibration_scores[name].to_dict(),
+                "calibration": evaluate(y_cal, calibration).to_dict(),
                 "test_raw": evaluate(y_test, test).to_dict(),
-                "test_bounded": evaluate(
-                    y_test, _clip_predictions(test, x_test, cooling, assumptions)
-                ).to_dict(),
+                "test_bounded": evaluate(y_test, bounded_test).to_dict(),
             }
-        selected = min(calibration_scores, key=lambda name: calibration_scores[name].rmse_mgd)
-        pipeline = fitted[selected]
-        cal_pred = _clip_predictions(pipeline.predict(x_cal), x_cal, cooling, assumptions)
+        selected = min(results, key=lambda name: results[name]["calibration"]["rmse_mgd"])
+        pipeline, calibration, test_pred = fitted[selected]
+        cal_pred = _clip_predictions(calibration, x_cal, cooling, assumptions)
         residuals = np.abs(y_cal - cal_pred)
         # Split conformal finite-sample quantile; calibration points never enter fitting.
         level = min(1, np.ceil((len(residuals) + 1) * 0.9) / len(residuals))
         radius = float(np.quantile(residuals, level, method="higher"))
-        test_pred = _clip_predictions(pipeline.predict(x_test), x_test, cooling, assumptions)
         coverage = float(np.mean(np.abs(y_test - test_pred) <= radius))
         models[cooling] = CoolingModel(
             estimator=pipeline,
