@@ -52,7 +52,7 @@ class ForecastModel:
         if not np.isfinite(raw).all():
             raise ValueError("model produced a non-finite forecast")
         results = []
-        for (_, row), value in zip(features.iterrows(), raw, strict=True):
+        for row, value in zip(features.itertuples(index=False), raw, strict=True):
             bounds = water_bounds(
                 row.facility_mw, cooling_type, row.dry_bulb_c, row.wet_bulb_c, self.assumptions
             )
@@ -60,10 +60,10 @@ class ForecastModel:
             warnings = list(bounds.warnings)
             if clipped != value:
                 warnings.append("constraint_violation")
-            if row.isna().any():
+            if any(pd.isna(feature) for feature in row):
                 warnings.append("missing_environmental_features_imputed")
             if any(
-                pd.notna(row[name]) and not low <= row[name] <= high
+                pd.notna(getattr(row, name)) and not low <= getattr(row, name) <= high
                 for name, (low, high) in model.feature_ranges.items()
             ):
                 warnings.append("outside_training_feature_range")
