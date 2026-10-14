@@ -19,7 +19,7 @@ Terms and the short project explanation are in `../presentation-script.md`.
 | Item | Status | Project response / evidence |
 | --- | --- | --- |
 | Identify public data, permitted scraping, or survey requirements | Documented for current scope | USGS/NOAA public APIs/files; no surveys or private scraping; check future permit sources |
-| Exactly document where data come from and mark public datasets | Documented | `data-governance.md`: exact download URLs, station IDs, dates, and evidence file fingerprints |
+| Exactly document where data come from and mark public datasets | Documented | `../../data-contracts.md`: exact download URLs, station IDs, dates, and evidence file fingerprints |
 | Confirm instructor permissions for scraping / IRB before surveys | Pending if scope expands | No approval is claimed; Scott coordinates instructor clarification before new scraping or surveys |
 | Clean flow into system components | Implemented / tested | Download -> monthly inputs -> fill gaps from training data -> predict -> check limits -> find permit quotes -> return JSON |
 

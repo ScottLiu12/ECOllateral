@@ -37,12 +37,10 @@ Run from the repository root with the project virtual environment:
 
 Evidence capture refreshes results, test logs, and fingerprints in `evidence/`;
 see [the evidence guide](evidence/README.md) before replacing the historical snapshot.
-The document builder needs `reportlab` and `pypdfium2`. It exports the dossier,
+Install `reportlab` and `pypdfium2` in the Python environment used for document exports. It exports the dossier,
 checkoff, and SVG/PNG system map from `source/`.
 
 Edit slides directly in `review-slides-simplified.pptx` and export their PDF in
-PowerPoint. The builder also includes reviewed slide PNGs if present in
-`data/processed/a2-build/slides/final-render/`; refresh or remove stale previews first.
-Chart workbooks round to ten significant digits; source CSVs retain full precision.
+PowerPoint. Chart workbooks round to ten significant digits; source CSVs retain full precision.
 After rebuilding, reconcile quoted results, inspect each exported page, and update
 `source/verification-notes.md`.
