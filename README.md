@@ -6,7 +6,7 @@ gallons (MGD), combines USGS/NOAA observations with physical limits, and retriev
 location-matched permit quotations. It does not yet calculate municipal reserves or a
 validated ecosystem stress score.
 
-The project uses Python, FastAPI, pandas, RandomForest/XGBoost, and TF-IDF/FAISS.
+The project uses Python, FastAPI, pandas, RandomForest/XGBoost, and word matching for permits.
 A small TypeScript fetch client is included; there is no frontend or hosted AI service.
 [Data contracts](docs/data-contracts.md) describe inputs, units, and splits.
 

@@ -43,9 +43,12 @@ from the latest listed nClimDiv file. A climate division must be selected separa
 from a HUC. Monthly medians describe historical scenarios, not future weather.
 Coordinate lookup uses a configured station within 50 km and labels the approximation.
 
-TF-IDF/FAISS ranks section text. HUC or explicit coordinate-radius eligibility is checked
-before selecting top-k. Citations retain exact text and source offsets. The summary
-quotes permit numbers without interpreting them or deciding legal compliance.
+Permit search gives words a weight using scikit-learn's TF-IDF vectorizer, then
+compares the query directly with each passage. No separate search library or index
+file is needed. Location checks still limit matches to the requested HUC or radius.
+Citations retain exact text and offsets. Permit numbers are quoted without interpretation.
+Saving writes one metadata file; older metadata files still load, and their old FAISS
+index files are no longer used. The October 7 evidence records the earlier FAISS search.
 
 ## Missingness study
 

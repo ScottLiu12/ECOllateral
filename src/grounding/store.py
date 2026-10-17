@@ -3,8 +3,8 @@ from dataclasses import dataclass
 from math import isfinite
 from pathlib import Path
 
-import faiss
 import joblib
+import numpy as np
 from sklearn.feature_extraction.text import TfidfVectorizer
 
 from src.geography import distance_km
@@ -23,20 +23,11 @@ class PermitStore:
         self.vectorizer = TfidfVectorizer(
             ngram_range=(1, 2), max_features=4096, stop_words="english"
         )
-        self.index = None
+        self.vectors = None
         if chunks:
-            vectors = (
-                self.vectorizer.fit_transform(
-                    [
-                        f"{chunk.permit.title} {chunk.permit.section} {chunk.text}"
-                        for chunk in chunks
-                    ]
-                )
-                .toarray()
-                .astype("float32")
+            self.vectors = self.vectorizer.fit_transform(
+                [f"{chunk.permit.title} {chunk.permit.section} {chunk.text}" for chunk in chunks]
             )
-            self.index = faiss.IndexFlatIP(vectors.shape[1])
-            self.index.add(vectors)
 
     @classmethod
     def from_jsonl(cls, path: Path) -> "PermitStore":
@@ -61,12 +52,15 @@ class PermitStore:
     ) -> list[Excerpt]:
         if not 1 <= top_k <= 20:
             raise ValueError("top_k must be between 1 and 20")
-        if self.index is None:
+        if self.vectors is None:
             return []
-        vector = self.vectorizer.transform([query]).toarray().astype("float32")
-        scores, positions = self.index.search(vector, len(self.chunks))
+        # TF-IDF normalizes each row, so a dot product measures shared-word similarity.
+        vector = self.vectorizer.transform([query])
+        scores = (self.vectors @ vector.T).toarray().ravel()
         matches = []
-        for score, position in zip(scores[0], positions[0], strict=True):
+        # Prefer later chunks on a tie, matching the previous search implementation.
+        for position in np.argsort(scores, kind="stable")[::-1]:
+            score = scores[position]
             if score <= 0:
                 break
             chunk = self.chunks[int(position)]
@@ -87,17 +81,18 @@ class PermitStore:
     def save(self, directory: Path) -> None:
         directory.mkdir(parents=True, exist_ok=True)
         joblib.dump((self.chunks, self.vectorizer), directory / "metadata.joblib")
-        if self.index is not None:
-            faiss.write_index(self.index, str(directory / "index.faiss"))
 
     @classmethod
     def load(cls, directory: Path) -> "PermitStore":
         store = cls([])
         store.chunks, store.vectorizer = joblib.load(directory / "metadata.joblib")
         if store.chunks:
-            store.index = faiss.read_index(str(directory / "index.faiss"))
-            if store.index.ntotal != len(store.chunks):
-                raise ValueError("permit index and metadata do not match")
+            store.vectors = store.vectorizer.transform(
+                [
+                    f"{chunk.permit.title} {chunk.permit.section} {chunk.text}"
+                    for chunk in store.chunks
+                ]
+            )
         return store
 
 
@@ -121,11 +116,14 @@ class Narrative:
 def generate_summary(predicted_mgd: float, excerpts: list[Excerpt]) -> Narrative:
     if not isfinite(predicted_mgd) or predicted_mgd < 0:
         raise ValueError("the summary needs an already calculated, nonnegative forecast")
-    lead = f"Calculated daily on-site cooling consumption: {predicted_mgd:.4f} MGD."
+    lead = (
+        f"Estimated cooling water use: {predicted_mgd * 1_000_000:,.0f} gallons per day "
+        f"({predicted_mgd:.4f} MGD)."
+    )
     if not excerpts:
         return Narrative(
-            lead + " No indexed regulatory excerpt matches this location. "
-            "Local permit and allocation review is required.",
+            lead
+            + " No local permit passage was found. Check the site's permit and water allocation.",
             (),
             ("no_regulatory_grounding",),
         )
@@ -143,7 +141,7 @@ def generate_summary(predicted_mgd: float, excerpts: list[Excerpt]) -> Narrative
     # Extractive text only. Permit numbers and caps are quoted, never parsed or compared.
     paragraphs = [
         lead,
-        "Retrieved excerpts for review; applicability is not a compliance decision.",
+        "Permit passages for this location (limits are not interpreted):",
     ]
     for citation in citations:
         label = "Example document" if citation.is_example else "Document"
