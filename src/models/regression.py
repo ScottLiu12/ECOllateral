@@ -139,14 +139,14 @@ class ForecastModel:
         return model
 
 
-def _clip_predictions(
-    values: np.ndarray, features: pd.DataFrame, cooling: str, assumptions: ThermalAssumptions
-) -> np.ndarray:
+def _prediction_limits(
+    features: pd.DataFrame, cooling: str, assumptions: ThermalAssumptions
+) -> tuple[list[float], list[float]]:
     bounds = [
         water_bounds(row.facility_mw, cooling, row.dry_bulb_c, row.wet_bulb_c, assumptions)
         for row in features.itertuples(index=False)
     ]
-    return np.clip(values, [bound.min_mgd for bound in bounds], [bound.max_mgd for bound in bounds])
+    return [bound.min_mgd for bound in bounds], [bound.max_mgd for bound in bounds]
 
 
 def train_model(
@@ -189,6 +189,8 @@ def train_model(
         y_train, y_cal, y_test = [subset["consumption_mgd"].to_numpy() for subset in subsets]
         if x_train.isna().all().any():
             raise ValueError(f"{cooling}: a training feature has no observed values")
+        cal_limits = _prediction_limits(x_cal, cooling, assumptions)
+        test_limits = _prediction_limits(x_test, cooling, assumptions)
         candidates = {
             "random_forest": RandomForestRegressor(
                 n_estimators=180,
@@ -218,7 +220,7 @@ def train_model(
             pipeline.fit(x_train, y_train)
             calibration = pipeline.predict(x_cal)
             test = pipeline.predict(x_test)
-            bounded_test = _clip_predictions(test, x_test, cooling, assumptions)
+            bounded_test = np.clip(test, *test_limits)
             fitted[name] = (pipeline, calibration, bounded_test)
             results[name] = {
                 "calibration": evaluate(y_cal, calibration).to_dict(),
@@ -227,7 +229,7 @@ def train_model(
             }
         selected = min(results, key=lambda name: results[name]["calibration"]["rmse_mgd"])
         pipeline, calibration, test_pred = fitted[selected]
-        cal_pred = _clip_predictions(calibration, x_cal, cooling, assumptions)
+        cal_pred = np.clip(calibration, *cal_limits)
         residuals = np.abs(y_cal - cal_pred)
         # Split conformal finite-sample quantile; calibration points never enter fitting.
         level = min(1, np.ceil((len(residuals) + 1) * 0.9) / len(residuals))

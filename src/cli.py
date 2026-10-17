@@ -91,7 +91,7 @@ def sensitivity(args: argparse.Namespace) -> None:
 def main() -> None:
     parser = argparse.ArgumentParser(description="ECOllateral ingestion, training, and research")
     commands = parser.add_subparsers(dest="command", required=True)
-    demo_parser = commands.add_parser("demo", help="create explicitly synthetic, offline artifacts")
+    demo_parser = commands.add_parser("demo", help="create synthetic offline demo artifacts")
     demo_parser.add_argument("--output", type=Path, default=Path("data/processed/demo"))
 
     ingestion = commands.add_parser("ingest", help="fetch public USGS/NOAA observations")
@@ -137,7 +137,7 @@ def main() -> None:
     args = parser.parse_args()
     if args.command == "demo":
         create_demo(args.output)
-        print(f"Synthetic demo artifacts saved to {args.output}. These are not field validation.")
+        print(f"Synthetic demo artifacts saved to {args.output}")
     elif args.command == "ingest":
         ingest(args)
     elif args.command == "train":

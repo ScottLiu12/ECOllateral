@@ -4,6 +4,8 @@ from dataclasses import dataclass
 import numpy as np
 import pandas as pd
 
+from src.geography import distance_km
+
 MISSING_RATES = (0.10, 0.25, 0.40)
 
 
@@ -39,9 +41,11 @@ def spatial_fill(stations: pd.DataFrame, target: str, coordinates: pd.DataFrame)
         raise ValueError("station coordinates must be finite")
     if not coords.latitude.between(-90, 90).all() or not coords.longitude.between(-180, 180).all():
         raise ValueError("invalid station coordinates")
-    lat, lon = np.radians(coords.latitude), np.radians(coords.longitude)
-    distances = np.sin((lat - lat[target]) / 2) ** 2 + (
-        np.cos(lat) * np.cos(lat[target]) * np.sin((lon - lon[target]) / 2) ** 2
+    distances = distance_km(
+        coords.loc[target, "latitude"],
+        coords.loc[target, "longitude"],
+        coords.latitude,
+        coords.longitude,
     )
     result = stations[target].copy()
     for donor in distances.drop(target).sort_values().index:

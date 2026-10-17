@@ -90,9 +90,7 @@ class EnvironmentData:
             raise ValueError("no environmental snapshot for this location and seasonal month")
         warnings = ["historical_monthly_conditions_not_a_weather_forecast"]
         if latitude is not None and longitude is not None:
-            distances = candidates.apply(
-                lambda row: distance_km(latitude, longitude, row.latitude, row.longitude), axis=1
-            )
+            distances = distance_km(latitude, longitude, candidates.latitude, candidates.longitude)
             if distances.min() > 50:
                 raise ValueError("no representative environmental station within 50 km")
             row = candidates.loc[distances.idxmin()]

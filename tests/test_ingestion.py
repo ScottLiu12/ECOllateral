@@ -5,8 +5,18 @@ import numpy as np
 import pandas as pd
 import pytest
 
+from src.geography import distance_km
 from src.ingestion.noaa_client import fetch_daily_weather, fetch_pdsi, wet_bulb_from_dewpoint
 from src.ingestion.usgs_client import CFS_TO_MGD, fetch_huc_observations, station_series
+
+
+def test_distances_handle_scalars_station_series_and_antipodes():
+    assert distance_km(0, 0, 0, 1) == pytest.approx(111.19508)
+    latitudes = pd.Series([0, 0, 90], index=["same", "opposite", "pole"])
+    longitudes = pd.Series([0, 180, 0], index=latitudes.index)
+    distances = distance_km(0, 0, latitudes, longitudes)
+    assert distances.index.equals(latitudes.index)
+    np.testing.assert_allclose(distances, [0, np.pi * 6371.0088, np.pi * 6371.0088 / 2])
 
 
 def test_usgs_huc_pagination_conversion_and_quality():

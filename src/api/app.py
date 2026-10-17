@@ -96,21 +96,16 @@ def forecast(request: ForecastRequest, resources: ForecastResources) -> Forecast
         longitude=request.longitude,
     )
     narrative = generate_summary(prediction.predicted_mgd, excerpts)
-    bound = prediction.bounds
+    bounds = asdict(prediction.bounds)
+    assumptions = bounds.pop("assumptions")
+    bounds.pop("warnings")
     warnings = list(dict.fromkeys((*snapshot_warnings, *prediction.warnings, *narrative.warnings)))
     if row["data_kind"] == "synthetic":
         warnings.append("synthetic_environment_not_observed_conditions")
     return ForecastResponse(
         huc8=row["huc8"],
         seasonal_target=request.seasonal_target,
-        thermodynamic_bounds={
-            "min_mgd": bound.min_mgd,
-            "max_mgd": bound.max_mgd,
-            "thermal_load_kwh_day": bound.thermal_load_kwh_day,
-            "max_liters_per_thermal_kwh": bound.max_liters_per_thermal_kwh,
-            "max_site_wue_l_per_it_kwh": bound.max_site_wue_l_per_it_kwh,
-            **asdict(bound.assumptions),
-        },
+        thermodynamic_bounds={**bounds, **assumptions},
         predicted_collateral_stress_mgd=prediction.predicted_mgd,
         raw_prediction_mgd=prediction.raw_mgd,
         heldout_r2=prediction.heldout_r2,
