@@ -1,140 +1,80 @@
-# Four-minute talk and Q&A
+# Four-minute talk
 
-Allow 4 minutes for the talk and
-2 minutes for questions.
+Six slides, followed by two minutes for questions. Speaking roles: Shaun, slides 1-3;
+Troy, slides 4-5; Scott, slide 6.
 
-## Slide 1: problem & users — ecosystems across an area
+## Slide 1: local water and new development
 
-ECOllateral asks how new development could affect an area's water supply and rivers
-through the year. It is for town planners, researchers, and water providers. Our working
-demo estimates cooling water use, checks physical limits, and adds local permit quotes.
-Cooling is one example. Current tests use computer-generated water-use examples to
-check the software. Next, collect real measurements, train on them, and test on records
-the model has not seen. We still need area water totals and river needs.
+ECOllateral asks how a new building could affect local water supplies and rivers.
+It is for town planners, researchers, and water providers. We started with one
+part of the problem: water used to cool equipment. The current program estimates
+that daily use and shows local permit quotes. Our examples use generated water-use
+data. We need actual measurements before we can judge how well it works at real sites.
 
-## Slide 2: semantic map — current system
+## Slide 2: how the program works
 
-The semantic map shows what each part means and how it connects. Six inputs describe
-size, two temperatures, river flow, drought, and season. AI predicts cooling water use.
-Rules check power and heat limits. The text path turns words into numbers to find local
-permit quotes with sources. All four location tests pass. Forced wrong numbers move
-inside the limits and trigger warnings. A person reviews the permit rules.
+There are four steps. First, enter the equipment size, cooling method, place, and
+month. The program adds weather and river readings. Second, a model learns from
+examples and estimates water use. Third, a separate calculation checks that the
+number fits the cooling assumptions, and a word search finds local permit passages.
+Finally, the program returns daily water use, a range, warnings, and the quotes.
+It does not decide whether a project meets its permit.
 
-## Slide 3: experiment E1 — comparing AI models
+## Slide 3: which model makes smaller errors?
 
-We tested two AI models on the same made-up water-use values. RF means RandomForest.
-Lower bars mean smaller errors. XGBoost made smaller errors for both cooling types. Tower error fell from about
-0.00489 to 0.00367 million gallons per day. Direct cooling error fell from 0.00384 to
-0.00319. Each test group has 333 rows. We use the oldest 60 percent of dates to teach
-the model, the next 20 percent to choose it and set its range, and the last 20 percent
-to test it. We keep RandomForest to compare. Dry air cooling uses zero water here.
-Next, train on real water-use measurements and test on separate real records.
+We compared two models called RandomForest and XGBoost. Both learn from examples.
+The chart shows the average size of their mistakes, in gallons per day. Lower is
+better. For cooling towers, XGBoost reduced the average error from about 4,900 to
+3,700 gallons per day. It also did better for direct evaporation. Each method had
+333 test examples. We kept XGBoost, but this result is still against generated answers.
 
-## Slide 4: experiment E2 — missing readings
+## Slide 4: what if river readings are missing?
 
-We removed 10, 25, and 40 percent of drought readings and repeated each test 50 times.
-We filled gaps using a nearby station or a straight line between readings. Lower bars
-mean predictions changed less. All main tests stayed within 0.05 million gallons per
-day of the result with no missing data. Our made-up stations act alike. What if a
-neighbor reads too high? In a separate test, we added 100 million gallons per day to
-neighbor readings. Only 60.3 percent stayed within limits. That test uses a simple
-formula. Next, test bad readings, long gaps, and stations losing data together.
+We tried two ways to fill a missing reading: use a nearby station, or use the
+readings before and after the gap. With similar stations, both worked well in our
+generated examples. Then we made the nearby readings too high. In that separate
+test, the nearby-station method stayed close only 60 percent of the time. Filling
+between dates reached about 99 percent. That test used a simple formula. The lesson
+is that a nearby reading is useful only if it represents the same conditions.
 
-## Slide 5: experiment E5 — prediction ranges
+## Slide 5: did the prediction range work?
 
-A prediction range gives a low and high estimate. Our goal was to include 90 percent
-of test values. We reached 88.3 percent for towers and 88.0 percent for direct cooling.
-That is below our goal. We have not checked whether the difference is more than chance.
-The fit score, called R-squared, is high, but it cannot promise a useful range.
-We used the same data to choose the model and set its range. Next, use separate data
-for those jobs and test other facilities, dates, and drought conditions.
+The program gives a low and high estimate. We wanted that range to contain 90 out
+of every 100 test answers. It contained about 88 for both cooling methods. That
+missed our goal. We also used the same data to choose the model and set its range.
+We should separate those jobs and test again with measured water use. A good model
+fit alone does not tell us whether its range is useful.
 
-## Slide 6: decisions & next question
+## Slide 6: what we will keep and improve
 
-We keep XGBoost because its
-errors are smaller, along with the tested limits and location checks. We will improve
-gap filling and prediction ranges because the bad-reading test and the 90 percent goal
-show weaknesses. Next, collect real measurements, train on them, and test new areas.
-We must add water coming in, water used and returned, and river needs.
-A cooling-water estimate alone cannot show ecosystem health. We will collect real area measurements before comparing more AI methods. Shaun leads coding. Troy supports data and source quotes. Scott supports
-tests and results. Our next question:
-can training on real data predict effects on water reserves and rivers in a new area
-through the year?
+We will keep the model comparison, physical checks, and local permit quotes.
+We will improve how missing readings and prediction ranges are handled. We will
+wait on more complicated AI while we collect measured water-use examples. The next
+step is to train on some sites and test on different sites. To answer the bigger
+local-water question, we also need other water uses, water returned, available
+supply, and the water rivers need.
 
-## Short answers for Q&A
+## Short answers for questions
 
-- **What is a watershed?** Land that drains into the same river system. Its weather
-  and water use affect the river and nearby water supplies.
-- **What does "semantic map" mean?** A diagram showing what the information means
-  and how the parts use it. Features are inputs. The target is the value we want
-  to predict. Word vectors turn text into numbers. Metadata means source and location details.
-
-- **Is this a data-center project?** We study how development affects an area's
-  ecosystem. Cooling water is one example in the current demo.
-- **Do you already predict ecosystem health or town reserves?** No. We need area
-  water totals, river needs, and real tests before we can make those claims.
-- **Did you test language models or groundwater recharge?** No. Those are planned
-  studies. Our tests use made-up cooling and river-flow values. Groundwater depth
-  is a separate measurement, in meters. It does not tell us how fast water is replaced.
-
-- **Is the accuracy result real-world evidence?** No. Water-use targets are made up.
-  The two-day public-data download tests parsing and units, not forecast accuracy.
-- **Should we train on real data?** Yes. Generated examples check the first prototype.
-  The finished model needs measured inputs and outcomes. We will train on historical
-  records and test on different records and areas. Public weather or river readings
-  alone cannot tell us the correct water-use or area-impact answer for training.
-- **Why XGBoost?** It had smaller errors when we chose the models and when we tested
-  them. The selection score is RMSE, which gives large errors more weight. Keep
-  RandomForest to compare against future results.
-- **What does 90% mean?** The intended fraction of values inside the prediction range.
-  We measured about 88%. Missing-data tests measure how much results change when
-  readings disappear. That is a different question.
-- **Is 88% meaningfully worse than 90%?** We did not check whether the difference
-  is more than chance. We missed the goal in this test. Next, set ranges using
-  separate data and show how much the measured percentage could vary.
-- **What AI did you actually test?** RandomForest and XGBoost predict numbers.
-  We also tested gap filling, physical rules, and permit word search. TF-IDF turns
-  words into numbers. FAISS searches them. Source and location details help select
-  the right quotes. We did not compare neural models or language models that write
-  new answers.
-- **Do physical limits guarantee the right answer?** No. They enforce our assumptions
-  about power, heat, and which water uses count. PUE means total facility power
-  divided by equipment power. Those assumptions need engineering review.
-- **Does a permit match prove compliance?** No. It gives a source quotation for a
-  person to review. We still need to check real permits and whether their rules
-  apply to the request.
-- **Can a watershed code stand in for facility coordinates?** No. A watershed match
-  and a match within a distance are different. A river station's location cannot
-  tell us the facility's exact location. The watershed code is called HUC8.
-- **Why keep groundwater in meters?** It is a depth. Turning it into MGD needs geometry
-  and a model of how water moves. Depth and flow measure different things.
-- **Can you fill a live gap with a straight line?** Our historical method can use a
-  later reading. A live forecast needs a method using only readings available then.
-
-## Reference sheet
-
-Full experiment methods and exact results are in [the dossier](source/dossier.md).
-Use [assignment coverage](assignment-coverage.md) for required sections and timing,
-and [team contributions](team-contributions.md) for speaking roles.
-
-| Term | Meaning |
-| --- | --- |
-| MGD / MW | Million US gallons per day / installed IT megawatts |
-| HUC8 / PDSI | Eight-digit watershed code / drought index; <= -2 defines drought here |
-| PUE / WUE | Total facility power divided by IT power / liters of site water per IT kWh |
-| Feature / target | Model input / measured value the model learns to predict |
-| MAE / RMSE | Average error size / error score giving large misses more weight |
-| R² / coverage | Model fit / fraction of test values inside a range |
-| Calibration | Using example errors to set the prediction range |
-| Sensitivity band | Changes caused by missing readings, not future forecast accuracy |
-| TF-IDF / FAISS | Word scores represented numerically / vector-search library |
-| Metadata | Document source, section, and location details |
-
-Historical results to keep ready: 1,600 generated rows per cooling type; seed 42;
-60/20/20 date split; 333 test rows per type. Tower MAE changes from 0.004890 to
-0.003668 MGD; direct evaporation from 0.003842 to 0.003191. Coverage is 294/333
-(88.29%) and 293/333 (87.99%). The drought study uses 365 dates, 121 drought dates,
-50 repeats, and ±0.05 MGD tolerance. The separate biased-donor diagnostic uses
-`0.01 * streamflow`, 40% gaps, and 20 repeats: 60.33% spatial and 98.60% linear
-coverage. A 40 MW, 30/20 °C case has physical limits 0–0.446484 MGD; the example
-API forecast is about 0.204339 MGD. These remain October 7 synthetic results.
+- **What is a model?** A program that learns patterns from examples and uses them
+  to estimate an answer for a new input.
+- **What did the two models learn?** The link between equipment size, weather,
+  river conditions, season, and daily cooling water use in generated examples.
+- **What does training and testing mean?** Training teaches the model. Testing uses
+  examples held aside to measure its mistakes.
+- **What is a watershed?** Land that drains into the same river system.
+- **Why use generated data?** It lets us check the program before we have measured
+  facility water use. The public weather and river readings do not supply that answer.
+- **What did the bad-reading test measure?** How much the output changed after
+  filling gaps. It used a separate simple formula, not the fitted model.
+- **Why not always fill between dates?** It needs a later reading, which is not
+  available during a live gap.
+- **What are the physical and location checks?** Impossible numbers are adjusted
+  and flagged. Permit passages must match the requested place. All four fictional
+  location cases passed. Neither check proves an estimate is accurate.
+- **What are the AI methods called?** RandomForest and XGBoost are tree models:
+  a tree asks a series of simple questions. RandomForest averages many trees.
+  XGBoost adds trees to correct earlier mistakes. Permit search compares word scores (TF-IDF)
+  and then checks location. It does not use a language model to write new permit text.
+- **Where are the exact methods and numbers?** The [dossier](source/dossier.md),
+  [evidence files](evidence/README.md), and [implementation notes](../implementation-notes.md).

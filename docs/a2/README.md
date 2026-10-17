@@ -1,7 +1,7 @@
 # ECOllateral A2 review
 
-The six-slide review covers the cooling-water prototype, its experiments, and the
-remaining work on regional water assessment. Results use synthetic training targets
+The six-slide review explains the water-use prototype in plain language: four steps,
+three tests, and the next step. The dossier is two pages and the talk takes about four minutes. Results use synthetic training targets
 and station readings. The observed download tests parsing and units.
 
 | Material | Contents |
@@ -31,5 +31,6 @@ Run from the repository root:
 
 The builder exports dossier/checkoff PDFs and the SVG/PNG map. Intermediate files go
 to ignored `data/processed/a2-build/`. The slides are edited in the PPTX and exported
-separately. Chart workbooks round to ten significant digits; source CSVs retain full
-precision. Capturing new evidence leaves the dated dossier and slide figures unchanged.
+separately. Charts use gallons per day or percentages. The gap chart shows the separate
+bad-reading test; exact source values remain in the evidence CSVs. Capturing new
+evidence leaves the dated dossier and slide figures unchanged.

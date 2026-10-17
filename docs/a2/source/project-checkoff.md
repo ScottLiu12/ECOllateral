@@ -45,7 +45,7 @@ cover cooling consumption; regional assessment remains planned.
 | Draft mid-semester materials and slides | Prepared | Six slides, editable PPTX, PDF export, four-minute script |
 | Explain the problem | Prepared | Slide 1 and dossier problem/user statement |
 | Explain sub-goals, milestones, and teammate mapping | Prepared | Team snapshot and role-owned roadmap |
-| Identify AI concepts/tools used | Prepared | Engineering rules; RF/XGBoost tree models; TF-IDF/FAISS word search; nearby-station/time gap filling; no generative LLM experiment claimed |
+| Identify AI concepts/tools used | Prepared | Engineering rules; RF/XGBoost tree models; weighted word matching (TF-IDF); nearby-station/time gap filling; no generative LLM experiment claimed |
 | Justify AI evaluation and feasibility takeaways | Prepared | Four approach investigations with evidence; clear limits of made-up data and about 88% prediction-range coverage |
 | Explain current state and remaining roadmap | Prepared | Component API/tests work; need regional supply/demand, returns, ecological baselines, checked boundaries/documents, measured targets, and independent range tests |
 | Schedule instructor office hours before presentation | Pending | Scott coordinates a course-approved slot |

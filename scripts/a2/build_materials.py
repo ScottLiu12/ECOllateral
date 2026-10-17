@@ -29,101 +29,46 @@ BUILD = ROOT / "data/processed/a2-build"
 
 
 def system_map():
-    drawing = Drawing(1200, 530)
-
-    def label(x, y, text, size=20, color=colors.black, bold=False):
-        drawing.add(
-            String(
-                x,
-                530 - y,
-                text,
-                fontName="Helvetica-Bold" if bold else "Helvetica",
-                fontSize=size,
-                fillColor=color,
-            )
+    drawing = Drawing(1200, 320)
+    drawing.add(String(45, 278, "How the prototype works", fontName="Helvetica-Bold", fontSize=28))
+    drawing.add(
+        String(
+            45,
+            240,
+            "Current tool: cooling water use. Area-wide water assessment is still planned.",
+            fontName="Helvetica",
+            fontSize=20,
         )
-
-    def node(x, top, heading, lines):
-        drawing.add(
-            Rect(
-                x,
-                530 - top - 100,
-                190,
-                100,
-                fillColor=colors.whitesmoke,
-                strokeColor=colors.black,
-                strokeWidth=1.5,
-            )
+    )
+    steps = [
+        ("1. Inputs", "Equipment + place", "Weather + river"),
+        ("2. Estimate", "Learn from examples", "Predict daily water use"),
+        ("3. Check", "Cooling limits", "Local permit quotes"),
+        ("4. Result", "Gallons/day + range", "Warnings + sources"),
+    ]
+    for i, (heading, first, second) in enumerate(steps):
+        x = 45 + i * 285
+        drawing.add(Rect(x, 90, 240, 115, fillColor=colors.white, strokeColor=colors.black))
+        drawing.add(String(x + 14, 174, heading, fontName="Helvetica-Bold", fontSize=22))
+        drawing.add(String(x + 14, 142, first, fontName="Helvetica", fontSize=20))
+        drawing.add(String(x + 14, 114, second, fontName="Helvetica", fontSize=20))
+        if i < len(steps) - 1:
+            drawing.add(Line(x + 240, 148, x + 275, 148, strokeColor=colors.black))
+            drawing.add(Polygon([x + 282, 148, x + 273, 153, x + 273, 143], fillColor=colors.black))
+    drawing.add(
+        String(
+            45,
+            42,
+            "Tests use generated examples. Next: measured water use at separate sites.",
+            fontName="Helvetica",
+            fontSize=20,
         )
-        label(x + 12, top + 27, heading, 20, bold=True)
-        for i, line in enumerate(lines):
-            label(x + 12, top + 54 + 22 * i, line, 18)
-
-    def arrow(x1, y1, x2, y2):
-        drawing.add(Line(x1, 530 - y1, x2, 530 - y2, strokeColor=colors.black, strokeWidth=2))
-        if y1 == y2:
-            points = [x2, 530 - y2, x2 - 9, 530 - y2 + 5, x2 - 9, 530 - y2 - 5]
-        else:
-            points = [x2, 530 - y2, x2 - 5, 530 - y2 - 9, x2 + 5, 530 - y2 - 9]
-        drawing.add(Polygon(points, fillColor=colors.black, strokeColor=colors.black))
-
-    label(45, 34, "ECOllateral: regional water and watershed impacts", 28, bold=True)
-    label(
-        45,
-        69,
-        "Goal: seasonal impacts of development on area reserves and watershed conditions",
-        20,
-    )
-    label(
-        45,
-        99,
-        "Current component: cooling-water scenario and place-matched documents",
-        20,
-        colors.black,
-        True,
-    )
-    top_nodes = [
-        ("Public data", ["USGS / NOAA", "values + units"]),
-        ("Six inputs", ["size / weather / flow", "drought / season"]),
-        ("AI model", ["RF / XGBoost", "predict a number"]),
-        ("Heat rules", ["capacity + weather", "adjust + warn"]),
-        ("Response (JSON)", ["MGD + range", "limits + warnings"]),
-    ]
-    bottom_nodes = [
-        ("Permit text", ["document + section", "original words"]),
-        ("Document info", ["text + identifiers", "HUC or radius"]),
-        ("Word search", ["TF-IDF / FAISS", "rank word matches"]),
-        ("Location check", ["HUC / coordinates", "eligible top-k"]),
-        ("Quotes", ["source + section", "exact quotations"]),
-    ]
-    for i, ((heading, lines), (lower, lower_lines)) in enumerate(
-        zip(top_nodes, bottom_nodes, strict=True)
-    ):
-        x = 45 + 230 * i
-        node(x, 120, heading, lines)
-        node(x, 310, lower, lower_lines)
-        if i < 4:
-            arrow(x + 190, 170, x + 230, 170)
-            arrow(x + 190, 360, x + 230, 360)
-    arrow(1060, 310, 1060, 220)
-    label(45, 287, "Permit/context path", 20, colors.black, True)
-    label(
-        45,
-        465,
-        "Current training uses generated values. Next: train and test on measured data.",
-        20,
-    )
-    label(
-        45,
-        499,
-        "Regional water totals and river needs still need to be built and tested.",
-        20,
     )
     renderSVG.drawToFile(drawing, str(HERE / "semantic-system-map.svg"))
     map_pdf = BUILD / "system-map-preview.pdf"
     renderPDF.drawToFile(drawing, str(map_pdf))
-    doc = pdfium.PdfDocument(str(map_pdf))
-    doc[0].render(scale=1.5).to_pil().save(HERE / "semantic-system-map.png")
+    with pdfium.PdfDocument(str(map_pdf)) as doc:
+        doc[0].render(scale=1.5).to_pil().save(HERE / "semantic-system-map.png")
 
 
 def inline(text):
@@ -145,6 +90,7 @@ def markdown_pdf(source, output):
     styles["Title"].leading = 22
     styles["Title"].alignment = 0
     styles["Heading2"].fontSize = 13
+    styles["Heading3"].keepWithNext = True
     styles.add(ParagraphStyle("Cell", parent=styles["Normal"], fontSize=8.5, leading=11.5))
     styles.add(
         ParagraphStyle(
@@ -161,7 +107,11 @@ def markdown_pdf(source, output):
             continue
         if line.startswith("!["):
             path = re.search(r"\(([^)]+)\)", line).group(1)
-            story.extend([Image(str(source.parent / path), width=516, height=228), Spacer(1, 10)])
+            image = Image(str(source.parent / path))
+            width, height = image.imageWidth, image.imageHeight
+            image.drawWidth = 516
+            image.drawHeight = height * 516 / width
+            story.extend([image, Spacer(1, 10)])
         elif line.startswith("|"):
             rows = []
             while i < len(lines) and lines[i].strip().startswith("|"):
