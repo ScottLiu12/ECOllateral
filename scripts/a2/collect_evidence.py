@@ -32,12 +32,11 @@ def write_json(path, value):
 
 def main():
     parser = argparse.ArgumentParser(description="Capture local prototype evidence")
-    parser.add_argument("--output", type=Path, default=ROOT / "docs/a2/evidence")
+    parser.add_argument("--output", type=Path, default=ROOT / "data/processed/new-evidence")
     output = parser.parse_args().output
     output.mkdir(parents=True, exist_ok=True)
-    demo = ROOT / "data/processed/demo"
-    if not (demo / "model.joblib").exists():
-        create_demo(demo)
+    demo = ROOT / "data/processed/evidence-demo"
+    create_demo(demo)
     model = ForecastModel.load(demo / "model.joblib")
     write_json(
         output / "benchmark.json", {"data_kind": model.data_kind, "benchmark": model.benchmark}
@@ -159,7 +158,6 @@ def main():
     )
 
     stations, coordinates, features = hydrology_data()
-    research = ROOT / "data/processed/research"
     result = analyze_missingness(
         stations,
         "target",
@@ -168,13 +166,6 @@ def main():
         lambda frame: np.array([p.predicted_mgd for p in model.predict(frame, "cooling_tower")]),
     )
     result.summary.to_csv(output / "missingness-summary.csv", index=False)
-    for original, name in [
-        ("missingness_sensitivity.png", "missingness-sensitivity.png"),
-        ("missingness_band90.png", "missingness-band90.png"),
-        ("groundwater_reconstruction.csv", "groundwater-reconstruction.csv"),
-    ]:
-        if (research / original).exists():
-            shutil.copyfile(research / original, output / name)
     biased = stations.copy()
     biased[["adjacent_a", "adjacent_b"]] += 100
     diagnostic = analyze_missingness(
@@ -197,14 +188,8 @@ def main():
     live = ROOT / "data/processed/live-smoke/environment.csv"
     if live.exists():
         shutil.copyfile(live, output / "live-ingestion-snapshot.csv")
-    sources = [
-        ROOT / "src/models/regression.py",
-        ROOT / "src/rules/thermodynamic.py",
-        ROOT / "src/models/missingness.py",
-        ROOT / "src/grounding/store.py",
-        ROOT / "src/api/app.py",
-        ROOT / "src/demo.py",
-    ]
+    sources = sorted(path for folder in ("src", "tests") for path in (ROOT / folder).rglob("*.py"))
+    sources.extend([Path(__file__), ROOT / "pyproject.toml"])
     records = [
         {
             "path": str(path.relative_to(ROOT)).replace("\\", "/"),
@@ -212,14 +197,27 @@ def main():
         }
         for path in sources
     ]
-    for path in sorted(output.iterdir()):
-        if path.is_file() and path.name != "manifest.json":
-            records.append(
-                {
-                    "path": "evidence/" + path.name,
-                    "sha256": hashlib.sha256(path.read_bytes()).hexdigest(),
-                }
-            )
+    generated = [
+        "benchmark.json",
+        "regression-comparison.csv",
+        "interval-coverage.csv",
+        "forecast.json",
+        "forecast-request.json",
+        "constraint-failure-cases.json",
+        "retrieval-cases.json",
+        "missingness-summary.csv",
+        "biased-donor-diagnostic.csv",
+        "test-results.txt",
+    ]
+    if live.exists():
+        generated.append("live-ingestion-snapshot.csv")
+    for name in generated:
+        records.append(
+            {
+                "path": "evidence/" + name,
+                "sha256": hashlib.sha256((output / name).read_bytes()).hexdigest(),
+            }
+        )
 
     def git(*args):
         return subprocess.check_output(["git", *args], cwd=ROOT, text=True).strip()
@@ -230,11 +228,14 @@ def main():
             "review_date": date.today().isoformat(),
             "implementation_snapshot_commit": git("rev-parse", "HEAD"),
             "capture_commit": git("rev-parse", "HEAD"),
+            "working_tree_dirty": bool(git("status", "--porcelain")),
             "python": sys.version,
             "seed": 42,
             "data_kind": "synthetic_benchmark_and_research",
             "live_ingestion_scope": (
-                "two-day parser smoke test; climate division is not spatially validated"
+                "saved parser smoke test; climate division is not spatially validated"
+                if live.exists()
+                else None
             ),
             "diagnostic_predictor": (
                 "biased-donor test uses 0.01 * streamflow; not the fitted ML model"
@@ -242,7 +243,7 @@ def main():
             "files": records,
         },
     )
-    print(f"Curated evidence saved to {output}")
+    print(f"Evidence saved to {output}")
 
 
 if __name__ == "__main__":
