@@ -171,7 +171,7 @@ def markdown_pdf(source, output):
                 i += 1
             count = len(rows[0])
             widths = [145, 95, 276] if count == 3 else [516 / count] * count
-            table = Table(rows, colWidths=widths, repeatRows=1, hAlign="LEFT")
+            table = Table(rows, colWidths=widths, hAlign="LEFT", splitByRow=False)
             table.setStyle(
                 TableStyle(
                     [
@@ -179,8 +179,8 @@ def markdown_pdf(source, output):
                         ("VALIGN", (0, 0), (-1, -1), "TOP"),
                         ("LEFTPADDING", (0, 0), (-1, -1), 7),
                         ("RIGHTPADDING", (0, 0), (-1, -1), 7),
-                        ("TOPPADDING", (0, 0), (-1, -1), 8),
-                        ("BOTTOMPADDING", (0, 0), (-1, -1), 8),
+                        ("TOPPADDING", (0, 0), (-1, -1), 5),
+                        ("BOTTOMPADDING", (0, 0), (-1, -1), 5),
                         ("LINEBELOW", (0, 0), (-1, 0), 1, colors.black),
                     ]
                 )

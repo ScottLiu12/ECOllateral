@@ -22,6 +22,7 @@ dependencies = [
 
 [project.optional-dependencies]
 dev = ["pytest>=8,<10", "ruff>=0.9,<1", "nbclient>=0.10,<1", "ipykernel>=6,<8", "matplotlib>=3.8,<4"]
+materials = ["reportlab>=4,<5", "pypdfium2>=4,<6"]
 
 [project.scripts]
 ecollateral = "src.cli:main"
