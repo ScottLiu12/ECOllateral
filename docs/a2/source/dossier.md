@@ -24,7 +24,7 @@ The number path uses six features: facility MW, dry/wet-bulb temperatures, river
 PDSI, and season. Separate RF/XGBoost models learn cooling use; heat rules bound predictions
 and retain raw values. The permit path represents section text as TF-IDF word vectors,
 ranks them with FAISS, checks HUC or coordinate scope, and returns original quotations.
-Both paths meet in the API response. This is component evidence, not regional validation.
+Both paths meet in the API response.
 
 ## E1: model comparison
 
@@ -122,28 +122,12 @@ regional target, and test unseen areas/facilities. Success criteria include phys
 bounds/warnings, controlled API errors, held-out error/coverage goals, missing-data
 tolerance and band checks, and no geographically ineligible quotations. Field thresholds
 still need team/instructor review. Neural/LLM, dense-embedding, heatwave, and 2015-2022
-recharge studies are planned, not completed comparisons. Exact class studio links
-still need confirmation; the implemented AI connections are rules, supervised trees,
-word vectors, interpolation, and uncertainty testing.
+recharge studies are planned, not completed comparisons. The implemented AI connections
+are rules, supervised trees, word vectors, interpolation, and uncertainty testing.
 
-## Sources, team, and course readiness
+## Sources and course materials
 
-The observed parsing example used USGS-01646500 (HUC8 02070008), NOAA GSOD 72403093738,
-and climate division 4401 on July 1-2, 2024. The division match is unverified. The
-synthetic API scenario uses HUC 02070010. Public endpoints and rights references are
-in `../../data-contracts.md`; new permit/third-party rights need checking. No surveys, IRB
-approval, or instructor scraping approval are claimed.
-
-Shaun leads code/integration and separate calibration (slides 1-3); Troy supports data,
-station/area checks, drought/groundwater interpretation, and document grounding (4-5);
-Scott supports evaluation, failure analysis, regional evidence, diagrams, and rehearsal (6).
-Supporting roles are assignments; members must confirm their completed contributions.
-
-The package includes the dossier, map, evidence/decision table, editable slides/PDF,
-four-minute talk/Q&A, team statements, and all 21 checkoff items. Confirm October 20/23
-assignment, Submitty deadline, instructor/TA repository access, office hours, rehearsal,
-and studio references. No submission, message, booking, or access change has occurred.
-Repository: https://github.com/ScottLiu12/ECOllateral; remote access and pushed state are
-unverified. `../evidence/manifest.json` describes implementation `125aa40`; current code
-is refactored. File schemas and engineering choices are in `../../data-contracts.md`
-and `../../implementation-notes.md`; recorded results are in `../../validation-results.md`.
+Endpoints, station identifiers, units, and rights are in `../../data-contracts.md`.
+The observed climate-division match remains unchecked. The October 7
+`../evidence/manifest.json` records implementation `125aa40`.
+Team responsibilities, course status, and supporting files are linked in `../README.md`.

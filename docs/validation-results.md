@@ -1,13 +1,9 @@
 # Validation results — 2026-10-07
 
-These checks ran locally on Windows with Python 3.12.14. They show the prototype works
-and handles its test cases. They do not establish accuracy at real facilities or whether
-a permit legally applies. Plain-English definitions are in `a2/presentation-script.md`.
-
-ECOllateral's purpose is to assess regional ecosystem impacts from development. The
-results below test the current environmental-data/cooling-pressure components; they
-do not validate area-wide municipal reserve or watershed-stress predictions. See
-`project-scope.md` for that distinction and the regional validation still required.
+Recorded on Windows with Python 3.12.14. Experiments use synthetic facility targets,
+synthetic station readings, and fictional permits. The observed download checks
+parsing and units. These results cover the cooling-water component; the regional
+assessment described in the [README](../README.md) remains to be built.
 
 ## Checks
 
@@ -43,9 +39,8 @@ the synthetic targets; they are not measured water use.
 | Dry air cooled | RandomForest | Undefined | 0.000000 | 0.000000 | 100.00% |
 
 Both evaporative models meet R² > 0.80 and MAE < 0.05 MGD on these generated targets.
-Their prediction ranges include **less** than the intended 90% of test values. This is
-a finite sample, with no statistical significance test. R² is not the probability a
-prediction is right. Intended 90% coverage is not verified 90% coverage at real facilities.
+Their prediction ranges include less than the intended 90% of test values. No
+significance test was run. R² measures fit; range coverage requires separate evaluation.
 Dry cooling has a constant zero target in our scope, so R² is undefined.
 
 The next 20% of dates currently does two jobs: choosing the model and setting its
@@ -80,9 +75,8 @@ depth is treated as an MGD model input.
 
 Notebook outputs are in `data/processed/research/`: `missingness_summary.csv`,
 `missingness_bands.csv`, `groundwater_reconstruction.csv`, two PNG figures, and
-`missingness.executed.ipynb`. Both figures were inspected for readable units, legends,
-drought labeling, and tolerance bounds. The tracked source notebook remains unexecuted
-so generated images and machine-specific paths do not bloat Git history.
+`missingness.executed.ipynb`. The tracked notebook remains unexecuted; generated figures
+and machine paths stay in the ignored output directory.
 
 ## Remaining field work
 

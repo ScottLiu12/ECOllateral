@@ -1,20 +1,14 @@
-# Team contribution snapshot
+# Team responsibilities
 
 - **Shaun:** Main coding contributor; leads architecture, data/model/API integration,
   regional assessment design, and separate calibration.
-- **Troy:** Support environmental acquisition, station/area and climate-division checks,
-  drought/groundwater interpretation, and grounding of regional documents.
-- **Scott:** Support safety-rule and interface evaluation, failure analysis, regional
-  evidence review, diagrams/slides, rehearsal, and instructor-access checks.
+- **Troy:** Assigned environmental data acquisition, station and climate-division
+  checks, drought/groundwater interpretation, and document grounding.
+- **Scott:** Assigned rule and interface evaluation, failure analysis, regional
+  evidence review, slides, rehearsal, and instructor-access checks.
 
-The user confirmed Shaun does most coding and authorized assigning supporting roles
-to Troy and Scott. These lines assign the work; they do not certify that every task is
-finished. Before submission, each member should confirm their completed work and review
-every experiment.
+Shaun's coding role is confirmed. Troy's and Scott's lines describe assigned work;
+completed contributions are still unconfirmed.
 
-## Presentation handoff
-
-Shaun explains the problem, system, and model comparison (slides 1-3). Troy explains
-missing drought data and prediction-range coverage (slides 4-5). Scott explains the
-decisions and next test (slide 6). All three should understand units, made-up data,
-permit-location rules, and which data are used to train, choose, calibrate, and test.
+Shaun presents the problem, system, and model comparison (slides 1-3). Troy covers
+missing readings and range coverage (4-5). Scott covers decisions and the next test (6).

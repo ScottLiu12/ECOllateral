@@ -1,46 +1,35 @@
 # ECOllateral A2 review
 
-Start with the slides or the talk below. The goal is to explain how development
-changes water supply and rivers across an area. Cooling is one current example.
-Current results use generated training examples. Next: collect real measurements,
-train on them, and test on separate records and areas.
+The six-slide review covers the cooling-water prototype, its experiments, and the
+remaining work on regional water assessment. Results use synthetic training targets
+and station readings. The observed download tests parsing and units.
 
-| File | Use it for |
+| Material | Contents |
 | --- | --- |
-| [review-slides-simplified.pptx](review-slides-simplified.pptx) | Editable presentation with simple speaker notes |
-| [review-slides.pdf](review-slides.pdf) | Quick slide preview |
-| [presentation-script.md](presentation-script.md) | Four-minute talk, Q&A, project guide, glossary |
-| [dossier.pdf](dossier.pdf) | Full experiment results and limitations |
-| [project-checkoff.pdf](project-checkoff.pdf) | Course checklist and pending actions |
-| [semantic-system-map.svg](semantic-system-map.svg), [PNG](semantic-system-map.png) | Editable map and easy image preview |
-| [evidence-summary.csv](evidence-summary.csv) | What we tested and what we decided |
-| [team-contributions.md](team-contributions.md) | Team duties and contribution confirmation |
-| [assignment-coverage.md](assignment-coverage.md) | Where every A2 requirement appears |
+| [Slides](review-slides-simplified.pptx) and [PDF](review-slides.pdf) | Editable presentation and preview |
+| [Talk and Q&A](presentation-script.md) | Four-minute script and reference sheet |
+| [Dossier](dossier.pdf) and [source](source/dossier.md) | Methods, results, and decisions |
+| [Checkoff](project-checkoff.pdf) and [source](source/project-checkoff.md) | All 21 course items and outstanding actions |
+| [System map](semantic-system-map.svg) and [PNG](semantic-system-map.png) | Number and permit paths |
+| [Evidence summary](evidence-summary.csv) | Experiment and decision table |
+| [Team responsibilities](team-contributions.md) | Assigned work and speaking roles |
+| [Assignment coverage](assignment-coverage.md) | Requirements, rubric, and timing |
 
-`evidence/` contains the original results and fingerprints needed to support claims.
-`source/` contains editable dossier/checkoff text, data-source details, and export notes.
-Build/capture scripts are in `../../scripts/a2/`.
-The project goal and planned work are in `../project-scope.md`.
+[Evidence files](evidence/README.md) retain the October 7 snapshot and source hashes
+for implementation `125aa40`. Those hashes describe the original code. The earlier
+development/export log remains in Git at `dbb9cf9:docs/implementation-notes.md`.
 
-Before presenting, confirm the October 20/23 assignment, Submitty deadline, actual
-contributions, course references, instructor access, and rehearsal. No submission
-or access change has been performed. Generated results do not prove real-world accuracy.
+## Rebuild
 
-## Rebuild materials
-
-Run from the repository root with the project virtual environment:
+Run from the repository root:
 
 ```powershell
-.venv\Scripts\python scripts/a2/collect_evidence.py
+.venv\Scripts\python -m pip install -e ".[materials]"
 .venv\Scripts\python scripts/a2/build_materials.py
+.venv\Scripts\python scripts/a2/collect_evidence.py --output data/processed/new-evidence
 ```
 
-Evidence capture refreshes results, test logs, and fingerprints in `evidence/`;
-see [the evidence guide](evidence/README.md) before replacing the historical snapshot.
-Install `reportlab` and `pypdfium2` in the Python environment used for document exports. It exports the dossier,
-checkoff, and SVG/PNG system map from `source/`.
-
-Edit slides directly in `review-slides-simplified.pptx` and export their PDF in
-PowerPoint. Chart workbooks round to ten significant digits; source CSVs retain full precision.
-After rebuilding, reconcile quoted results, inspect each exported page, and update
-`source/verification-notes.md`.
+The builder exports dossier/checkoff PDFs and the SVG/PNG map. Intermediate files go
+to ignored `data/processed/a2-build/`. The slides are edited in the PPTX and exported
+separately. Chart workbooks round to ten significant digits; source CSVs retain full
+precision. Capturing new evidence leaves the dated dossier and slide figures unchanged.

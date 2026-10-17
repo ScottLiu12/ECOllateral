@@ -1,10 +1,8 @@
 # CSCI 4150 project checkoff: ECOllateral
 
-The evidence and slides are prepared for the mid-semester review. The assigned
-October 20/23 presentation day and exact submission time still need confirmation.
-Each status describes that checklist item; it does not mean the whole project has
-been validated for regional ecosystem impacts. This follows the supplied two-page course handout.
-Terms and the short project explanation are in `../presentation-script.md`.
+Status against the supplied two-page course handout. Presentation: October 20 or 23,
+2026; assigned day and Submitty deadline are unconfirmed. The prototype and experiments
+cover cooling consumption; regional assessment remains planned.
 
 ## Project Scope & AI Integration
 
@@ -30,7 +28,7 @@ Terms and the short project explanation are in `../presentation-script.md`.
 | Visual block diagram of component interactions | Prepared | Regional goal plus current number/permit components; editable diagram in slides; area balance remains planned |
 | Evaluation metrics for individual components | Documented / tested | Units and bad-input checks; error/fit (MAE/RMSE/R2); range coverage; missing-data spread in MGD2; eligible/ineligible locations |
 | Explicit success and failure criteria for outputs | Documented | Enforce limits/warnings; R2 > 0.80 and MAE < 0.05 MGD component goal; >=90% of missing-data changes within tolerance plus band checks; regional/facility criteria unverified |
-| Component test plan | Implemented with limits | 51 local tests: forced wrong values, saved-model reload, train-only gap filling, bad neighbors, permit locations, API errors; real-permit relevance testing remains planned |
+| Component test plan | Implemented with limits | October 7 snapshot: 51 passing tests covering forced wrong values, saved-model reload, train-only gap filling, bad neighbors, permit locations, API errors; real-permit relevance testing remains planned |
 
 ## Team Organization & Workflow
 
@@ -50,19 +48,11 @@ Terms and the short project explanation are in `../presentation-script.md`.
 | Identify AI concepts/tools used | Prepared | Engineering rules; RF/XGBoost tree models; TF-IDF/FAISS word search; nearby-station/time gap filling; no generative LLM experiment claimed |
 | Justify AI evaluation and feasibility takeaways | Prepared | Four approach investigations with evidence; clear limits of made-up data and about 88% prediction-range coverage |
 | Explain current state and remaining roadmap | Prepared | Component API/tests work; need regional supply/demand, returns, ecological baselines, checked boundaries/documents, measured targets, and independent range tests |
-| Schedule instructor office hours before presentation | Pending human action | Scott coordinates a course-approved slot; no booking or message has been sent |
+| Schedule instructor office hours before presentation | Pending | Scott coordinates a course-approved slot |
 
-## Final readiness checks
+## Outstanding course items
 
-- [x] System map explains how numbers, rules, text, and locations represent information.
-- [x] Four meaningful approach investigations have evidence that can be inspected.
-- [x] Important failures/limits and the changes they call for are explained.
-- [x] Adopt / Modify / Reject / Defer decisions link to evidence IDs.
-- [x] Next technical question and team responsibilities are stated.
-- [ ] Confirm the assigned day and Submitty deadline.
-- [ ] Verify instructor/TA GitHub access and the desired pushed snapshot.
-- [ ] Confirm exact class studio references and actual completed team contributions.
-- [ ] Schedule office hours and rehearse with all three members.
-
-Source instructions are requirements for course readiness. They are not permission to
-submit, message others, alter repository access, or claim that pending actions occurred.
+- Assigned presentation day and Submitty deadline.
+- Instructor/TA repository access and submitted commit.
+- Exact class studio references and completed team contributions.
+- Office-hours appointment and rehearsal with all three members.

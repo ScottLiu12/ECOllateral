@@ -128,10 +128,9 @@ USGS [licensing guidance](https://www.usgs.gov/data-management/data-licensing) a
 NOAA's [FAQ](https://www.noaa.gov/office-education/outreach-communication/faq) were checked
 on October 7, 2026 for the public products used here. Check each new product's notices,
 third-party rights, and permit-sharing terms. The project cites ASHRAE and implements
-its own rules; it does not distribute handbook passages. No private accounts,
-commercial scraping, surveys, instructor approval, or IRB decision are claimed.
-Before expanding to scraping or studies involving people, confirm course/institutional
-requirements with the instructor.
+its own rules; it does not distribute handbook passages. The current inputs use public
+APIs and files. New scraping or studies involving people require the applicable course
+and institutional permissions.
 
 The original [evidence manifest](a2/evidence/manifest.json) records commits, seed,
 Python version, and SHA-256 fingerprints for the October 7 snapshot. Source hashes

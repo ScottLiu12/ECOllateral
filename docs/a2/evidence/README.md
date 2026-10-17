@@ -4,10 +4,9 @@ Captured October 7, 2026 from implementation `125aa40`. `manifest.json` records 
 source/result fingerprints (SHA-256), random seed, Python version, and capture commit.
 Source hashes describe that original implementation, not the refactored source.
 
-These are component tests for a regional ecosystem impact project. Cooling-water
-results measure one development pressure. No regional reserve balance, ecosystem
-health score, zero-shot LLM benchmark, or groundwater recharge forecast is validated
-by this evidence. See `../../project-scope.md` for the regional goal and remaining work.
+The experiments use synthetic cooling targets and station readings. The observed
+snapshot tests parsing and units. The [project README](../../../README.md) describes
+the regional assessment still to build.
 
 | ID | Files | What the evidence establishes |
 | --- | --- | --- |
@@ -28,12 +27,11 @@ Capture a new snapshot without replacing the historical results:
 .venv\Scripts\python.exe scripts\a2\collect_evidence.py --output data/processed/new-evidence
 ```
 
-The script uses local made-up benchmark/research results and the saved real-data
-download example. If those ignored files are missing, first follow the demo, training,
-missing-data, and download commands in the project README and validation notes.
-This collects a local evidence snapshot. It does not fetch external data or submit coursework.
+The capture script trains a fresh synthetic demo and records model, missingness,
+clipping, retrieval, API, and test results. An existing observed download may be
+included as a parser example. Historical plots and groundwater tables remain in this
+folder; they are not copied into new captures.
 
-Omit `--output` to replace this folder deliberately. After refreshing, check rounded figures in the dossier/slides and rebuild the exports.
-The manifest fingerprints the captured inputs/results, not itself. Updating evidence
-does not automatically update the slides. The dossier does not distribute pickled
-model objects. The repository's source code defines the software's actual behavior.
+New captures default to ignored `data/processed/new-evidence/`. Use an explicit
+`--output docs/a2/evidence` to replace the historical tables and manifest. Capturing
+results does not update quoted figures or exported course materials.

@@ -23,8 +23,7 @@ inside the limits and trigger warnings. A person reviews the permit rules.
 ## Slide 3: experiment E1 — comparing AI models
 
 We tested two AI models on the same made-up water-use values. RF means RandomForest.
-Lower bars mean smaller
-errors. XGBoost made smaller errors for both cooling types. Tower error fell from about
+Lower bars mean smaller errors. XGBoost made smaller errors for both cooling types. Tower error fell from about
 0.00489 to 0.00367 million gallons per day. Direct cooling error fell from 0.00384 to
 0.00319. Each test group has 333 rows. We use the oldest 60 percent of dates to teach
 the model, the next 20 percent to choose it and set its range, and the last 20 percent
@@ -52,16 +51,13 @@ for those jobs and test other facilities, dates, and drought conditions.
 
 ## Slide 6: decisions & next question
 
-Keep, change, do not use, and wait are our four decisions. We keep XGBoost because its
+We keep XGBoost because its
 errors are smaller, along with the tested limits and location checks. We will improve
 gap filling and prediction ranges because the bad-reading test and the 90 percent goal
 show weaknesses. Next, collect real measurements, train on them, and test new areas.
 We must add water coming in, water used and returned, and river needs.
-A cooling-water estimate alone cannot show ecosystem health. A fit score cannot promise
-a correct answer. We also cannot let a language model invent a risk score. We will wait
-for real area measurements before comparing more AI methods. We have not run those
-comparisons yet. Shaun leads coding. Troy supports data and source quotes. Scott supports
-tests and results. Those supporting duties still need confirmation. Our next question:
+A cooling-water estimate alone cannot show ecosystem health. We will collect real area measurements before comparing more AI methods. Shaun leads coding. Troy supports data and source quotes. Scott supports
+tests and results. Our next question:
 can training on real data predict effects on water reserves and rivers in a new area
 through the year?
 
@@ -100,7 +96,7 @@ through the year?
   We also tested gap filling, physical rules, and permit word search. TF-IDF turns
   words into numbers. FAISS searches them. Source and location details help select
   the right quotes. We did not compare neural models or language models that write
-  new answers. Exact class studio names still need checking.
+  new answers.
 - **Do physical limits guarantee the right answer?** No. They enforce our assumptions
   about power, heat, and which water uses count. PUE means total facility power
   divided by equipment power. Those assumptions need engineering review.
@@ -114,14 +110,6 @@ through the year?
   and a model of how water moves. Depth and flow measure different things.
 - **Can you fill a live gap with a straight line?** Our historical method can use a
   later reading. A live forecast needs a method using only readings available then.
-
-## Before presenting
-
-- Rehearse to 240 seconds. Explain the result rather than reading every table row.
-- Keep the system map and evidence files ready for questions.
-- Make sure all three members can explain made-up data and decisions E1-E5.
-- Confirm presentation day, deadline, instructor access, and office hours externally.
-- Confirm each member's actual contribution before submitting the one-line statements.
 
 ## Reference sheet
 

@@ -8,8 +8,7 @@ validated ecosystem stress score.
 
 The project uses Python, FastAPI, pandas, RandomForest/XGBoost, and TF-IDF/FAISS.
 A small TypeScript fetch client is included; there is no frontend or hosted AI service.
-The [project scope](docs/project-scope.md) distinguishes the regional goal from this
-prototype. [Data contracts](docs/data-contracts.md) describe inputs, units, and splits.
+[Data contracts](docs/data-contracts.md) describe inputs, units, and splits.
 
 ## Setup and checks
 
@@ -113,9 +112,16 @@ readings. Seeded repeats report variance and central 90% change bands against a
 Set `ECOLLATERAL_RESEARCH_DIR` and `ECOLLATERAL_TARGET_STATION` for observed inputs
 and a trusted model. Tables, plots, and executed notebooks go into ignored data folders.
 
-## Course materials
+## Regional assessment and course materials
+
+The broader goal is to assess development's effects on seasonal water reserves and
+watershed conditions for planners, researchers, and utilities. That requires measured
+supply, demand, return flows, and ecological baselines, plus checked station and utility
+boundaries. Training and evaluation need measured facility consumption and separate
+model-selection, calibration, and test sets, including unseen facilities and areas.
+Regional balances, recharge and heatwave studies, neural models, dense embeddings,
+and language-model comparisons remain future work.
 
 The [A2 package](docs/a2/README.md) contains the checkoff, evidence review, system map,
-editable six-slide presentation, talk, and proposed team responsibilities. Historical
-evidence remains dated and separate from field validation. Course submission, access,
-and contribution confirmations still require the team's checks.
+editable six-slide presentation, talk, and assigned team responsibilities. Results
+in the package describe the October 7, 2026 synthetic experiments.
