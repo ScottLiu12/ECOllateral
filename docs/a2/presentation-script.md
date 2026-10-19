@@ -1,81 +1,98 @@
-# Four-minute talk
+# Four-minute presentation script
 
-Six slides, followed by two minutes for questions. Speaking roles: Shaun, slides 1-3;
-Troy, slides 4-5; Scott, slide 6.
+Read the six slide sections aloud. The Q&A below is a reference, not part of the talk.
+Allow two more minutes for questions and transition.
 
-## Slide 1: local water and new development
+**Speakers:** Shaun: slides 1-3. Troy: slides 4-5. Scott: slide 6.
 
-ECOllateral asks how a new building could affect local water supplies and rivers.
-It is for town planners, researchers, and water providers. We started with one
-part of the problem: water used to cool equipment. The current program estimates
-that daily use and shows local permit quotes. Our examples use generated water-use
-data. We need actual measurements before we can judge how well it works at real sites.
+## Slide 1: local water and new development - 25 seconds
 
-## Slide 2: how the program works
+ECOllateral asks: how could a new building affect local water supplies and rivers?
+Our intended users are town planners, researchers, and water providers.
 
-Six numeric features represent equipment size, air and wet-bulb temperature, river
-flow, drought, and season. XGBoost's learned trees estimate daily water use. Symbolic
-energy rules constrain the estimate. A separate permit path uses TF-IDF word vectors
-and location metadata to find local passages. The result combines gallons per day,
-a prediction range, warnings, and exact quotes. A person decides permit applicability.
+Our prototype estimates one part of that problem: daily water use for cooling
+equipment. It does not yet measure the full environmental impact. Our test data
+is generated, so we still need measurements from real facilities.
 
-## Slide 3: which model makes smaller errors?
+## Slide 2: how the program works - 40 seconds
 
-We compared two models called RandomForest and XGBoost. Both learn from examples.
-The chart shows the average size of their mistakes, in gallons per day. Lower is
-better. For cooling towers, XGBoost reduced the average error from about 4,900 to
-3,700 gallons per day. It also did better for direct evaporation. Each method had
-333 test examples. We kept XGBoost, but this result is still against generated answers.
+The user enters equipment size, cooling method, location, and month. We add saved
+weather and river readings to form six numeric inputs: equipment size, air
+temperature, wet-bulb temperature, river flow, drought, and month. Wet-bulb
+temperature accounts for humidity, which affects evaporative cooling.
 
-## Slide 4: what if river readings are missing?
+XGBoost learns patterns from examples to estimate daily water use. Physical energy
+rules check whether that estimate fits our cooling assumptions.
 
-We tried two ways to fill a missing reading: use a nearby station, or use the
-readings before and after the gap. With similar stations, both worked well in our
-generated examples. Then we made the nearby readings too high. In that separate
-test, the nearby-station method stayed close only 60 percent of the time. Filling
-between dates reached about 99 percent. That test used a simple formula. The lesson
-is that a nearby reading is useful only if it represents the same conditions.
-Filling between dates requires later readings, so it suits historical gaps.
+A separate search uses TF-IDF, which scores matching words, plus location filters
+to find local permit passages. The output includes gallons per day, a prediction
+range, warnings, and exact quotes. A person must judge how the permit applies.
 
-## Slide 5: did the prediction range work?
+## Slide 3: which model makes smaller errors? - 30 seconds
 
-The program gives a low and high estimate. We wanted that range to contain 90 out
-of every 100 test answers. It contained about 88 for both cooling methods. That
-missed our goal. We also used the same data to choose the model and set its range.
-We should separate those jobs and test again with measured water use. A good model
-fit alone does not tell us whether its range is useful.
+We compared RandomForest and XGBoost. Both learn through decision trees: sequences
+of simple questions about the inputs.
 
-## Slide 6: what we will keep and improve
+We tested them on examples held out of training. The chart shows average error in
+gallons per day; lower is better. For cooling towers, XGBoost reduced error from
+about 4,900 to 3,700 gallons per day. It also performed better for direct evaporation.
 
-E1 supports keeping XGBoost; E3 supports physical checks; E4 supports local quotes
-with real-permit testing still needed. E2 changes our donor checks; E5 calls for
-separate calibration data. E1 and E5 show why we reject fit as a promise of accuracy.
-We defer neural and language models until we can compare them fairly. The next
-step is to train on some sites and test on different sites. To answer the bigger
-local-water question, we also need other water uses, water returned, available
-supply, and the water rivers need.
+That supports choosing XGBoost for this prototype. It does not prove real-world accuracy.
+
+## Slide 4: what if drought readings are missing? - 40 seconds
+
+We tested two ways to fill missing drought readings: borrow from a nearby station,
+or estimate between readings before and after the gap.
+
+Both worked well with similar generated stations. In a separate test, we made the
+nearby readings too high. Only 60 percent of output changes stayed within our
+50,000-gallon-per-day tolerance, compared with 99 percent for filling between dates.
+This diagnostic used a simple formula, not our trained model.
+
+The lesson: nearby stations must represent similar conditions. Filling between
+dates needs a later reading, so it suits historical gaps.
+
+## Slide 5: did the prediction range work? - 30 seconds
+
+A prediction range expresses uncertainty around the estimate. Our goal was to
+include 90 out of every 100 test answers. We reached about 88 for both water-based
+cooling methods, so we missed the target.
+
+We also reused the same data to choose the model and set the range. Next, we will
+separate those tasks and test again. Small average errors do not guarantee a
+reliable prediction range.
+
+## Slide 6: what we will keep and improve - 45 seconds
+
+Our evidence guides four decisions.
+
+We **keep** XGBoost because of its lower errors in E1, physical checks from E3,
+and location-filtered permit quotes from E4. The permit tests used fictional documents.
+
+We **improve** station checks after E2 and use separate data to set prediction
+ranges after E5. We **reject** treating a good model fit as guaranteed accuracy.
+We **defer** neural networks and language models until we can compare them fairly.
+
+Our next question is whether a model trained on some real facilities works at
+different facilities. Answering the broader water-impact question also requires
+available supply, other water uses, returned water, and river needs.
 
 ## Short answers for questions
 
-- **What is a model?** A program that learns patterns from examples and uses them
-  to estimate an answer for a new input.
-- **What did the two models learn?** The link between equipment size, weather,
-  river conditions, season, and daily cooling water use in generated examples.
-- **What does training and testing mean?** Training teaches the model. Testing uses
-  examples held aside to measure its mistakes.
-- **What is a watershed?** Land that drains into the same river system.
-- **Why use generated data?** It lets us check the program before we have measured
-  facility water use. The public weather and river readings do not supply that answer.
-- **What did the bad-reading test measure?** How much the output changed after
-  filling gaps. It used a separate simple formula, not the fitted model.
-- **Why not always fill between dates?** It needs a later reading, which is not
-  available during a live gap.
-- **What are the physical and location checks?** Impossible numbers are adjusted
-  and flagged. Permit passages must match the requested place. All four fictional
-  location cases passed. Neither check proves an estimate is accurate.
-- **What are the AI methods called?** RandomForest and XGBoost are tree models:
-  a tree asks a series of simple questions. RandomForest averages many trees.
-  XGBoost adds trees to correct earlier mistakes. Permit search compares word scores (TF-IDF)
-  and then checks location. It does not use a language model to write new permit text.
-- **Where are the exact methods and numbers?** The [dossier](source/dossier.md),
-  [evidence files](evidence/README.md), and [implementation notes](../implementation-notes.md).
+- **What is training versus testing?** Training teaches patterns; testing checks
+  predictions against answers the model did not learn from.
+- **What do the models do differently?** RandomForest averages many trees.
+  XGBoost adds trees that correct earlier errors.
+- **What does MGD mean?** Million US gallons per day. The example forecast is about
+  0.204 MGD, or 204,000 gallons per day.
+- **Why generated data?** It lets us test the pipeline before we obtain measured
+  facility consumption. Weather and river data do not provide that target.
+- **What are the physical checks?** Estimates outside calculated cooling limits
+  are adjusted and flagged; the original value remains visible.
+- **What did the permit tests show?** All four fictional location cases behaved
+  as expected. That checks filtering, not real-permit relevance or compliance.
+- **What is calibration?** Using held-out examples to set the prediction range.
+  Those examples should be separate from model selection and final testing.
+- **What is a watershed?** An area of land draining into the same river system.
+- **Where is the evidence?** The [dossier](source/dossier.md),
+  [saved results](evidence/README.md), and [methods](../implementation-notes.md).
