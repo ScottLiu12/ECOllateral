@@ -35,13 +35,3 @@ evidence, slides, and presentation materials to explain the results, design
 decisions, and limits of the current prototype.
 
 Evidence: E3 constraint cases, E5 coverage results, evidence summary, dossier, and slides.
-
-## Presentation responsibilities
-
-- **Shaun - slides 1-2:** problem, intended users, scope, and system architecture.
-- **Troy - slides 3-4:** model comparison, missing readings, and the biased-station failure.
-- **Scott - slides 5-6:** prediction ranges, evidence-based decisions, and next steps.
-
-Each member presents two slides. The talk targets four minutes, followed by questions.
-The current results use synthetic data; testing at real facilities and assessing
-broader regional water impacts remain future work.

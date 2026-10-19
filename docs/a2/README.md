@@ -14,7 +14,7 @@ and station readings. The observed download tests parsing and units.
 | [Checkoff](project-checkoff.pdf) and [source](source/project-checkoff.md) | All 21 course items and outstanding actions |
 | [System map](semantic-system-map.svg) and [PNG](semantic-system-map.png) | Number and permit paths |
 | [Evidence summary](evidence-summary.csv) | Experiment and decision table |
-| [Team contributions](team-contributions.pdf) and [source](team-contributions.md) | Completed work, supporting evidence, and two slides per member |
+| [Team contributions](team-contributions.pdf) and [source](team-contributions.md) | Completed work and supporting evidence |
 | [Assignment coverage](assignment-coverage.md) | Requirements, rubric, and timing |
 | [Readiness audit](readiness-review.md) | October 19 checks, rubric evidence, and remaining team actions |
 

@@ -11,7 +11,7 @@ snapshot; this review does not claim a new experiment or real-site validation.
 | Uncertainty limitation | Slide 5 and dossier: 294/333 and 293/333 inside nominal 90% intervals; separate model selection and calibration next |
 | Inspectable safeguards | Dossier E3: -1 -> 0 MGD and 1,000,000 -> 0.446484 MGD, with warning; E4: four named geographic cases in saved JSON |
 | Decision rationale | Slide 6 links each adopted or modified component to E1-E5; neural/LLM comparisons deferred without a fair measured-data evaluation |
-| Individual contributions | `team-contributions.md` and its submission PDF document completed work confirmed by Shaun: system/model/API integration; environmental data, missingness and retrieval; physical-rule and uncertainty evaluation and presentation materials. Each member presents two slides. |
+| Individual contributions | `team-contributions.md` and its submission PDF document completed work confirmed by Shaun: system/model/API integration; environmental data, missingness and retrieval; physical-rule and uncertainty evaluation and presentation materials. |
 
 ## Team actions before submission
 

@@ -27,7 +27,7 @@ outputs; E4 uses fictional permits. Neither is an LLM comparison.
 | Failure interpretation | 15 | Biased donors, interval shortfall, synthetic targets, proposed changes |
 | Design and rationale | 20 | Decisions linked to E1-E5 on slide 6 |
 | AI connections | 10 | Dossier explains how rules constrain learned trees, location metadata filters word-vector matches, gap filling changes model inputs, and coverage differs from prediction error; standalone map labels semantic representations |
-| Presentation and questions | 10 | Six slides, four-minute talk, Q&A, three speaking roles |
+| Presentation and questions | 10 | Six slides, four-minute talk, and Q&A |
 
 Timing: 60 seconds for slides 1-2, 120 for slides 3-5, and 60 for slide 6.
 Allow two more minutes for questions and transition.
@@ -40,7 +40,7 @@ Allow two more minutes for questions and transition.
 | Current system map | `semantic-system-map.svg`, `.png`, dossier diagram, slide 2 |
 | Approach/evidence/decision summary | `evidence-summary.csv`, dossier decision table, slide 6 |
 | Presentation | `review-slides-simplified.pptx`, `review-slides.pdf`, `presentation-script.md` |
-| Individual contributions and speaking roles | `team-contributions.md`, `team-contributions.pdf`; two slides per member |
+| Individual contributions | `team-contributions.md`, `team-contributions.pdf` |
 
 The assignment does not require a finished system, every class technique, or successful
 results from every experiment. Dates, access, course references, and contribution status

@@ -3,8 +3,6 @@
 Read the six slide sections aloud. The Q&A below is a reference, not part of the talk.
 Allow two more minutes for questions and transition.
 
-**Speakers:** Shaun: slides 1-2. Troy: slides 3-4. Scott: slides 5-6.
-
 ## Slide 1: local water and new development - 25 seconds
 
 ECOllateral asks: how could a new building affect local water supplies and rivers?
