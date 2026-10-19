@@ -41,28 +41,28 @@ def system_map():
         )
     )
     steps = [
-        ("1. Inputs", "Equipment + place", "Weather + river"),
-        ("2. Estimate", "Learn from examples", "Predict daily water use"),
-        ("3. Check", "Cooling limits", "Local permit quotes"),
+        ("1. Inputs", "Six numeric features", "Method + location"),
+        ("2. Estimate", "XGBoost learned trees", "Daily water use (MGD)"),
+        ("3. Check", "Symbolic energy rules", "Constrain + flag (E3)"),
         ("4. Result", "Gallons/day + range", "Warnings + sources"),
     ]
     for i, (heading, first, second) in enumerate(steps):
         x = 45 + i * 285
         drawing.add(Rect(x, 90, 240, 115, fillColor=colors.white, strokeColor=colors.black))
         drawing.add(String(x + 14, 174, heading, fontName="Helvetica-Bold", fontSize=22))
-        drawing.add(String(x + 14, 142, first, fontName="Helvetica", fontSize=20))
-        drawing.add(String(x + 14, 114, second, fontName="Helvetica", fontSize=20))
+        drawing.add(String(x + 14, 142, first, fontName="Helvetica", fontSize=18))
+        drawing.add(String(x + 14, 114, second, fontName="Helvetica", fontSize=18))
         if i < len(steps) - 1:
             drawing.add(Line(x + 240, 148, x + 275, 148, strokeColor=colors.black))
             drawing.add(Polygon([x + 282, 148, x + 273, 153, x + 273, 143], fillColor=colors.black))
     for y, label in [
         (
             66,
-            "Meaning: numeric features -> learned trees -> MGD target; rules bound output.",
+            "Features: MW, air/wet-bulb temperature, river flow, PDSI drought, month.",
         ),
         (
             42,
-            "Permits: TF-IDF word vectors + HUC/location metadata -> local exact quotations.",
+            "Permit path: text -> TF-IDF vectors + HUC/location metadata -> exact quotes (E4).",
         ),
         (18, "Tests use generated examples. Next: measured water use at separate sites."),
     ]:
@@ -95,6 +95,14 @@ def markdown_pdf(source, output):
     styles["Heading2"].fontSize = 13
     styles["Heading3"].keepWithNext = True
     styles.add(ParagraphStyle("Cell", parent=styles["Normal"], fontSize=8.5, leading=11.5))
+    if source.stem == "dossier":
+        styles["Normal"].fontSize = 9.5
+        styles["Normal"].leading = 12
+        styles["Normal"].spaceAfter = 5
+        styles["Cell"].leading = 10.5
+        for heading in ("Heading2", "Heading3"):
+            styles[heading].spaceBefore = 8
+            styles[heading].spaceAfter = 4
     styles.add(
         ParagraphStyle(
             "ListItem", parent=styles["Normal"], leftIndent=12, firstLineIndent=-8, spaceAfter=6
@@ -124,6 +132,8 @@ def markdown_pdf(source, output):
                 i += 1
             count = len(rows[0])
             widths = [145, 95, 276] if count == 3 else [516 / count] * count
+            if source.stem == "dossier" and count == 3:
+                widths = [145, 165, 206]
             table = Table(rows, colWidths=widths, hAlign="LEFT", splitByRow=False)
             table.setStyle(
                 TableStyle(

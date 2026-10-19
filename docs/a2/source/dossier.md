@@ -44,7 +44,7 @@ The two methods below each had 333 examples held aside for testing. Smaller aver
 XGBoost made smaller errors, so we kept it. These are errors against generated answers.
 Dry cooling uses no evaporated water in this model, so both methods returned zero.
 
-### E2: What if river readings are missing?
+### E2: What if drought readings are missing?
 
 We removed 10%, 25%, and 40% of drought readings and repeated each test 50 times.
 We filled gaps using a nearby station or the readings before and after the gap.
@@ -70,18 +70,25 @@ the small shortfall could be due to chance.
 
 ## Other checks: E3 and E4
 
-Deliberately impossible estimates were moved inside the calculated limits and flagged.
-The original estimate remains visible. Four location tests returned the expected
-permit matches. These tests used fictional permits. Physical limits depend on the
-cooling assumptions; local quotes do not establish legal compliance.
+E3: at 40 MW, a forced **-1 MGD** became **0 MGD**; a forced **1,000,000 MGD**
+became **0.446484 MGD**. Both retained the raw value and `constraint_violation` warning.
+These limits depend on cooling assumptions.
+
+E4: watershed `02070010` returned `local-huc`; `99999999` returned no passage.
+A coordinate-only permit was excluded without coordinates and included with them.
+All four cases passed using fictional permits; quotes do not establish compliance.
 
 ## Decisions and next step
 
-- **Keep (Adopt):** the model comparison, physical checks, and local permit quotes.
-- **Improve (Modify):** gap filling and prediction ranges, based on E2 and E5.
-- **Reject:** using a model fit score as a promise of accuracy, or cooling use alone
-  as a measure of the whole area's water health.
-- **Wait (Defer):** more complicated AI until we have measured water-use examples.
+| Approach | Evidence | Decision |
+| --- | --- | --- |
+| RF vs. XGBoost (E1) | Tower MAE: 4,890 vs. 3,668 gal/day | Adopt XGBoost for this prototype |
+| Gap filling (E2) | Biased donor: 60%; between dates: 99% within tolerance | Modify donor checks; interpolation for past gaps |
+| Symbolic limits (E3) | Both injected violations clipped and flagged | Adopt; retain raw value and warning |
+| TF-IDF + location (E4) | Four fictional location cases passed | Adopt with real-permit testing pending |
+| Prediction intervals (E5) | About 88% coverage vs. 90% target | Modify; separate selection and calibration |
+| Fit as accuracy (E1/E5) | Strong fit coexists with missed coverage | Reject; cooling alone is not regional impact |
+| Neural/LLM approaches | No fair measured-data comparison yet | Defer until targets and evaluation set exist |
 
 Next, train and test with measured water use at separate sites. An area assessment
 also needs other water uses, water returned, available supply, and river needs.

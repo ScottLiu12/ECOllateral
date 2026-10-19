@@ -14,28 +14,28 @@
 			<text x="45" y="240" style="font-family: Helvetica; font-size: 20px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,480) scale(1,-1)">Current tool: cooling water use. Area-wide water assessment is still planned.</text>
 			<rect x="45" y="90" width="240" height="115" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 1; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
 			<text x="59" y="174" style="font-family: Helvetica-Bold; font-size: 22px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,348) scale(1,-1)">1. Inputs</text>
-			<text x="59" y="142" style="font-family: Helvetica; font-size: 20px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,284) scale(1,-1)">Equipment + place</text>
-			<text x="59" y="114" style="font-family: Helvetica; font-size: 20px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,228) scale(1,-1)">Weather + river</text>
+			<text x="59" y="142" style="font-family: Helvetica; font-size: 18px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,284) scale(1,-1)">Six numeric features</text>
+			<text x="59" y="114" style="font-family: Helvetica; font-size: 18px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,228) scale(1,-1)">Method + location</text>
 			<path d="M 285,148 L 320,148 Z" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 1;"/>
 			<polygon points="327 148, 318 153, 318 143" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 1; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
 			<rect x="330" y="90" width="240" height="115" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 1; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
 			<text x="344" y="174" style="font-family: Helvetica-Bold; font-size: 22px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,348) scale(1,-1)">2. Estimate</text>
-			<text x="344" y="142" style="font-family: Helvetica; font-size: 20px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,284) scale(1,-1)">Learn from examples</text>
-			<text x="344" y="114" style="font-family: Helvetica; font-size: 20px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,228) scale(1,-1)">Predict daily water use</text>
+			<text x="344" y="142" style="font-family: Helvetica; font-size: 18px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,284) scale(1,-1)">XGBoost learned trees</text>
+			<text x="344" y="114" style="font-family: Helvetica; font-size: 18px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,228) scale(1,-1)">Daily water use (MGD)</text>
 			<path d="M 570,148 L 605,148 Z" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 1;"/>
 			<polygon points="612 148, 603 153, 603 143" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 1; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
 			<rect x="615" y="90" width="240" height="115" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 1; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
 			<text x="629" y="174" style="font-family: Helvetica-Bold; font-size: 22px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,348) scale(1,-1)">3. Check</text>
-			<text x="629" y="142" style="font-family: Helvetica; font-size: 20px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,284) scale(1,-1)">Cooling limits</text>
-			<text x="629" y="114" style="font-family: Helvetica; font-size: 20px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,228) scale(1,-1)">Local permit quotes</text>
+			<text x="629" y="142" style="font-family: Helvetica; font-size: 18px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,284) scale(1,-1)">Symbolic energy rules</text>
+			<text x="629" y="114" style="font-family: Helvetica; font-size: 18px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,228) scale(1,-1)">Constrain + flag (E3)</text>
 			<path d="M 855,148 L 890,148 Z" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 1;"/>
 			<polygon points="897 148, 888 153, 888 143" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 1; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
 			<rect x="900" y="90" width="240" height="115" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 1; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
 			<text x="914" y="174" style="font-family: Helvetica-Bold; font-size: 22px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,348) scale(1,-1)">4. Result</text>
-			<text x="914" y="142" style="font-family: Helvetica; font-size: 20px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,284) scale(1,-1)">Gallons/day + range</text>
-			<text x="914" y="114" style="font-family: Helvetica; font-size: 20px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,228) scale(1,-1)">Warnings + sources</text>
-			<text x="45" y="66" style="font-family: Helvetica; font-size: 18px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,132) scale(1,-1)">Meaning: numeric features -&gt; learned trees -&gt; MGD target; rules bound output.</text>
-			<text x="45" y="42" style="font-family: Helvetica; font-size: 18px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,84) scale(1,-1)">Permits: TF-IDF word vectors + HUC/location metadata -&gt; local exact quotations.</text>
+			<text x="914" y="142" style="font-family: Helvetica; font-size: 18px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,284) scale(1,-1)">Gallons/day + range</text>
+			<text x="914" y="114" style="font-family: Helvetica; font-size: 18px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,228) scale(1,-1)">Warnings + sources</text>
+			<text x="45" y="66" style="font-family: Helvetica; font-size: 18px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,132) scale(1,-1)">Features: MW, air/wet-bulb temperature, river flow, PDSI drought, month.</text>
+			<text x="45" y="42" style="font-family: Helvetica; font-size: 18px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,84) scale(1,-1)">Permit path: text -&gt; TF-IDF vectors + HUC/location metadata -&gt; exact quotes (E4).</text>
 			<text x="45" y="18" style="font-family: Helvetica; font-size: 18px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,36) scale(1,-1)">Tests use generated examples. Next: measured water use at separate sites.</text>
 		</g>
 	</g>

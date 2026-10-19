@@ -1,7 +1,9 @@
 # ECOllateral A2 review
 
-The six-slide review explains the water-use prototype in plain language: four steps,
-three tests, and the next step. The dossier is two pages and the talk takes about four minutes. Results use synthetic training targets
+The six-slide review explains the water-use prototype in plain language: semantic
+representations, three primary tests, and decisions linked to E1-E5. The two-page
+dossier includes an approach/evidence/decision table and concrete E3/E4 examples.
+The talk targets four minutes. Results use synthetic training targets
 and station readings. The observed download tests parsing and units.
 
 | Material | Contents |

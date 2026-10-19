@@ -13,17 +13,11 @@ data. We need actual measurements before we can judge how well it works at real 
 
 ## Slide 2: how the program works
 
-There are four steps. First, enter the equipment size, cooling method, place, and
-month. The program adds weather and river readings. Second, a model learns from
-examples and estimates water use. Third, a separate calculation checks that the
-number fits the cooling assumptions, and a word search finds local permit passages.
-Finally, the program returns daily water use, a range, warnings, and the quotes.
-It does not decide whether a project meets its permit.
-
-For questions about semantics: numeric features feed learned trees; physical rules
-constrain their output. TF-IDF vectors represent permit words, and location metadata
-filters passages. Gap filling changes model inputs; range coverage tests uncertainty
-separately from average error. These approaches complement each other.
+Six numeric features represent equipment size, air and wet-bulb temperature, river
+flow, drought, and season. XGBoost's learned trees estimate daily water use. Symbolic
+energy rules constrain the estimate. A separate permit path uses TF-IDF word vectors
+and location metadata to find local passages. The result combines gallons per day,
+a prediction range, warnings, and exact quotes. A person decides permit applicability.
 
 ## Slide 3: which model makes smaller errors?
 
@@ -41,6 +35,7 @@ generated examples. Then we made the nearby readings too high. In that separate
 test, the nearby-station method stayed close only 60 percent of the time. Filling
 between dates reached about 99 percent. That test used a simple formula. The lesson
 is that a nearby reading is useful only if it represents the same conditions.
+Filling between dates requires later readings, so it suits historical gaps.
 
 ## Slide 5: did the prediction range work?
 
@@ -52,9 +47,10 @@ fit alone does not tell us whether its range is useful.
 
 ## Slide 6: what we will keep and improve
 
-We will keep the model comparison, physical checks, and local permit quotes.
-We will improve how missing readings and prediction ranges are handled. We will
-wait on more complicated AI while we collect measured water-use examples. The next
+E1 supports keeping XGBoost; E3 supports physical checks; E4 supports local quotes
+with real-permit testing still needed. E2 changes our donor checks; E5 calls for
+separate calibration data. E1 and E5 show why we reject fit as a promise of accuracy.
+We defer neural and language models until we can compare them fairly. The next
 step is to train on some sites and test on different sites. To answer the bigger
 local-water question, we also need other water uses, water returned, available
 supply, and the water rivers need.
