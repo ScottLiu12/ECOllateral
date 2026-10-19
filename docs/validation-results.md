@@ -1,5 +1,13 @@
 # Validation results — 2026-10-07
 
+October 19 readiness update: the current code passes all 54 Python tests, Ruff lint
+and formatting (29 files), and TypeScript checking. The full suite ran outside the
+restricted sandbox because Windows asyncio's internal socket setup stalled inside it;
+it completed in 9.75 seconds with one upstream Starlette/httpx deprecation warning.
+The current base commit also has a successful remote CI run. See the
+[A2 readiness review](a2/readiness-review.md) for evidence and remaining team actions.
+The experiment tables below remain the original October 7 snapshot.
+
 Recorded on Windows with Python 3.12.14. Experiments use synthetic facility targets,
 synthetic station readings, and fictional permits. The observed download checks
 parsing and units. These results cover the cooling-water component; the regional

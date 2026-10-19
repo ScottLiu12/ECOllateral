@@ -34,7 +34,9 @@
 			<text x="914" y="174" style="font-family: Helvetica-Bold; font-size: 22px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,348) scale(1,-1)">4. Result</text>
 			<text x="914" y="142" style="font-family: Helvetica; font-size: 20px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,284) scale(1,-1)">Gallons/day + range</text>
 			<text x="914" y="114" style="font-family: Helvetica; font-size: 20px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,228) scale(1,-1)">Warnings + sources</text>
-			<text x="45" y="42" style="font-family: Helvetica; font-size: 20px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,84) scale(1,-1)">Tests use generated examples. Next: measured water use at separate sites.</text>
+			<text x="45" y="66" style="font-family: Helvetica; font-size: 18px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,132) scale(1,-1)">Meaning: numeric features -&gt; learned trees -&gt; MGD target; rules bound output.</text>
+			<text x="45" y="42" style="font-family: Helvetica; font-size: 18px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,84) scale(1,-1)">Permits: TF-IDF word vectors + HUC/location metadata -&gt; local exact quotations.</text>
+			<text x="45" y="18" style="font-family: Helvetica; font-size: 18px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,36) scale(1,-1)">Tests use generated examples. Next: measured water use at separate sites.</text>
 		</g>
 	</g>
 </svg>

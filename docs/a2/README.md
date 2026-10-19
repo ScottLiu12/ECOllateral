@@ -14,6 +14,7 @@ and station readings. The observed download tests parsing and units.
 | [Evidence summary](evidence-summary.csv) | Experiment and decision table |
 | [Team responsibilities](team-contributions.md) | Assigned work and speaking roles |
 | [Assignment coverage](assignment-coverage.md) | Requirements, rubric, and timing |
+| [Readiness audit](readiness-review.md) | October 19 checks, rubric evidence, and remaining team actions |
 
 [Evidence files](evidence/README.md) retain the October 7 snapshot and source hashes
 for implementation `125aa40`. Those hashes describe the original code. The earlier

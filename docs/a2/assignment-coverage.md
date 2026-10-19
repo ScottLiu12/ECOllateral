@@ -1,7 +1,7 @@
 # A2 assignment coverage
 
-Based on the supplied two-page `CSCI 4150 Project Checkoff List.pdf` and three-page
-`CSCI4150_A2_MidSemester_System_Evidence_Review.pdf`.
+Reviewed October 19, 2026 against the supplied two-page project checkoff, two-page
+Project Dossier Student Guide, and three-page A2 Mid-Semester System & Evidence Review.
 
 ## Required presentation content
 
@@ -26,7 +26,7 @@ outputs; E4 uses fictional permits. Neither is an LLM comparison.
 | Experiments and evidence | 25 | Model comparison, repeated missingness, coverage counts, clipping and geographic cases |
 | Failure interpretation | 15 | Biased donors, interval shortfall, synthetic targets, proposed changes |
 | Design and rationale | 20 | Decisions linked to E1-E5 on slide 6 |
-| AI connections | 10 | Supervised trees, symbolic rules, word vectors, metadata filtering, interpolation, uncertainty tests |
+| AI connections | 10 | Dossier explains how rules constrain learned trees, location metadata filters word-vector matches, gap filling changes model inputs, and coverage differs from prediction error; standalone map labels semantic representations |
 | Presentation and questions | 10 | Six slides, four-minute talk, Q&A, three speaking roles |
 
 Timing: 60 seconds for slides 1-2, 120 for slides 3-5, and 60 for slide 6.

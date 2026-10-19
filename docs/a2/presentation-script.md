@@ -20,6 +20,11 @@ number fits the cooling assumptions, and a word search finds local permit passag
 Finally, the program returns daily water use, a range, warnings, and the quotes.
 It does not decide whether a project meets its permit.
 
+For questions about semantics: numeric features feed learned trees; physical rules
+constrain their output. TF-IDF vectors represent permit words, and location metadata
+filters passages. Gap filling changes model inputs; range coverage tests uncertainty
+separately from average error. These approaches complement each other.
+
 ## Slide 3: which model makes smaller errors?
 
 We compared two models called RandomForest and XGBoost. Both learn from examples.

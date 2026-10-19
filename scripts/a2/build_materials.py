@@ -55,15 +55,18 @@ def system_map():
         if i < len(steps) - 1:
             drawing.add(Line(x + 240, 148, x + 275, 148, strokeColor=colors.black))
             drawing.add(Polygon([x + 282, 148, x + 273, 153, x + 273, 143], fillColor=colors.black))
-    drawing.add(
-        String(
-            45,
+    for y, label in [
+        (
+            66,
+            "Meaning: numeric features -> learned trees -> MGD target; rules bound output.",
+        ),
+        (
             42,
-            "Tests use generated examples. Next: measured water use at separate sites.",
-            fontName="Helvetica",
-            fontSize=20,
-        )
-    )
+            "Permits: TF-IDF word vectors + HUC/location metadata -> local exact quotations.",
+        ),
+        (18, "Tests use generated examples. Next: measured water use at separate sites."),
+    ]:
+        drawing.add(String(45, y, label, fontName="Helvetica", fontSize=18))
     renderSVG.drawToFile(drawing, str(HERE / "semantic-system-map.svg"))
     map_pdf = BUILD / "system-map-preview.pdf"
     renderPDF.drawToFile(drawing, str(map_pdf))

@@ -9,7 +9,7 @@ cover cooling consumption; regional assessment remains planned.
 | Item | Status | Project response / evidence |
 | --- | --- | --- |
 | Clear goal, problem, and primary question | Documented | Assess development impacts on seasonal area reserves and watershed conditions; cooling is one pressure component |
-| Achievable sub-goals and scope before mid-term | Documented | Working component prototype, four approach investigations, explicit regional scope and remaining area-assessment work |
+| Achievable sub-goals and scope before mid-term | Documented | Working component prototype, five evidence investigations (E1-E5), explicit regional scope and remaining area-assessment work |
 | Class AI tools/concepts mapped or exclusions justified | Partial | Explain rules, tree models, word/vector search, prediction ranges, and missing data; wait on neural/LLM work; confirm actual studio names/links |
 
 ## Data Acquisition & Governance
@@ -35,7 +35,7 @@ cover cooling consumption; regional assessment remains planned.
 | Item | Status | Project response / evidence |
 | --- | --- | --- |
 | Assign sub-goals and responsibilities to each member | Assigned | Shaun: code and area integration; Troy: environmental data and grounding; Scott: evaluation, regional evidence, and slides |
-| Shared GitHub repository with instructor/TA access | Partial | Configured remote: `https://github.com/ScottLiu12/ECOllateral`; actual collaborators, instructor/TA access, and pushed snapshot are unverified |
+| Shared GitHub repository with instructor/TA access | Partial | Public GitHub repository; current base commit d6ef97b is pushed and CI passed (verified October 19). Instructor/TA access expectations remain unconfirmed; local A2 audit edits still need publishing |
 
 ## Presentation Preparation
 
@@ -46,7 +46,7 @@ cover cooling consumption; regional assessment remains planned.
 | Explain the problem | Prepared | Slide 1 and dossier problem/user statement |
 | Explain sub-goals, milestones, and teammate mapping | Prepared | Team snapshot and role-owned roadmap |
 | Identify AI concepts/tools used | Prepared | Engineering rules; RF/XGBoost tree models; weighted word matching (TF-IDF); nearby-station/time gap filling; no generative LLM experiment claimed |
-| Justify AI evaluation and feasibility takeaways | Prepared | Four approach investigations with evidence; clear limits of made-up data and about 88% prediction-range coverage |
+| Justify AI evaluation and feasibility takeaways | Prepared | Five investigations (E1-E5) with evidence; clear limits of made-up data and about 88% prediction-range coverage |
 | Explain current state and remaining roadmap | Prepared | Component API/tests work; need regional supply/demand, returns, ecological baselines, checked boundaries/documents, measured targets, and independent range tests |
 | Schedule instructor office hours before presentation | Pending | Scott coordinates a course-approved slot |
 

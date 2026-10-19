@@ -20,11 +20,14 @@ still needed to test the program at actual sites.
 
 ![How the prototype works](../semantic-system-map.png)
 
-The model learns patterns from examples. It uses equipment size, air temperature,
-a temperature that accounts for humidity, river flow, drought, and time of year.
-A separate calculation limits the estimate using the energy that needs cooling.
-Permit search finds passages with similar words and keeps only local matches.
-The program quotes those passages; a person decides how the permit applies.
+Meaning lives in six numeric features: equipment size, air temperature, humidity-based
+temperature, river flow, drought, and season. Learned trees map them to daily water use
+(MGD). Symbolic energy rules constrain that estimate; they complement rather than
+replace learning (E1/E3). TF-IDF word vectors rank permit passages, while location
+metadata excludes nonlocal matches (E4). Exact quotes provide context, not permission.
+Gap filling changes the features the trees receive (E2); interval coverage tests a
+different claim from average prediction error (E5). Neural and LLM comparisons are
+deferred until measured targets and a real permit evaluation set support a fair test.
 
 ## Three tests and what we learned
 
