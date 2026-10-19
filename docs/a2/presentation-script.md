@@ -3,7 +3,7 @@
 Read the six slide sections aloud. The Q&A below is a reference, not part of the talk.
 Allow two more minutes for questions and transition.
 
-**Speakers:** Shaun: slides 1-3. Troy: slides 4-5. Scott: slide 6.
+**Speakers:** Shaun: slides 1-2. Troy: slides 3-4. Scott: slides 5-6.
 
 ## Slide 1: local water and new development - 25 seconds
 

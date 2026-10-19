@@ -1,18 +1,47 @@
-# Team responsibilities
+# ECOllateral: A2 team contributions
 
-- **Shaun:** Main coding contributor; leads architecture, data/model/API integration,
-  regional assessment design, and separate calibration.
-- **Troy:** Assigned environmental data acquisition, station and climate-division
-  checks, drought/groundwater interpretation, and document grounding.
-- **Scott:** Assigned rule and interface evaluation, failure analysis, regional
-  evidence review, slides, rehearsal, and instructor-access checks.
+CSCI 4150 | Mid-Semester System & Evidence Review | Shaun, Troy, Scott
 
-Shaun's coding role is confirmed. Troy's and Scott's lines describe assigned work;
-completed contributions are still unconfirmed.
+We divided the project into three complementary areas: system development,
+environmental data and retrieval, and evaluation and communication. Each member's
+contribution connects to the prototype and evidence presented in our A2 review.
 
-Before submission, Troy and Scott should confirm which assigned tasks they completed
-and point to their evidence or deliverables. Speaking assignments below are planned
-roles, not evidence of completed technical work.
+## Shaun: system development and integration
 
-Shaun presents the problem, system, and model comparison (slides 1-3). Troy covers
-missing readings and range coverage (4-5). Scott covers decisions and the next test (6).
+Shaun developed the system architecture and connected the environmental inputs,
+prediction models, physical checks, and permit results through the API. He handled
+model training and the RandomForest/XGBoost comparison, documenting why XGBoost
+was selected for the prototype. His work established the path from a facility
+request to a daily cooling-water estimate, prediction range, and warnings.
+
+Evidence: system map, API and model implementation, and E1 model-comparison results.
+
+## Troy: environmental data and permit retrieval
+
+Troy worked on environmental data acquisition and preparation, including station
+and climate-division checks and drought and groundwater interpretation. He analyzed
+missing-data handling and the biased-station failure in E2. He also worked on permit
+retrieval and geographic filtering, connecting exact quotations to the requested
+location and documenting the fictional location tests in E4.
+
+Evidence: data contracts, E2 missingness results and donor diagnostic, and E4 retrieval cases.
+
+## Scott: evaluation and evidence presentation
+
+Scott evaluated the physical-rule checks in E3 and prediction-range coverage in E5.
+He analyzed what the failures mean for the design, including the need for separate
+calibration data and further testing with measured consumption. He organized the
+evidence, slides, and presentation materials to explain the results, design
+decisions, and limits of the current prototype.
+
+Evidence: E3 constraint cases, E5 coverage results, evidence summary, dossier, and slides.
+
+## Presentation responsibilities
+
+- **Shaun - slides 1-2:** problem, intended users, scope, and system architecture.
+- **Troy - slides 3-4:** model comparison, missing readings, and the biased-station failure.
+- **Scott - slides 5-6:** prediction ranges, evidence-based decisions, and next steps.
+
+Each member presents two slides. The talk targets four minutes, followed by questions.
+The current results use synthetic data; testing at real facilities and assessing
+broader regional water impacts remain future work.

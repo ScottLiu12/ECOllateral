@@ -123,5 +123,5 @@ Regional balances, recharge and heatwave studies, neural models, dense embedding
 and language-model comparisons remain future work.
 
 The [A2 package](docs/a2/README.md) contains the checkoff, evidence review, system map,
-editable six-slide presentation, talk, and assigned team responsibilities. Results
+editable six-slide presentation, talk, and documented team contributions. Results
 in the package describe the October 7, 2026 synthetic experiments.

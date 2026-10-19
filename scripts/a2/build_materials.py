@@ -198,6 +198,7 @@ def main():
     if not args.map_only:
         for name in ("dossier", "project-checkoff"):
             markdown_pdf(SOURCE / f"{name}.md", HERE / f"{name}.pdf")
+        markdown_pdf(HERE / "team-contributions.md", HERE / "team-contributions.pdf")
     print("Course materials exported to", HERE)
 
 

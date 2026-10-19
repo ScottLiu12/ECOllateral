@@ -14,7 +14,7 @@ and station readings. The observed download tests parsing and units.
 | [Checkoff](project-checkoff.pdf) and [source](source/project-checkoff.md) | All 21 course items and outstanding actions |
 | [System map](semantic-system-map.svg) and [PNG](semantic-system-map.png) | Number and permit paths |
 | [Evidence summary](evidence-summary.csv) | Experiment and decision table |
-| [Team responsibilities](team-contributions.md) | Assigned work and speaking roles |
+| [Team contributions](team-contributions.pdf) and [source](team-contributions.md) | Completed work, supporting evidence, and two slides per member |
 | [Assignment coverage](assignment-coverage.md) | Requirements, rubric, and timing |
 | [Readiness audit](readiness-review.md) | October 19 checks, rubric evidence, and remaining team actions |
 
@@ -32,7 +32,7 @@ Run from the repository root:
 .venv\Scripts\python scripts/a2/collect_evidence.py --output data/processed/new-evidence
 ```
 
-The builder exports dossier/checkoff PDFs and the SVG/PNG map. Intermediate files go
+The builder exports dossier, checkoff, and team-contribution PDFs and the SVG/PNG map. Intermediate files go
 to ignored `data/processed/a2-build/`. The slides are edited in the PPTX and exported
 separately. Charts use gallons per day or percentages. The gap chart shows the separate
 bad-reading test; exact source values remain in the evidence CSVs. Capturing new

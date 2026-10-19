@@ -34,7 +34,7 @@ cover cooling consumption; regional assessment remains planned.
 
 | Item | Status | Project response / evidence |
 | --- | --- | --- |
-| Assign sub-goals and responsibilities to each member | Assigned | Shaun: code and area integration; Troy: environmental data and grounding; Scott: evaluation, regional evidence, and slides |
+| Assign sub-goals and responsibilities to each member | Documented | Completed work: Shaun - system/model/API integration; Troy - environmental data, missingness, and permits; Scott - physical checks, uncertainty evaluation, and presentation evidence. Two slides per member. |
 | Shared GitHub repository with instructor/TA access | Partial | Public GitHub repository; current base commit d6ef97b is pushed and CI passed (verified October 19). Instructor/TA access expectations remain unconfirmed; local A2 audit edits still need publishing |
 
 ## Presentation Preparation
@@ -54,5 +54,5 @@ cover cooling consumption; regional assessment remains planned.
 
 - Assigned presentation day and Submitty deadline.
 - Instructor/TA repository access and submitted commit.
-- Exact class studio references and completed team contributions.
+- Exact class studio references.
 - Office-hours appointment and rehearsal with all three members.

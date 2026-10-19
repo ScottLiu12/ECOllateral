@@ -40,7 +40,7 @@ Allow two more minutes for questions and transition.
 | Current system map | `semantic-system-map.svg`, `.png`, dossier diagram, slide 2 |
 | Approach/evidence/decision summary | `evidence-summary.csv`, dossier decision table, slide 6 |
 | Presentation | `review-slides-simplified.pptx`, `review-slides.pdf`, `presentation-script.md` |
-| One line per teammate | `team-contributions.md` |
+| Individual contributions and speaking roles | `team-contributions.md`, `team-contributions.pdf`; two slides per member |
 
 The assignment does not require a finished system, every class technique, or successful
 results from every experiment. Dates, access, course references, and contribution status
